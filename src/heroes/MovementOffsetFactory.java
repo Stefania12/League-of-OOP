@@ -27,5 +27,4 @@ public final class MovementOffsetFactory {
     public Pair<Integer, Integer> getOffset(String movement) {
         return offsets.get(movement.charAt(0));
     }
-
 }

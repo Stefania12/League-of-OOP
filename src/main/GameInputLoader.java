@@ -2,6 +2,7 @@ package main;
 
 import fileio.implementations.FileReader;
 import javafx.util.Pair;
+import map.Map;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,8 @@ public final class GameInputLoader {
             for (int i = 0; i < lines; i++) {
                 lands.add(fileReader.nextWord());
             }
+
+            Map.getInstance().initLands(lands);
 
             int numHeroes = fileReader.nextInt();
             heroTypes = new ArrayList<>();

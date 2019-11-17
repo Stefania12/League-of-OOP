@@ -14,7 +14,7 @@ public class Game {
 
     public Game(final ArrayList<String> lands, final ArrayList<String> heroTypes,
                 final ArrayList<Pair<Integer, Integer>> heroCoordinates, final ArrayList<String> movements) {
-        map = new Map(lands);
+        map = Map.getInstance();
         heroes = new ArrayList<>();
         for (int i = 0; i < heroTypes.size(); i++) {
             heroes.add(HeroFactory.getInstance().getHero(heroTypes.get(i), heroCoordinates.get(i)));
