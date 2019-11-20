@@ -1,17 +1,25 @@
 package abilities.wizard;
 
 import abilities.Ability;
-import abilities.AbilityInterface;
+import abilities.AbilityParameters;
+import abilities.AbilityPriority;
 import common.Constants;
 import heroes.*;
 
-public class Drain extends Ability implements AbilityInterface {
+public class Drain extends Ability {
     public Drain(Hero hero) {
-        super(hero, Constants.DRAIN_BASE_DAMAGE_PERCENTAGE, Constants.DRAIN_DAMAGE_PERCENTAGE_PER_LEVEL, 0, 0, 0);
+        super(AbilityPriority.FIRST.ordinal(), hero, Constants.DRAIN_BASE_DAMAGE_PERCENTAGE, 0,
+                Constants.DRAIN_DAMAGE_PERCENTAGE_PER_LEVEL, 0, 0, 0);
     }
 
-    private int getBaseHP(Hero hero) {
+    private static int getBaseHP(Hero hero) {
         return Math.round(Math.min(Constants.DRAIN_BASE_HP_CONSTANT * hero.getMaxHP(), hero.getHP()));
+    }
+
+    @Override
+    public int getBasicDamageOn(Hero hero) {
+        float levelPercentage = this.getDamagePerLevel() * this.getOwner().getLevel();
+        return Math.round((this.getBaseDamage() + levelPercentage) / 100.0f * getBaseHP(hero));
     }
 
     @Override
@@ -35,6 +43,10 @@ public class Drain extends Ability implements AbilityInterface {
     }
 
     @Override
-    public void performAbility() {
+    public AbilityParameters getAbilityParametersOn(Hero hero) {
+        return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
+                this.getIncapacitationRounds(), this.getRoundDamage(), this.getRounds(),
+                this.getTerrainMultiplier(), hero.getRaceMultiplierOf(this));
     }
+
 }

@@ -1,13 +1,15 @@
 package abilities.pyromancer;
 
 import abilities.Ability;
-import abilities.AbilityInterface;
+import abilities.AbilityParameters;
+import abilities.AbilityPriority;
 import common.Constants;
 import heroes.*;
 
-public class FireBlast extends Ability implements AbilityInterface {
+public class FireBlast extends Ability {
     public FireBlast(Hero hero) {
-        super(hero, Constants.FIREBLAST_BASE_DAMAGE, Constants.FIREBLAST_DAMAGE_PER_LEVEL, 0, 0, 0);
+        super(AbilityPriority.FIRST.ordinal(), hero, Constants.FIREBLAST_BASE_DAMAGE, 0,
+                Constants.FIREBLAST_DAMAGE_PER_LEVEL, 0, 0, 0);
     }
 
     @Override
@@ -31,6 +33,9 @@ public class FireBlast extends Ability implements AbilityInterface {
     }
 
     @Override
-    public void performAbility() {
+    public AbilityParameters getAbilityParametersOn(Hero hero) {
+        return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
+                this.getIncapacitationRounds(), this.getRoundDamage(), this.getRounds(),
+                this.getTerrainMultiplier(), hero.getRaceMultiplierOf(this));
     }
 }

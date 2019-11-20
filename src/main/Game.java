@@ -12,8 +12,8 @@ public class Game {
     private ArrayList<Hero> heroes;
     private ArrayList<String> heroMovements;
 
-    public Game(final ArrayList<String> lands, final ArrayList<String> heroTypes,
-                final ArrayList<Pair<Integer, Integer>> heroCoordinates, final ArrayList<String> movements) {
+    Game(final ArrayList<String> lands, final ArrayList<String> heroTypes,
+         final ArrayList<Pair<Integer, Integer>> heroCoordinates, final ArrayList<String> movements) {
         map = Map.getInstance();
         heroes = new ArrayList<>();
         for (int i = 0; i < heroTypes.size(); i++) {
@@ -26,6 +26,10 @@ public class Game {
         return map.getLands();
     }
 
+    public ArrayList<Hero> getHeroes() {
+        return heroes;
+    }
+
     @Override
     public String toString() {
         String str = map.toString();
@@ -36,5 +40,19 @@ public class Game {
             str += " " + s;
         }
         return str;
+    }
+
+    private void round(int idx) {
+        System.out.println("Round " + idx + ":");
+        for (int i = 0; i < heroes.size(); i++) {
+            heroes.get(i).move(heroMovements.get(idx).charAt(i));
+            System.out.println(heroes.get(i).toString());
+        }
+    }
+
+    public void play() {
+        for (int i = 0; i < heroMovements.size(); i++) {
+            this.round(i);
+        }
     }
 }

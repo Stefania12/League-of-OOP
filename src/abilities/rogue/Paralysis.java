@@ -1,18 +1,30 @@
 package abilities.rogue;
 
 import abilities.Ability;
-import abilities.AbilityInterface;
+import abilities.AbilityParameters;
+import abilities.AbilityPriority;
 import common.Constants;
 import heroes.*;
+import map.Map;
 
-public class Paralysis extends Ability implements AbilityInterface {
+public class Paralysis extends Ability {
     private final int roundsWoods;
     private final int roundsNotWoods;
 
     public Paralysis(Hero hero) {
-        super(hero, Constants.PARALYSIS_DAMAGE_PER_ROUND, Constants.PARALYSIS_ROUND_DAMAGE_PER_LEVEL, 0, Constants.PARALYSIS_DAMAGE_PER_ROUND, Constants.PARALYSIS_ROUND_DAMAGE_PER_LEVEL);
+        super(AbilityPriority.FIRST.ordinal(), hero, Constants.PARALYSIS_DAMAGE_PER_ROUND, 0,
+                Constants.PARALYSIS_ROUND_DAMAGE_PER_LEVEL, 0, Constants.PARALYSIS_DAMAGE_PER_ROUND,
+                Constants.PARALYSIS_ROUND_DAMAGE_PER_LEVEL);
         roundsNotWoods = Constants.PARALYSIS_ROUNDS_NOT_WOODS;
         roundsWoods = Constants.PARALYSIS_ROUNDS_WOODS;
+    }
+
+    @Override
+    public int getIncapacitationRounds() {
+        if (Map.getInstance().getTerrainAt(this.getOwner().getCoordinates()) == Constants.WOODS) {
+            return roundsWoods;
+        }
+        return roundsNotWoods;
     }
 
     @Override
@@ -36,6 +48,9 @@ public class Paralysis extends Ability implements AbilityInterface {
     }
 
     @Override
-    public void performAbility() {
+    public AbilityParameters getAbilityParametersOn(Hero hero) {
+        return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
+                this.getIncapacitationRounds(), this.getRoundDamage(), this.getRounds(),
+                this.getTerrainMultiplier(), hero.getRaceMultiplierOf(this));
     }
 }

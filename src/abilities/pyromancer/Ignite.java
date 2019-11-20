@@ -1,15 +1,16 @@
 package abilities.pyromancer;
 
 import abilities.Ability;
-import abilities.AbilityInterface;
+import abilities.AbilityParameters;
+import abilities.AbilityPriority;
 import common.Constants;
 import heroes.*;
 
-public class Ignite extends Ability implements AbilityInterface {
+public class Ignite extends Ability {
     public Ignite(Hero hero) {
-        super(hero, Constants.IGNITE_BASE_DAMAGE, Constants.IGNITE_DAMAGE_PER_LEVEL,
-                Constants.IGNITE_ROUNDS, Constants.IGNITE_DAMAGE_PER_ROUND,
-                Constants.IGNITE_ROUND_DAMAGE_PER_LEVEL);
+        super(AbilityPriority.FIRST.ordinal(), hero, Constants.IGNITE_BASE_DAMAGE, 0,
+                Constants.IGNITE_DAMAGE_PER_LEVEL, Constants.IGNITE_ROUNDS,
+                Constants.IGNITE_DAMAGE_PER_ROUND, Constants.IGNITE_ROUND_DAMAGE_PER_LEVEL);
     }
 
     @Override
@@ -33,6 +34,9 @@ public class Ignite extends Ability implements AbilityInterface {
     }
 
     @Override
-    public void performAbility() {
+    public AbilityParameters getAbilityParametersOn(Hero hero) {
+        return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
+                this.getIncapacitationRounds(), this.getRoundDamage(), this.getRounds(),
+                this.getTerrainMultiplier(), hero.getRaceMultiplierOf(this));
     }
 }

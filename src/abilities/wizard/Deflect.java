@@ -1,16 +1,31 @@
 package abilities.wizard;
 
 import abilities.Ability;
-import abilities.AbilityInterface;
+import abilities.AbilityParameters;
+import abilities.AbilityPriority;
 import common.Constants;
 import heroes.*;
 
-public class Deflect extends Ability implements AbilityInterface {
+public class Deflect extends Ability {
     private final int maxDamagePercentage;
 
     public Deflect(Hero hero) {
-        super(hero, Constants.DEFLECT_BASE_DAMAGE_PERCENTAGE, Constants.DEFLECT_DAMAGE_PERCENTAGE_PER_LEVEL, 0, 0, 0);
+        super(AbilityPriority.SECOND.ordinal(), hero, Constants.DEFLECT_BASE_DAMAGE_PERCENTAGE, 0, Constants.DEFLECT_DAMAGE_PERCENTAGE_PER_LEVEL, 0, 0, 0);
         maxDamagePercentage = Constants.DEFLECT_DAMAGE_MAX_PERCENTAGE;
+    }
+
+    private float getDamagePercentage() {
+        int levelPercentage = this.getDamagePerLevel() * this.getOwner().getLevel();
+        return Math.min(this.getBaseDamage() + levelPercentage, maxDamagePercentage) / 100.0f;
+    }
+
+    @Override
+    public int getBasicDamageOn(Hero hero) {
+        int damageGot = 0;
+        for (AbilityParameters i : hero.getAttacks()) {
+            damageGot += Math.round(i.getBasicDamage() * i.getTerrainMultiplier());
+        }
+        return Math.round(damageGot * this.getDamagePercentage());
     }
 
     @Override
@@ -34,6 +49,10 @@ public class Deflect extends Ability implements AbilityInterface {
     }
 
     @Override
-    public void performAbility() {
+    public AbilityParameters getAbilityParametersOn(Hero hero) {
+        return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
+                this.getIncapacitationRounds(), this.getRoundDamage(),
+                this.getRounds(), this.getTerrainMultiplier(), hero.getRaceMultiplierOf(this));
     }
+
 }

@@ -1,19 +1,13 @@
 package abilities;
 
-import heroes.Knight;
-import heroes.Pyromancer;
-import heroes.Rogue;
-import heroes.Wizard;
+import heroes.*;
 
 public interface AbilityInterface {
 
-    void performAbility();
+    AbilityParameters getAbilityParametersOn(Hero hero);
 
     float getRaceDamageMultiplier(Pyromancer hero);
-
     float getRaceDamageMultiplier(Knight hero);
-
     float getRaceDamageMultiplier(Wizard hero);
-
     float getRaceDamageMultiplier(Rogue hero);
 }

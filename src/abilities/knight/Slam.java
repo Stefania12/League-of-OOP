@@ -1,13 +1,16 @@
 package abilities.knight;
 
 import abilities.Ability;
-import abilities.AbilityInterface;
+import abilities.AbilityParameters;
+import abilities.AbilityPriority;
 import common.Constants;
 import heroes.*;
 
-public class Slam extends Ability implements AbilityInterface {
+public class Slam extends Ability {
     public Slam(Hero hero) {
-        super(hero, Constants.SLAM_BASE_DAMAGE, Constants.SLAM_DAMAGE_PER_LEVEL, Constants.SLAM_INCAPACITATION_ROUNDS, 0, 0);
+        super(AbilityPriority.FIRST.ordinal(), hero, Constants.SLAM_BASE_DAMAGE,
+                Constants.SLAM_INCAPACITATION_ROUNDS, Constants.SLAM_DAMAGE_PER_LEVEL,
+                Constants.SLAM_INCAPACITATION_ROUNDS, 0, 0);
     }
 
     @Override
@@ -31,6 +34,9 @@ public class Slam extends Ability implements AbilityInterface {
     }
 
     @Override
-    public void performAbility() {
+    public AbilityParameters getAbilityParametersOn(Hero hero) {
+        return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
+                this.getIncapacitationRounds(), this.getRoundDamage(), this.getRounds(),
+                this.getTerrainMultiplier(), hero.getRaceMultiplierOf(this));
     }
 }

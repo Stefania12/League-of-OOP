@@ -1,20 +1,31 @@
 package abilities.knight;
 
 import abilities.Ability;
-import abilities.AbilityInterface;
+import abilities.AbilityParameters;
+import abilities.AbilityPriority;
 import common.Constants;
 import heroes.*;
 
-public class Execute extends Ability implements AbilityInterface {
+public class Execute extends Ability {
     public Execute(Hero hero) {
-        super(hero, Constants.EXECUTE_BASE_DAMAGE, Constants.EXECUTE_DAMAGE_PER_LEVEL, 0, 0, 0);
+        super(AbilityPriority.FIRST.ordinal(), hero, Constants.EXECUTE_BASE_DAMAGE, 0,
+                Constants.EXECUTE_DAMAGE_PER_LEVEL, 0, 0, 0);
     }
 
-    private int getHPLimit(Hero hero) {
+    private static int getHPLimit(Hero hero) {
         int percentage = Constants.EXECUTE_INITIAL_HP_PERCENTAGE
                 + Constants.EXECUTE_HP_PERCENTAGE_PER_LEVEL;
         float HP = Math.min(Constants.EXECUTE_MAX_HP_PERCENTAGE, percentage) / 100.0f * hero.getMaxHP();
         return Math.round(HP);
+    }
+
+    @Override
+    public int getBasicDamageOn(Hero hero) {
+        if (hero.getHP() < getHPLimit(hero)) {
+            return hero.getHP();
+        }
+        int basic = this.getBaseDamage() + this.getDamagePerLevel() * this.getOwner().getLevel();
+        return Math.round((basic) * this.getOwner().getTerrainBonusDamageMultiplier());
     }
 
     @Override
@@ -38,6 +49,9 @@ public class Execute extends Ability implements AbilityInterface {
     }
 
     @Override
-    public void performAbility() {
+    public AbilityParameters getAbilityParametersOn(Hero hero) {
+        return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
+                this.getIncapacitationRounds(), this.getRoundDamage(), this.getRounds(),
+                this.getTerrainMultiplier(), hero.getRaceMultiplierOf(this));
     }
 }

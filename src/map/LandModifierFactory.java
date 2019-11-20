@@ -18,53 +18,49 @@ public final class LandModifierFactory {
     private LandModifierFactory() {
         knightBonus = new HashMap<>();
         knightBonus.put('L', Constants.KNIGHT_BONUS_DAMAGE_MULTIPLIER);
-        knightBonus.put('W', 0f);
-        knightBonus.put('D', 0f);
-        knightBonus.put('V', 0f);
+        knightBonus.put('W', 1.0f);
+        knightBonus.put('D', 1.0f);
+        knightBonus.put('V', 1.0f);
 
         pyromancerBonus = new HashMap<>();
         pyromancerBonus.put('V', Constants.PYROMANCER_BONUS_DAMAGE_MULTIPLIER);
-        pyromancerBonus.put('L', 0f);
-        pyromancerBonus.put('D', 0f);
-        pyromancerBonus.put('W', 0f);
+        pyromancerBonus.put('L', 1.0f);
+        pyromancerBonus.put('D', 1.0f);
+        pyromancerBonus.put('W', 1.0f);
 
         rogueBonus = new HashMap<>();
         rogueBonus.put('W', Constants.ROGUE_BONUS_DAMAGE_MULTIPLIER);
-        rogueBonus.put('L', 0f);
-        rogueBonus.put('D', 0f);
-        rogueBonus.put('V', 0f);
+        rogueBonus.put('L', 1.0f);
+        rogueBonus.put('D', 1.0f);
+        rogueBonus.put('V', 1.0f);
 
         wizardBonus = new HashMap<>();
         wizardBonus.put('D', Constants.WIZARD_BONUS_DAMAGE_MULTIPLIER);
-        wizardBonus.put('L', 0f);
-        wizardBonus.put('W', 0f);
-        wizardBonus.put('V', 0f);
+        wizardBonus.put('L', 1.0f);
+        wizardBonus.put('W', 1.0f);
+        wizardBonus.put('V', 1.0f);
     }
 
-    public static float getDamageBonusMultiplier(Knight hero) {
-        int x = hero.getCoordinates().getKey(), y = hero.getCoordinates().getValue();
-        return knightBonus.get(Map.getInstance().getTerrainAt(x, y));
-    }
-
-    public static float getDamageBonusMultiplier(Rogue hero) {
-        int x = hero.getCoordinates().getKey(), y = hero.getCoordinates().getValue();
-        return rogueBonus.get(Map.getInstance().getTerrainAt(x, y));
-    }
-
-    public static float getDamageBonusMultiplier(Wizard hero) {
-        int x = hero.getCoordinates().getKey(), y = hero.getCoordinates().getValue();
-        return wizardBonus.get(Map.getInstance().getTerrainAt(x, y));
-    }
-
-    public static float getDamageBonusMultiplier(Pyromancer hero) {
-        int x = hero.getCoordinates().getKey(), y = hero.getCoordinates().getValue();
-        return pyromancerBonus.get(Map.getInstance().getTerrainAt(x, y));
-    }
-
-    public LandModifierFactory getInstance() {
+    public static LandModifierFactory getInstance() {
         if (instance == null) {
             instance = new LandModifierFactory();
         }
         return instance;
+    }
+
+    public float getDamageBonusMultiplier(Knight hero) {
+        return knightBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()));
+    }
+
+    public float getDamageBonusMultiplier(Rogue hero) {
+        return rogueBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()));
+    }
+
+    public float getDamageBonusMultiplier(Wizard hero) {
+        return wizardBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()));
+    }
+
+    public float getDamageBonusMultiplier(Pyromancer hero) {
+        return pyromancerBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()));
     }
 }

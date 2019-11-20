@@ -1,12 +1,14 @@
 package map;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
 
 public final class Map {
     private static Map instance = null;
     private ArrayList<String> lands = null;
 
-    public Map() {
+    private Map() {
     }
 
     public static Map getInstance() {
@@ -26,6 +28,10 @@ public final class Map {
 
     public char getTerrainAt(final int x, final int y) {
         return getInstance().lands.get(x).charAt(y);
+    }
+
+    public char getTerrainAt(final Pair<Integer, Integer> coordinates) {
+        return lands.get(coordinates.getKey()).charAt(coordinates.getValue());
     }
 
     @Override

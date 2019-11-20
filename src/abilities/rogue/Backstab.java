@@ -1,20 +1,38 @@
 package abilities.rogue;
 
 import abilities.Ability;
-import abilities.AbilityInterface;
+import abilities.AbilityParameters;
+import abilities.AbilityPriority;
 import common.Constants;
 import heroes.*;
+import map.Map;
 
-public class Backstab extends Ability implements AbilityInterface {
-    private int criticalHits;
-
+public class Backstab extends Ability {
+    private int counter;
     public Backstab(Hero hero) {
-        super(hero, Constants.BACKSTAB_BASE_DAMAGE, Constants.BACKSTAB_DAMAGE_PER_LEVEL, 0, 0, 0);
-        criticalHits = Constants.BACKSTAB_CRITICAL_HITS;
+        super(AbilityPriority.FIRST.ordinal(), hero, Constants.BACKSTAB_BASE_DAMAGE, 0,
+                Constants.BACKSTAB_DAMAGE_PER_LEVEL, 0, 0, 0);
     }
 
-    private void resetCriticalHits() {
-        criticalHits = 0;
+    private void decreaseCounter() {
+        if (counter - 1 == 0) {
+            counter = Constants.BACKSTAB_CRITICAL_HITS;
+        } else {
+            counter--;
+        }
+    }
+
+    private float getCriticalValue() {
+        if (Map.getInstance().getTerrainAt(this.getOwner().getCoordinates()) == Constants.WOODS
+                && counter == Constants.BACKSTAB_CRITICAL_HITS) {
+            return Constants.BACKSTAB_CRITICAL_PERCENTAGE;
+        }
+        return 1.0f;
+    }
+
+    @Override
+    public int getBasicDamageOn(Hero hero) {
+        return Math.round(super.getBasicDamageOn(hero) * this.getCriticalValue());
     }
 
     @Override
@@ -38,6 +56,11 @@ public class Backstab extends Ability implements AbilityInterface {
     }
 
     @Override
-    public void performAbility() {
+    public AbilityParameters getAbilityParametersOn(Hero hero) {
+        AbilityParameters a = new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
+                this.getIncapacitationRounds(), this.getRoundDamage(), this.getRounds(),
+                this.getTerrainMultiplier(), hero.getRaceMultiplierOf(this));
+        this.decreaseCounter();
+        return a;
     }
 }
