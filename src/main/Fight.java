@@ -3,15 +3,16 @@ package main;
 import abilities.AbilityParameters;
 import heroes.Hero;
 import javafx.util.Pair;
+import xp.XPManager;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public final class Fight {
 
-    public static int getEnemyToFightWith(final int heroId, ArrayList<Hero> heroes) {
+    static int getEnemyToFightWith(final int heroId, ArrayList<Hero> heroes) {
         for (int i = heroId + 1; i < heroes.size(); i++) {
-            if (heroes.get(i).getCoordinates().equals(heroes.get(heroId).getCoordinates())) {
+            if (heroes.get(i).isAlive() && heroes.get(i).getCoordinates().equals(heroes.get(heroId).getCoordinates())) {
                 return i;
             }
         }
@@ -62,5 +63,7 @@ public final class Fight {
 
         hero1.takeDamage();
         hero2.takeDamage();
+
+        XPManager.updateXPAfterFight(hero1, hero2);
     }
 }

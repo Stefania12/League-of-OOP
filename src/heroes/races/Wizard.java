@@ -32,4 +32,10 @@ public class Wizard extends Hero {
         return ability.getRaceDamageMultiplier(this);
     }
 
+    @Override
+    public void levelUp() {
+        super.levelUp();
+        this.setMaxHP(Constants.WIZARD_INITIAL_HP + Constants.WIZARD_HP_PER_LEVEL * this.getLevel());
+        this.setHP(this.getMaxHP());
+    }
 }

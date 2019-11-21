@@ -31,4 +31,11 @@ public class Pyromancer extends Hero {
     public float getRaceMultiplierOf(AbilityInterface ability) {
         return ability.getRaceDamageMultiplier(this);
     }
+
+    @Override
+    public void levelUp() {
+        super.levelUp();
+        this.setMaxHP(Constants.PYROMANCER_INITIAL_HP + Constants.PYROMANCER_HP_PER_LEVEL * this.getLevel());
+        this.setHP(this.getMaxHP());
+    }
 }

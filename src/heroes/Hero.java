@@ -39,7 +39,16 @@ public abstract class Hero implements HeroInterface {
 
     @Override
     public String toString() {
-        return type + " " + coordinates + " " + alive + " maxHP: " + maxHP + " HP: " + HP + " XP: " + XP + " level: " + level;
+        // return type + " " + coordinates + " " + alive + " maxHP: " + maxHP + " HP: " + HP + " XP: " + XP + " level: " + level;
+        StringBuilder builder = new StringBuilder(type);
+        builder.append(" ");
+        if (!alive) {
+            builder.append("dead");
+        } else {
+            builder.append(level).append(" ").append(XP).append(" ").append(HP).append(" ");
+            builder.append(coordinates.getKey()).append(" ").append(coordinates.getValue());
+        }
+        return builder.toString();
     }
 
     public int getHP() {
@@ -111,6 +120,9 @@ public abstract class Hero implements HeroInterface {
     }
 
     public void move(char direction) {
+        if (!alive) {
+            return;
+        }
         Pair<Integer, Integer> offset = MovementOffsetFactory.getInstance().getOffset(direction);
         if (incapacitationRounds != 0) {
             incapacitationRounds--;
@@ -128,10 +140,6 @@ public abstract class Hero implements HeroInterface {
         for (Ability i : abilities) {
             attacks.add(i.getAbilityParametersOn(hero));
         }
-    }
-
-    public void clearAttacks() {
-        attacks.clear();
     }
 
     public void updateAliveStatus() {
@@ -158,5 +166,21 @@ public abstract class Hero implements HeroInterface {
             overtimeDamage = null;
         }
         this.updateAliveStatus();
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void levelUp() {
+        level++;
+    }
+
+    public void setMaxHP(final int maxHP) {
+        this.maxHP = maxHP;
+    }
+
+    public void setHP(final int HP) {
+        this.HP = HP;
     }
 }

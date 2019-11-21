@@ -32,4 +32,11 @@ public class Rogue extends Hero {
         return ability.getRaceDamageMultiplier(this);
     }
 
+    @Override
+    public void levelUp() {
+        super.levelUp();
+        this.setMaxHP(Constants.ROGUE_INITIAL_HP + Constants.ROGUE_HP_PER_LEVEL * this.getLevel());
+        this.setHP(this.getMaxHP());
+    }
+
 }

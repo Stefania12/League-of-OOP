@@ -43,7 +43,7 @@ public class Game {
     }
 
     private void round(int idx) {
-        System.out.println("Round " + idx + ":");
+        //System.out.println("Round " + idx + ":");
         for (int i = 0; i < heroes.size(); i++) {
             heroes.get(i).move(heroMovements.get(idx).charAt(i));
             heroes.get(i).takeOvertimeDamage();
