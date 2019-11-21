@@ -62,6 +62,8 @@ public class AbilityParameters {
         builder.append(", ");
         builder.append(overtimeDamage);
         builder.append(", ");
+        builder.append(overtimeDamageRounds);
+        builder.append(", ");
         builder.append(terrainMultiplier);
         builder.append(", ");
         builder.append(raceMultiplier);

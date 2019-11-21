@@ -32,6 +32,11 @@ public class Paralysis extends Ability {
     }
 
     @Override
+    public int getOvertimeDamageRounds() {
+        return getIncapacitationRounds();
+    }
+
+    @Override
     public float getRaceDamageMultiplier(Rogue hero) {
         return Constants.PARALYSIS_ROGUE_MUTIPLIER;
     }

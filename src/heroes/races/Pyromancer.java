@@ -4,9 +4,9 @@ import abilities.AbilityInterface;
 import abilities.pyromancer.FireBlast;
 import abilities.pyromancer.Ignite;
 import common.Constants;
+import general.Pair;
 import heroes.Hero;
 import heroes.HeroPriority;
-import javafx.util.Pair;
 import map.LandModifierFactory;
 
 public class Pyromancer extends Hero {

@@ -16,6 +16,7 @@ public class Backstab extends Ability {
     public Backstab(Hero hero) {
         super(AbilityPriority.FIRST.ordinal(), hero, Constants.BACKSTAB_BASE_DAMAGE, 0,
                 Constants.BACKSTAB_DAMAGE_PER_LEVEL, 0, 0, 0);
+        counter = Constants.BACKSTAB_CRITICAL_HITS;
     }
 
     private void decreaseCounter() {

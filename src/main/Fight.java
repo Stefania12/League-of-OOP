@@ -1,8 +1,8 @@
 package main;
 
 import abilities.AbilityParameters;
+import general.Pair;
 import heroes.Hero;
-import javafx.util.Pair;
 import xp.XPManager;
 
 import java.util.ArrayList;
@@ -34,18 +34,21 @@ public final class Fight {
     }
 
     private static void addEffectsOfAbilityToHero(AbilityParameters abilityParameters, Hero hero) {
-        int currentRoundDamage, overtimeDamage, roundsDamage, roundsIncapacitation;
+        int currentRoundDamage, overtimeDamage, overtimeRounds, roundsIncapacitation;
         currentRoundDamage = getFinalBasicDamageOf(abilityParameters);
         overtimeDamage = getFinalOvertimeDamageOf(abilityParameters);
-        roundsDamage = abilityParameters.getOvertimeDamageRounds();
+        overtimeRounds = abilityParameters.getOvertimeDamageRounds();
         roundsIncapacitation = abilityParameters.getIncapacitationRounds();
 
         hero.addDamageTaken(currentRoundDamage);
         hero.addIncapacitaion(roundsIncapacitation);
-        hero.addOvertimeDamage(new Pair<>(overtimeDamage, roundsDamage));
+
+        if (overtimeDamage != 0) {
+            hero.addOvertimeDamage(new Pair<>(overtimeDamage, overtimeRounds));
+        }
     }
 
-    public static void fight(Hero hero1, Hero hero2) {
+    static void fight(Hero hero1, Hero hero2) {
         hero1.computeAttacksOn(hero2);
         hero2.computeAttacksOn(hero1);
 

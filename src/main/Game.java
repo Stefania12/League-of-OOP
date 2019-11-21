@@ -1,13 +1,14 @@
 package main;
 
+import fileio.implementations.FileWriter;
+import general.Pair;
 import heroes.Hero;
 import heroes.HeroFactory;
-import javafx.util.Pair;
 import map.Map;
 
 import java.util.ArrayList;
 
-public class Game {
+class Game {
     private final Map map;
     private ArrayList<Hero> heroes;
     private ArrayList<String> heroMovements;
@@ -62,9 +63,23 @@ public class Game {
         }
     }
 
-    public void play() {
+    void play() {
         for (int i = 0; i < heroMovements.size(); i++) {
             this.round(i);
+        }
+    }
+
+    void printOutput(String outputFile) {
+        try {
+            FileWriter fileWriter = new FileWriter(outputFile);
+            for (Hero i : heroes) {
+                fileWriter.writeWord(i.toString());
+                fileWriter.writeNewLine();
+            }
+            fileWriter.writeNewLine();
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

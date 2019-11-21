@@ -4,9 +4,9 @@ import abilities.AbilityInterface;
 import abilities.knight.Execute;
 import abilities.knight.Slam;
 import common.Constants;
+import general.Pair;
 import heroes.Hero;
 import heroes.HeroPriority;
-import javafx.util.Pair;
 import map.LandModifierFactory;
 
 public class Knight extends Hero {

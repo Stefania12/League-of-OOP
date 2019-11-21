@@ -1,6 +1,7 @@
 package heroes;
 
-import javafx.util.Pair;
+
+import general.Pair;
 
 import java.util.HashMap;
 

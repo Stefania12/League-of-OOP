@@ -3,7 +3,7 @@ package heroes;
 import abilities.Ability;
 import abilities.AbilityParameters;
 import common.Constants;
-import javafx.util.Pair;
+import general.Pair;
 
 import java.util.LinkedList;
 
@@ -142,7 +142,7 @@ public abstract class Hero implements HeroInterface {
         }
     }
 
-    public void updateAliveStatus() {
+    private void updateAliveStatus() {
         if (HP <= 0) {
             alive = false;
             HP = 0;
@@ -176,11 +176,11 @@ public abstract class Hero implements HeroInterface {
         level++;
     }
 
-    public void setMaxHP(final int maxHP) {
+    protected void setMaxHP(final int maxHP) {
         this.maxHP = maxHP;
     }
 
-    public void setHP(final int HP) {
+    protected void setHP(final int HP) {
         this.HP = HP;
     }
 }

@@ -4,9 +4,9 @@ import abilities.AbilityInterface;
 import abilities.wizard.Deflect;
 import abilities.wizard.Drain;
 import common.Constants;
+import general.Pair;
 import heroes.Hero;
 import heroes.HeroPriority;
-import javafx.util.Pair;
 import map.LandModifierFactory;
 
 public class Wizard extends Hero {

@@ -1,18 +1,18 @@
 package main;
 
 import fileio.implementations.FileReader;
-import javafx.util.Pair;
+import general.Pair;
 import map.Map;
 
 import java.util.ArrayList;
 
-public final class GameInputLoader {
+final class GameInputLoader {
     private ArrayList<String> lands;
     private ArrayList<String> heroTypes;
     private ArrayList<Pair<Integer, Integer>> heroCoordinates;
     private ArrayList<String> movements;
 
-    public GameInputLoader(String fileName) {
+    GameInputLoader(String fileName) {
         try {
             FileReader fileReader = new FileReader(fileName);
             int lines = fileReader.nextInt();
@@ -41,13 +41,13 @@ public final class GameInputLoader {
             }
 
             fileReader.close();
-        } catch (Exception e1) {
-            e1.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
 
-    public Game makeGame() {
+    Game makeGame() {
         return new Game(lands, heroTypes, heroCoordinates, movements);
     }
 }

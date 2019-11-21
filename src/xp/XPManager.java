@@ -6,7 +6,7 @@ import heroes.Hero;
 public final class XPManager {
     private static int getWinXP(Hero winner, Hero loser) {
         int c1 = Constants.WIN_XP_CONSTANT, c2 = Constants.WIN_XP_MULTIPLIER;
-        return winner.getXP() + Math.max(0, c1 - (winner.getLevel() - loser.getLevel()) * c2);
+        return Math.max(0, c1 - (winner.getLevel() - loser.getLevel()) * c2);
     }
 
     private static int getLevelUpXP(Hero hero) {
@@ -31,7 +31,7 @@ public final class XPManager {
     }
 
     private static void updateLevelOf(Hero hero) {
-        while (hero.getXP() > getLevelUpXP(hero)) {
+        while (hero.getXP() >= getLevelUpXP(hero)) {
             hero.levelUp();
         }
     }

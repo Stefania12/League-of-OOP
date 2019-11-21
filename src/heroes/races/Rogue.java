@@ -4,9 +4,9 @@ import abilities.AbilityInterface;
 import abilities.rogue.Backstab;
 import abilities.rogue.Paralysis;
 import common.Constants;
+import general.Pair;
 import heroes.Hero;
 import heroes.HeroPriority;
-import javafx.util.Pair;
 import map.LandModifierFactory;
 
 public class Rogue extends Hero {
