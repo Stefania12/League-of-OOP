@@ -8,9 +8,12 @@ import xp.XPManager;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public final class Fight {
+final class Fight {
 
     static int getEnemyToFightWith(final int heroId, ArrayList<Hero> heroes) {
+        if (!heroes.get(heroId).isAlive()) {
+            return -1;
+        }
         for (int i = heroId + 1; i < heroes.size(); i++) {
             if (heroes.get(i).isAlive() && heroes.get(i).getCoordinates().equals(heroes.get(heroId).getCoordinates())) {
                 return i;

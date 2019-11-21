@@ -72,7 +72,9 @@ public abstract class Hero implements HeroInterface {
     }
 
     public void addIncapacitaion(final int rounds) {
-        incapacitationRounds = rounds;
+        if (rounds != 0) {
+            incapacitationRounds = rounds;
+        }
     }
 
     public LinkedList<Ability> getAbilities() {
@@ -92,7 +94,9 @@ public abstract class Hero implements HeroInterface {
     }
 
     public void addOvertimeDamage(Pair<Integer, Integer> damage) {
-        overtimeDamage = damage;
+        if (damage.getKey() != 0) {
+            overtimeDamage = damage;
+        }
     }
 
     public int getMaxHP() {
