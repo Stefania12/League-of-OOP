@@ -112,6 +112,10 @@ public abstract class Hero implements HeroInterface {
 
     public void move(char direction) {
         Pair<Integer, Integer> offset = MovementOffsetFactory.getInstance().getOffset(direction);
+        if (incapacitationRounds != 0) {
+            incapacitationRounds--;
+            return;
+        }
         coordinates = new Pair<>(coordinates.getKey() + offset.getKey(), coordinates.getValue() + offset.getValue());
     }
 
@@ -133,6 +137,7 @@ public abstract class Hero implements HeroInterface {
     public void updateAliveStatus() {
         if (HP <= 0) {
             alive = false;
+            HP = 0;
         }
     }
 

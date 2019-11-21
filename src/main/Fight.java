@@ -4,9 +4,19 @@ import abilities.AbilityParameters;
 import heroes.Hero;
 import javafx.util.Pair;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public final class Fight {
+
+    public static int getEnemyToFightWith(final int heroId, ArrayList<Hero> heroes) {
+        for (int i = heroId + 1; i < heroes.size(); i++) {
+            if (heroes.get(i).getCoordinates().equals(heroes.get(heroId).getCoordinates())) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     private static int getFinalBasicDamageOf(AbilityParameters abilityParameters) {
         int basicDamage = abilityParameters.getBasicDamage();

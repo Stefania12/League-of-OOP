@@ -46,7 +46,19 @@ public class Game {
         System.out.println("Round " + idx + ":");
         for (int i = 0; i < heroes.size(); i++) {
             heroes.get(i).move(heroMovements.get(idx).charAt(i));
-            System.out.println(heroes.get(i).toString());
+            heroes.get(i).takeOvertimeDamage();
+            // System.out.println(heroes.get(i).toString());
+        }
+        int enemyId;
+        for (int i = 0; i < heroes.size() - 1; i++) {
+            enemyId = Fight.getEnemyToFightWith(i, heroes);
+            if (enemyId != -1) {
+                if (heroes.get(i).getFightPriority() < heroes.get(enemyId).getFightPriority()) {
+                    Fight.fight(heroes.get(i), heroes.get(enemyId));
+                } else {
+                    Fight.fight(heroes.get(enemyId), heroes.get(i));
+                }
+            }
         }
     }
 
