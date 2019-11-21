@@ -1,10 +1,10 @@
 package map;
 
 import common.Constants;
-import heroes.Knight;
-import heroes.Pyromancer;
-import heroes.Rogue;
-import heroes.Wizard;
+import heroes.races.Knight;
+import heroes.races.Pyromancer;
+import heroes.races.Rogue;
+import heroes.races.Wizard;
 
 import java.util.HashMap;
 

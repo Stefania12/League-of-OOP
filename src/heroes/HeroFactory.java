@@ -1,6 +1,10 @@
 package heroes;
 
 import common.Constants;
+import heroes.races.Knight;
+import heroes.races.Pyromancer;
+import heroes.races.Rogue;
+import heroes.races.Wizard;
 import javafx.util.Pair;
 
 import static java.lang.System.exit;

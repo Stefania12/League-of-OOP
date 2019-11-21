@@ -9,18 +9,22 @@ import java.util.LinkedList;
 
 public abstract class Hero implements HeroInterface {
     private final String type;
-    protected LinkedList<Ability> abilities;
+    private final int fightPriority;
     private Pair<Integer, Integer> coordinates;
+    protected LinkedList<Ability> abilities;
     private int HP;
     private int maxHP;
     private int XP;
     private int level;
+    private boolean alive;
     private LinkedList<AbilityParameters> attacks;
+    private int damageTaken;
+    private Pair<Integer, Integer> overtimeDamage;
     private int incapacitationRounds;
-    private LinkedList<Pair<Integer, Integer>> roundDamage;
 
-    public Hero(char type, Pair<Integer, Integer> coordinates, final int maxHP) {
+    public Hero(HeroPriority priority, char type, Pair<Integer, Integer> coordinates, final int maxHP) {
         this.type = String.valueOf(type);
+        fightPriority = priority.ordinal();
         this.coordinates = coordinates;
         level = Constants.INITIAL_LEVEL;
         XP = Constants.INITIAL_XP;
@@ -29,16 +33,13 @@ public abstract class Hero implements HeroInterface {
         HP = maxHP;
         attacks = new LinkedList<>();
         incapacitationRounds = 0;
-        roundDamage = new LinkedList<>();
-    }
-
-    public Hero() {
-        type = "";
+        damageTaken = 0;
+        alive = true;
     }
 
     @Override
     public String toString() {
-        return type + " " + coordinates;
+        return type + " " + coordinates + " " + alive + " maxHP: " + maxHP + " HP: " + HP + " XP: " + XP + " level: " + level;
     }
 
     public int getHP() {
@@ -61,6 +62,10 @@ public abstract class Hero implements HeroInterface {
         return incapacitationRounds;
     }
 
+    public void addIncapacitaion(final int rounds) {
+        incapacitationRounds = rounds;
+    }
+
     public LinkedList<Ability> getAbilities() {
         return abilities;
     }
@@ -73,12 +78,36 @@ public abstract class Hero implements HeroInterface {
         return type;
     }
 
-    public LinkedList<Pair<Integer, Integer>> getRoundDamage() {
-        return roundDamage;
+    public Pair<Integer, Integer> getOvertimeDamage() {
+        return overtimeDamage;
+    }
+
+    public void addOvertimeDamage(Pair<Integer, Integer> damage) {
+        overtimeDamage = damage;
     }
 
     public int getMaxHP() {
         return maxHP;
+    }
+
+    public int getPriority() {
+        return fightPriority;
+    }
+
+    public int getFightPriority() {
+        return fightPriority;
+    }
+
+    public int getDamageTaken() {
+        return damageTaken;
+    }
+
+    public void addDamageTaken(int amount) {
+        damageTaken += amount;
+    }
+
+    public void resetDamageTaken() {
+        damageTaken = 0;
     }
 
     public void move(char direction) {
@@ -91,8 +120,38 @@ public abstract class Hero implements HeroInterface {
     }
 
     public void computeAttacksOn(Hero hero) {
+        attacks.clear();
         for (Ability i : abilities) {
             attacks.add(i.getAbilityParametersOn(hero));
         }
+    }
+
+    public void clearAttacks() {
+        attacks.clear();
+    }
+
+    public void updateAliveStatus() {
+        if (HP <= 0) {
+            alive = false;
+        }
+    }
+
+    public void takeDamage() {
+        HP -= damageTaken;
+        damageTaken = 0;
+        this.updateAliveStatus();
+    }
+
+    public void takeOvertimeDamage() {
+        if (overtimeDamage == null) {
+            return;
+        }
+        HP -= overtimeDamage.getKey();
+        if (overtimeDamage.getValue() - 1 > 0) {
+            overtimeDamage = new Pair<>(overtimeDamage.getKey(), overtimeDamage.getValue() - 1);
+        } else {
+            overtimeDamage = null;
+        }
+        this.updateAliveStatus();
     }
 }

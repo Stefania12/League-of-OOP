@@ -4,19 +4,20 @@ public class AbilityParameters {
     private int priority;
     private int basicDamage;
     private int incapacitationRounds;
-    private int roundDamage;
-    private int rounds;
+    private int overtimeDamage;
+    private int overtimeDamageRounds;
     private float terrainMultiplier;
     private float raceMultiplier;
 
-
-    public AbilityParameters(final int priority, final int basicDamage, final int incapacitationRounds,
-                             final int roundDamage, final int rounds, final float terrainMultiplier, final float raceMultiplier) {
+    public AbilityParameters(final int priority, final int basicDamage,
+                             final int incapacitationRounds, final int overtimeDamage,
+                             final int overtimeDamageRounds, final float terrainMultiplier,
+                             final float raceMultiplier) {
         this.priority = priority;
         this.basicDamage = basicDamage;
         this.incapacitationRounds = incapacitationRounds;
-        this.rounds = rounds;
-        this.roundDamage = roundDamage;
+        this.overtimeDamageRounds = overtimeDamageRounds;
+        this.overtimeDamage = overtimeDamage;
         this.terrainMultiplier = terrainMultiplier;
         this.raceMultiplier = raceMultiplier;
     }
@@ -33,12 +34,12 @@ public class AbilityParameters {
         return incapacitationRounds;
     }
 
-    public int getRoundDamage() {
-        return roundDamage;
+    public int getOvertimeDamage() {
+        return overtimeDamage;
     }
 
-    public int getRounds() {
-        return rounds;
+    public int getOvertimeDamageRounds() {
+        return overtimeDamageRounds;
     }
 
     public float getTerrainMultiplier() {
@@ -59,7 +60,7 @@ public class AbilityParameters {
         builder.append(", ");
         builder.append(incapacitationRounds);
         builder.append(", ");
-        builder.append(roundDamage);
+        builder.append(overtimeDamage);
         builder.append(", ");
         builder.append(terrainMultiplier);
         builder.append(", ");

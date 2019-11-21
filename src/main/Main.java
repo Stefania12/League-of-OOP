@@ -13,6 +13,9 @@ public class Main {
         h1.computeAttacksOn(h0);
         h0.computeAttacksOn(h1);
 
-        System.out.println(h1.getAttacks() + "\n" + h0.getAttacks());
+        Fight.fight(h1, h0);
+        System.out.println(h0 + "\n" + h1);
+
+        //System.out.println(h1.getAttacks() + "\n" + h0.getAttacks());
     }
 }

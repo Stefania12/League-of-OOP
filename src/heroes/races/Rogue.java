@@ -1,17 +1,19 @@
-package heroes;
+package heroes.races;
 
 import abilities.AbilityInterface;
-import abilities.knight.Execute;
-import abilities.knight.Slam;
+import abilities.rogue.Backstab;
+import abilities.rogue.Paralysis;
 import common.Constants;
+import heroes.Hero;
+import heroes.HeroPriority;
 import javafx.util.Pair;
 import map.LandModifierFactory;
 
-public class Knight extends Hero {
-    public Knight(Pair<Integer, Integer> coordinates) {
-        super(Constants.KNIGHT, coordinates, Constants.KNIGHT_INITIAL_HP);
-        this.getAbilities().add(new Execute(this));
-        this.getAbilities().add(new Slam(this));
+public class Rogue extends Hero {
+    public Rogue(Pair<Integer, Integer> coordinates) {
+        super(HeroPriority.FIRST, Constants.ROGUE, coordinates, Constants.ROGUE_INITIAL_HP);
+        this.getAbilities().add(new Backstab(this));
+        this.getAbilities().add(new Paralysis(this));
         this.getAbilities().sort((a, b) -> {
             if (a.getPriority() != b.getPriority()) {
                 return a.getPriority() - b.getPriority();
@@ -26,12 +28,8 @@ public class Knight extends Hero {
     }
 
     @Override
-    public void attack(Hero hero) {
-
-    }
-
-    @Override
     public float getRaceMultiplierOf(AbilityInterface ability) {
         return ability.getRaceDamageMultiplier(this);
     }
+
 }

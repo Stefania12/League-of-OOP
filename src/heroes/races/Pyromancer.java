@@ -1,17 +1,19 @@
-package heroes;
+package heroes.races;
 
 import abilities.AbilityInterface;
-import abilities.wizard.Deflect;
-import abilities.wizard.Drain;
+import abilities.pyromancer.FireBlast;
+import abilities.pyromancer.Ignite;
 import common.Constants;
+import heroes.Hero;
+import heroes.HeroPriority;
 import javafx.util.Pair;
 import map.LandModifierFactory;
 
-public class Wizard extends Hero {
-    public Wizard(Pair<Integer, Integer> coordinates) {
-        super(Constants.WIZARD, coordinates, Constants.WIZARD_INITIAL_HP);
-        this.getAbilities().add(new Drain(this));
-        this.getAbilities().add(new Deflect(this));
+public class Pyromancer extends Hero {
+    public Pyromancer(Pair<Integer, Integer> coordinates) {
+        super(HeroPriority.FIRST, Constants.PYROMANCER, coordinates, Constants.PYROMANCER_INITIAL_HP);
+        this.getAbilities().add(new FireBlast(this));
+        this.getAbilities().add(new Ignite(this));
         this.getAbilities().sort((a, b) -> {
             if (a.getPriority() != b.getPriority()) {
                 return a.getPriority() - b.getPriority();
@@ -26,13 +28,7 @@ public class Wizard extends Hero {
     }
 
     @Override
-    public void attack(Hero hero) {
-
-    }
-
-    @Override
     public float getRaceMultiplierOf(AbilityInterface ability) {
         return ability.getRaceDamageMultiplier(this);
     }
-
 }

@@ -4,7 +4,11 @@ import abilities.Ability;
 import abilities.AbilityParameters;
 import abilities.AbilityPriority;
 import common.Constants;
-import heroes.*;
+import heroes.Hero;
+import heroes.races.Knight;
+import heroes.races.Pyromancer;
+import heroes.races.Rogue;
+import heroes.races.Wizard;
 
 public class FireBlast extends Ability {
     public FireBlast(Hero hero) {
@@ -35,7 +39,7 @@ public class FireBlast extends Ability {
     @Override
     public AbilityParameters getAbilityParametersOn(Hero hero) {
         return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
-                this.getIncapacitationRounds(), this.getRoundDamage(), this.getRounds(),
+                this.getIncapacitationRounds(), this.getRoundDamage(), this.getOvertimeDamageRounds(),
                 this.getTerrainMultiplier(), hero.getRaceMultiplierOf(this));
     }
 }
