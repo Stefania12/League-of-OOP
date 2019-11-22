@@ -28,8 +28,7 @@ public class Execute extends Ability {
         if (hero.getHP() < getHPLimit(hero)) {
             return hero.getHP();
         }
-        int basic = this.getBaseDamage() + this.getDamagePerLevel() * this.getOwner().getLevel();
-        return Math.round((basic) * this.getOwner().getTerrainBonusDamageMultiplier());
+        return this.getBaseDamage() + this.getDamagePerLevel() * this.getOwner().getLevel();
     }
 
     @Override

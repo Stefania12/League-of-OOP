@@ -69,7 +69,7 @@ public final class Constants {
     public static final int EXECUTE_MAX_HP_PERCENTAGE = 40;
 
     public static final float EXECUTE_ROGUE_MUTIPLIER = 1.15f;
-    public static final float EXECUTE_KNIGHT_MUTIPLIER = 0f;
+    public static final float EXECUTE_KNIGHT_MUTIPLIER = 1.0f;
     public static final float EXECUTE_PYROMANCER_MUTIPLIER = 1.1f;
     public static final float EXECUTE_WIZARD_MUTIPLIER = 0.8f;
 

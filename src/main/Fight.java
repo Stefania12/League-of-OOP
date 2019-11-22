@@ -26,14 +26,14 @@ final class Fight {
         int basicDamage = abilityParameters.getBasicDamage();
         float raceMultiplier = abilityParameters.getRaceMultiplier();
         float terrainMultiplier = abilityParameters.getTerrainMultiplier();
-        return Math.round(Math.round(basicDamage * terrainMultiplier) * raceMultiplier);
+        return Math.round(basicDamage * terrainMultiplier * raceMultiplier);
     }
 
     private static int getFinalOvertimeDamageOf(AbilityParameters abilityParameters) {
         int overtimeDamage = abilityParameters.getOvertimeDamage();
         float raceMultiplier = abilityParameters.getRaceMultiplier();
         float terrainMultiplier = abilityParameters.getTerrainMultiplier();
-        return Math.round(Math.round(overtimeDamage * terrainMultiplier) * raceMultiplier);
+        return Math.round(overtimeDamage * terrainMultiplier * raceMultiplier);
     }
 
     private static void addEffectsOfAbilityToHero(AbilityParameters abilityParameters, Hero hero) {
