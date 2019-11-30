@@ -7,7 +7,10 @@ import common.Constants;
 import general.Pair;
 import heroes.Hero;
 import heroes.HeroPriority;
-import map.LandModifierFactory;
+import map.terrain.Desert;
+import map.terrain.Land;
+import map.terrain.Volcanic;
+import map.terrain.Woods;
 
 public class Rogue extends Hero {
     public Rogue(Pair<Integer, Integer> coordinates) {
@@ -23,8 +26,23 @@ public class Rogue extends Hero {
     }
 
     @Override
-    public float getTerrainBonusDamageMultiplier() {
-        return LandModifierFactory.getInstance().getDamageBonusMultiplier(this);
+    public float getTerrainBonusDamageMultiplier(Land terrain) {
+        return 1.0f;
+    }
+
+    @Override
+    public float getTerrainBonusDamageMultiplier(Volcanic terrain) {
+        return 1.0f;
+    }
+
+    @Override
+    public float getTerrainBonusDamageMultiplier(Desert terrain) {
+        return 1.0f;
+    }
+
+    @Override
+    public float getTerrainBonusDamageMultiplier(Woods terrain) {
+        return Constants.ROGUE_BONUS_DAMAGE_MULTIPLIER;
     }
 
     @Override

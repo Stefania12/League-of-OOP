@@ -25,7 +25,7 @@ public class Paralysis extends Ability {
 
     @Override
     public int getIncapacitationRounds() {
-        if (Map.getInstance().getTerrainAt(this.getOwner().getCoordinates()) == Constants.WOODS) {
+        if (Map.getInstance().getTerrainAt(this.getOwner().getCoordinates()).getType() == Constants.WOODS) {
             return roundsWoods;
         }
         return roundsNotWoods;

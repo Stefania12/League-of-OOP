@@ -7,7 +7,10 @@ import common.Constants;
 import general.Pair;
 import heroes.Hero;
 import heroes.HeroPriority;
-import map.LandModifierFactory;
+import map.terrain.Desert;
+import map.terrain.Land;
+import map.terrain.Volcanic;
+import map.terrain.Woods;
 
 public class Knight extends Hero {
     public Knight(Pair<Integer, Integer> coordinates) {
@@ -23,8 +26,23 @@ public class Knight extends Hero {
     }
 
     @Override
-    public float getTerrainBonusDamageMultiplier() {
-        return LandModifierFactory.getInstance().getDamageBonusMultiplier(this);
+    public float getTerrainBonusDamageMultiplier(Land terrain) {
+        return Constants.KNIGHT_BONUS_DAMAGE_MULTIPLIER;
+    }
+
+    @Override
+    public float getTerrainBonusDamageMultiplier(Volcanic terrain) {
+        return 1.0f;
+    }
+
+    @Override
+    public float getTerrainBonusDamageMultiplier(Desert terrain) {
+        return 1.0f;
+    }
+
+    @Override
+    public float getTerrainBonusDamageMultiplier(Woods terrain) {
+        return 1.0f;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package abilities;
 
 import heroes.Hero;
+import map.Map;
+import map.terrain.Terrain;
 
 public abstract class Ability implements AbilityInterface {
     private final Hero owner;
@@ -56,7 +58,8 @@ public abstract class Ability implements AbilityInterface {
     }
 
     public float getTerrainMultiplier() {
-        return owner.getTerrainBonusDamageMultiplier();
+        Terrain terrain = Map.getInstance().getTerrainAt(this.getOwner().getCoordinates());
+        return terrain.getTerrainMultiplierOf(owner);
     }
 
     public int getBasicDamageOn(Hero hero) {

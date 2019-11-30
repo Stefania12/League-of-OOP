@@ -49,18 +49,18 @@ public final class LandModifierFactory {
     }
 
     public float getDamageBonusMultiplier(Knight hero) {
-        return knightBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()));
+        return knightBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()).getType());
     }
 
     public float getDamageBonusMultiplier(Rogue hero) {
-        return rogueBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()));
+        return rogueBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()).getType());
     }
 
     public float getDamageBonusMultiplier(Wizard hero) {
-        return wizardBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()));
+        return wizardBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()).getType());
     }
 
     public float getDamageBonusMultiplier(Pyromancer hero) {
-        return pyromancerBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()));
+        return pyromancerBonus.get(Map.getInstance().getTerrainAt(hero.getCoordinates()).getType());
     }
 }

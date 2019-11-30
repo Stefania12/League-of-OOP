@@ -28,7 +28,7 @@ public class Backstab extends Ability {
     }
 
     private float getCriticalValue() {
-        if (Map.getInstance().getTerrainAt(this.getOwner().getCoordinates()) == Constants.WOODS
+        if (Map.getInstance().getTerrainAt(this.getOwner().getCoordinates()).getType() == Constants.WOODS
                 && counter == Constants.BACKSTAB_CRITICAL_HITS) {
             return Constants.BACKSTAB_CRITICAL_PERCENTAGE;
         }
