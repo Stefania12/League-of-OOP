@@ -13,8 +13,9 @@ class Game {
     private ArrayList<Hero> heroes;
     private ArrayList<String> heroMovements;
 
-    Game(final ArrayList<String> lands, final ArrayList<String> heroTypes,
-         final ArrayList<Pair<Integer, Integer>> heroCoordinates, final ArrayList<String> movements) {
+    Game(final ArrayList<String> heroTypes,
+         final ArrayList<Pair<Integer, Integer>> heroCoordinates,
+         final ArrayList<String> movements) {
         map = Map.getInstance();
         heroes = new ArrayList<>();
         for (int i = 0; i < heroTypes.size(); i++) {
@@ -23,32 +24,26 @@ class Game {
         heroMovements = movements;
     }
 
-    public ArrayList<String> getLands() {
-        return map.getLands();
-    }
-
     public ArrayList<Hero> getHeroes() {
         return heroes;
     }
 
     @Override
     public String toString() {
-        String str = map.toString();
+        StringBuilder builder = new StringBuilder(map.toString());
         for (Hero h : heroes) {
-            str += " " + h.toString();
+            builder.append(" ").append(h.toString());
         }
         for (String s : heroMovements) {
-            str += " " + s;
+            builder.append(" ").append(s);
         }
-        return str;
+        return builder.toString();
     }
 
-    private void round(int idx) {
-        //System.out.println("Round " + idx + ":");
+    private void round(final int idx) {
         for (int i = 0; i < heroes.size(); i++) {
             heroes.get(i).move(heroMovements.get(idx).charAt(i));
             heroes.get(i).takeOvertimeDamage();
-            // System.out.println(heroes.get(i).toString());
         }
         int enemyId;
         for (int i = 0; i < heroes.size() - 1; i++) {
@@ -69,7 +64,7 @@ class Game {
         }
     }
 
-    void printOutput(String outputFile) {
+    void printOutput(final String outputFile) {
         try {
             FileWriter fileWriter = new FileWriter(outputFile);
             for (Hero i : heroes) {

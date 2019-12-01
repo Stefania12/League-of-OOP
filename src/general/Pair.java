@@ -1,42 +1,54 @@
 package general;
 
 public class Pair<A, B> {
-    private A key;
-    private B value;
+    private final A key;
+    private final B value;
 
-    public Pair(A key, B value) {
+    /**
+     * Initialize pair.
+     *
+     * @param key   key
+     * @param value value
+     */
+    public Pair(final A key, final B value) {
         this.key = key;
         this.value = value;
     }
 
+    /**
+     * Returns key.
+     *
+     * @return key
+     */
     public A getKey() {
         return key;
     }
 
-    public void setKey(A key) {
-        this.key = key;
-    }
-
+    /**
+     * Returns value.
+     *
+     * @return value
+     */
     public B getValue() {
         return value;
     }
 
-    public void setValue(B value) {
-        this.value = value;
-    }
-
+    /**
+     * Returns info of the pair.
+     * @return (key, value) string
+     */
     @Override
     public String toString() {
         return "(" + key + ", " + value + ")";
     }
 
+    /**
+     * Checks equality with an object.
+     * @param obj   object to check equality with
+     * @return true if equal, false otherwise
+     */
     @Override
-    public int hashCode() {
-        return ((Integer) (key.hashCode() + value.hashCode())).hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj == null) {
             return false;
         }
@@ -48,5 +60,13 @@ public class Pair<A, B> {
         return false;
     }
 
-
+    /**
+     * Returns hashcode of pair.
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return ((Integer) (key.hashCode() + value.hashCode())).hashCode();
+    }
 }

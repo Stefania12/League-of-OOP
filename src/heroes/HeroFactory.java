@@ -22,7 +22,7 @@ public final class HeroFactory {
         return instance;
     }
 
-    public Hero getHero(String type, Pair<Integer, Integer> coordinates) {
+    public Hero getHero(final String type, final Pair<Integer, Integer> coordinates) {
         Hero hero = null;
         switch (type.charAt(0)) {
             case Constants.KNIGHT:

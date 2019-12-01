@@ -7,13 +7,41 @@ import map.terrain.Volcanic;
 import map.terrain.Woods;
 
 public interface HeroInterface {
+    /**
+     * Accept-type method that returns the value of the visit-type method of an ability.
+     *
+     * @param ability ability that hurts hero
+     * @return race multiplier for the ability
+     */
     float getRaceMultiplierOf(AbilityInterface ability);
 
+    /**
+     * Returns Land multiplier of hero.
+     *
+     * @param terrain Land terrain
+     * @return Land multiplier
+     */
     float getTerrainBonusDamageMultiplier(Land terrain);
 
+    /**
+     * Returns Volcanic multiplier of hero.
+     *
+     * @param terrain Volcanic terrain
+     * @return Volcanic multiplier
+     */
     float getTerrainBonusDamageMultiplier(Volcanic terrain);
 
+    /**
+     * Returns Desert multiplier of hero.
+     * @param terrain   Desert terrain
+     * @return Desert multiplier
+     */
     float getTerrainBonusDamageMultiplier(Desert terrain);
 
+    /**
+     * Returns Woods multiplier of hero.
+     * @param terrain   Woods terrain
+     * @return Woods multiplier
+     */
     float getTerrainBonusDamageMultiplier(Woods terrain);
 }

@@ -3,7 +3,7 @@ package map.terrain;
 import common.Constants;
 import heroes.Hero;
 
-public class Volcanic implements Terrain {
+public final class Volcanic implements Terrain {
 
     @Override
     public char getType() {
@@ -11,7 +11,7 @@ public class Volcanic implements Terrain {
     }
 
     @Override
-    public float getTerrainMultiplierOf(Hero hero) {
+    public float getTerrainMultiplierOf(final Hero hero) {
         return hero.getTerrainBonusDamageMultiplier(this);
     }
 }

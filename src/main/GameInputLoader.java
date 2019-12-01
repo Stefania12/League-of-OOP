@@ -7,18 +7,17 @@ import map.Map;
 import java.util.ArrayList;
 
 final class GameInputLoader {
-    private ArrayList<String> lands;
     private ArrayList<String> heroTypes;
     private ArrayList<Pair<Integer, Integer>> heroCoordinates;
     private ArrayList<String> movements;
 
-    GameInputLoader(String fileName) {
+    GameInputLoader(final String fileName) {
         try {
             FileReader fileReader = new FileReader(fileName);
             int lines = fileReader.nextInt();
             int coloumns = fileReader.nextInt();
-            lands = new ArrayList<>();
 
+            ArrayList<String> lands = new ArrayList<>();
             for (int i = 0; i < lines; i++) {
                 lands.add(fileReader.nextWord());
             }
@@ -46,8 +45,7 @@ final class GameInputLoader {
         }
     }
 
-
     Game makeGame() {
-        return new Game(lands, heroTypes, heroCoordinates, movements);
+        return new Game(heroTypes, heroCoordinates, movements);
     }
 }

@@ -7,14 +7,19 @@ import general.Pair;
 
 import java.util.LinkedList;
 
+/**
+ * Implements basic hero functionality.
+ */
 public abstract class Hero implements HeroInterface {
     private final String type;
     private final int fightPriority;
     private Pair<Integer, Integer> coordinates;
-    protected LinkedList<Ability> abilities;
-    private int HP;
+    private LinkedList<Ability> abilities;
+    private int hp;
     private int maxHP;
-    private int XP;
+    private int initialHealth;
+    private int healthPerLevel;
+    private int xp;
     private int level;
     private boolean alive;
     private LinkedList<AbilityParameters> attacks;
@@ -22,108 +27,145 @@ public abstract class Hero implements HeroInterface {
     private Pair<Integer, Integer> overtimeDamage;
     private int incapacitationRounds;
 
-    public Hero(HeroPriority priority, char type, Pair<Integer, Integer> coordinates, final int maxHP) {
+    /**
+     * Initializes hero.
+     *
+     * @param priority    fight priority
+     * @param type        race of hero
+     * @param coordinates initial coordinates
+     * @param initHp      initial hp
+     * @param hpPerLevel  hp gain per level
+     */
+    public Hero(final HeroPriority priority, final char type,
+                final Pair<Integer, Integer> coordinates, final int initHp, final int hpPerLevel) {
         this.type = String.valueOf(type);
         fightPriority = priority.ordinal();
         this.coordinates = coordinates;
         level = Constants.INITIAL_LEVEL;
-        XP = Constants.INITIAL_XP;
+        xp = Constants.INITIAL_XP;
         abilities = new LinkedList<>();
-        this.maxHP = maxHP;
-        HP = maxHP;
+        maxHP = initHp;
+        hp = maxHP;
         attacks = new LinkedList<>();
         incapacitationRounds = 0;
         damageTaken = 0;
         alive = true;
+        initialHealth = initHp;
+        healthPerLevel = hpPerLevel;
     }
 
+    /**
+     * Returns info needed for output printing.
+     *
+     * @return string with status of hero
+     */
     @Override
     public String toString() {
-        // return type + " " + coordinates + " " + alive + " maxHP: " + maxHP + " HP: " + HP + " XP: " + XP + " level: " + level;
         StringBuilder builder = new StringBuilder(type);
         builder.append(" ");
         if (!alive) {
             builder.append("dead");
         } else {
-            builder.append(level).append(" ").append(XP).append(" ").append(HP).append(" ");
+            builder.append(level).append(" ").append(xp).append(" ").append(hp).append(" ");
             builder.append(coordinates.getKey()).append(" ").append(coordinates.getValue());
         }
         return builder.toString();
     }
 
-    public int getHP() {
-        return HP;
-    }
-
-    public int getXP() {
-        return XP;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public Pair<Integer, Integer> getCoordinates() {
-        return coordinates;
-    }
-
-    public int getIncapacitationRounds() {
-        return incapacitationRounds;
-    }
-
-    public void addIncapacitaion(final int rounds) {
-        if (rounds != 0) {
-            incapacitationRounds = rounds;
-        }
-    }
-
-    public LinkedList<Ability> getAbilities() {
-        return abilities;
-    }
-
-    public LinkedList<AbilityParameters> getAttacks() {
-        return attacks;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public Pair<Integer, Integer> getOvertimeDamage() {
-        return overtimeDamage;
-    }
-
-    public void addOvertimeDamage(Pair<Integer, Integer> damage) {
-        if (damage.getKey() != 0) {
-            overtimeDamage = damage;
-        }
-    }
-
-    public int getMaxHP() {
-        return maxHP;
-    }
-
-    public int getPriority() {
-        return fightPriority;
-    }
-
+    /**
+     * Returns the priority in a fight.
+     *
+     * @return fight priority
+     */
     public int getFightPriority() {
         return fightPriority;
     }
 
-    public int getDamageTaken() {
-        return damageTaken;
+    /**
+     * Checks if hero is alive.
+     *
+     * @return true if alive, false otherwise
+     */
+    public boolean isAlive() {
+        return alive;
     }
 
-    public void addDamageTaken(int amount) {
-        damageTaken += amount;
+    /**
+     * Check if hero is alive and update this status.
+     */
+    private void updateAliveStatus() {
+        if (hp <= 0) {
+            alive = false;
+            hp = 0;
+        }
     }
 
-    public void resetDamageTaken() {
-        damageTaken = 0;
+    /**
+     * Returns the max hp of hero at the current level.
+     *
+     * @return current max hp
+     */
+    public int getMaxHP() {
+        return maxHP;
     }
 
-    public void move(char direction) {
+    /**
+     * Returns the hp of hero.
+     *
+     * @return hp
+     */
+    public int getHP() {
+        return hp;
+    }
+
+    /**
+     * Returns the xp of hero.
+     * @return xp
+     */
+    public int getXP() {
+        return xp;
+    }
+
+    /**
+     * Adds xp amount.
+     *
+     * @param value xp amount
+     */
+    public void addXP(final int value) {
+        xp += value;
+    }
+
+    /**
+     * Returns level of hero.
+     * @return level
+     */
+    public int getLevel() {
+        return level;
+    }
+
+    /**
+     * Level up and update hp and max hp.
+     */
+    public void levelUp() {
+        level++;
+        maxHP = initialHealth + healthPerLevel * level;
+        hp = maxHP;
+    }
+
+    /**
+     * Returns coordinates of the hero.
+     * @return pair of integer coordinates
+     */
+    public Pair<Integer, Integer> getCoordinates() {
+        return coordinates;
+    }
+
+    /**
+     * Updates coordinates based on movement type.
+     *
+     * @param direction direction type
+     */
+    public void move(final char direction) {
         if (!alive) {
             return;
         }
@@ -132,38 +174,66 @@ public abstract class Hero implements HeroInterface {
             incapacitationRounds--;
             return;
         }
-        coordinates = new Pair<>(coordinates.getKey() + offset.getKey(), coordinates.getValue() + offset.getValue());
+        int newKey, newValue;
+        newKey = coordinates.getKey() + offset.getKey();
+        newValue = coordinates.getValue() + offset.getValue();
+        coordinates = new Pair<>(newKey, newValue);
     }
 
-    public void addXP(final int value) {
-        XP += value;
+    /**
+     * Returns the number of rounds the hero is incapacitated for.
+     * @return incapacitation rounds
+     */
+    public int getIncapacitationRounds() {
+        return incapacitationRounds;
     }
 
-    public void computeAttacksOn(Hero hero) {
-        attacks.clear();
-        for (Ability i : abilities) {
-            attacks.add(i.getAbilityParametersOn(hero));
+    /**
+     * Add incapacitation rounds.
+     *
+     * @param rounds incapacitation rounds
+     */
+    public void addIncapacitation(final int rounds) {
+        if (rounds != 0) {
+            incapacitationRounds = rounds;
         }
     }
 
-    private void updateAliveStatus() {
-        if (HP <= 0) {
-            alive = false;
-            HP = 0;
+    /**
+     * Returns the abilities of the hero.
+     * @return list of abilities.
+     */
+    public LinkedList<Ability> getAbilities() {
+        return abilities;
+    }
+
+    /**
+     * Returns the attacks the hero will use when fighting.
+     * @return list of attack parameters
+     */
+    public LinkedList<AbilityParameters> getAttacks() {
+        return attacks;
+    }
+
+    /**
+     * Add overtime damage.
+     *
+     * @param damage overtime damage
+     */
+    public void addOvertimeDamage(final Pair<Integer, Integer> damage) {
+        if (damage.getKey() != 0) {
+            overtimeDamage = damage;
         }
     }
 
-    public void takeDamage() {
-        HP -= damageTaken;
-        damageTaken = 0;
-        this.updateAliveStatus();
-    }
-
+    /**
+     * Take overtime damage if existent.
+     */
     public void takeOvertimeDamage() {
         if (overtimeDamage == null) {
             return;
         }
-        HP -= overtimeDamage.getKey();
+        hp -= overtimeDamage.getKey();
         if (overtimeDamage.getValue() - 1 > 0) {
             overtimeDamage = new Pair<>(overtimeDamage.getKey(), overtimeDamage.getValue() - 1);
         } else {
@@ -172,19 +242,33 @@ public abstract class Hero implements HeroInterface {
         this.updateAliveStatus();
     }
 
-    public boolean isAlive() {
-        return alive;
+    /**
+     * Add damage to take.
+     *
+     * @param amount damage amount
+     */
+    public void addDamageTaken(final int amount) {
+        damageTaken += amount;
     }
 
-    public void levelUp() {
-        level++;
+    /**
+     * Update hp and alive status based on the damage taken.
+     */
+    public void takeDamage() {
+        hp -= damageTaken;
+        damageTaken = 0;
+        this.updateAliveStatus();
     }
 
-    protected void setMaxHP(final int maxHP) {
-        this.maxHP = maxHP;
-    }
-
-    protected void setHP(final int HP) {
-        this.HP = HP;
+    /**
+     * Prepare attacks for fighting a hero.
+     *
+     * @param hero hero to fight with
+     */
+    public void computeAttacksOn(final Hero hero) {
+        attacks.clear();
+        for (Ability i : abilities) {
+            attacks.add(i.getAbilityParametersOn(hero));
+        }
     }
 }

@@ -12,9 +12,18 @@ import map.terrain.Land;
 import map.terrain.Volcanic;
 import map.terrain.Woods;
 
+/**
+ * Implements Wizard type hero.
+ */
 public class Wizard extends Hero {
-    public Wizard(Pair<Integer, Integer> coordinates) {
-        super(HeroPriority.SECOND, Constants.WIZARD, coordinates, Constants.WIZARD_INITIAL_HP);
+    /**
+     * Initializes Wizard hero.
+     *
+     * @param coordinates initial coordinates of hero
+     */
+    public Wizard(final Pair<Integer, Integer> coordinates) {
+        super(HeroPriority.SECOND, Constants.WIZARD, coordinates,
+                Constants.WIZARD_INITIAL_HP, Constants.WIZARD_HP_PER_LEVEL);
         this.getAbilities().add(new Drain(this));
         this.getAbilities().add(new Deflect(this));
         this.getAbilities().sort((a, b) -> {
@@ -25,35 +34,54 @@ public class Wizard extends Hero {
         });
     }
 
+    /**
+     * Accept-type method that returns the value of Land multiplier of Wizard.
+     *
+     * @param terrain Land terrain
+     * @return Land multiplier
+     */
     @Override
-    public float getTerrainBonusDamageMultiplier(Land terrain) {
+    public float getTerrainBonusDamageMultiplier(final Land terrain) {
         return 1.0f;
     }
 
+    /**
+     * Accept-type method that returns the value of Volcanic multiplier of Wizard.
+     * @param terrain   Volcanic terrain
+     * @return Volcanic multiplier
+     */
     @Override
-    public float getTerrainBonusDamageMultiplier(Volcanic terrain) {
+    public float getTerrainBonusDamageMultiplier(final Volcanic terrain) {
         return 1.0f;
     }
 
+    /**
+     * Accept-type method that returns the value of Desert multiplier of Wizard.
+     * @param terrain   Desert terrain
+     * @return Desert multiplier
+     */
     @Override
-    public float getTerrainBonusDamageMultiplier(Desert terrain) {
+    public float getTerrainBonusDamageMultiplier(final Desert terrain) {
         return Constants.WIZARD_BONUS_DAMAGE_MULTIPLIER;
     }
 
+    /**
+     * Accept-type method that returns the value of Woods multiplier of Wizard.
+     * @param terrain   Woods terrain
+     * @return Woods multiplier
+     */
     @Override
-    public float getTerrainBonusDamageMultiplier(Woods terrain) {
+    public float getTerrainBonusDamageMultiplier(final Woods terrain) {
         return 1.0f;
     }
 
+    /**
+     * Accept-type method that returns the value of the visit-type method of an ability.
+     * @param ability   ability that hurts Wizard
+     * @return race multiplier
+     */
     @Override
-    public float getRaceMultiplierOf(AbilityInterface ability) {
+    public float getRaceMultiplierOf(final AbilityInterface ability) {
         return ability.getRaceDamageMultiplier(this);
-    }
-
-    @Override
-    public void levelUp() {
-        super.levelUp();
-        this.setMaxHP(Constants.WIZARD_INITIAL_HP + Constants.WIZARD_HP_PER_LEVEL * this.getLevel());
-        this.setHP(this.getMaxHP());
     }
 }

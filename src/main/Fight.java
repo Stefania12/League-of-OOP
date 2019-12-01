@@ -10,33 +10,38 @@ import java.util.LinkedList;
 
 final class Fight {
 
-    static int getEnemyToFightWith(final int heroId, ArrayList<Hero> heroes) {
+    private Fight() {
+    }
+
+    static int getEnemyToFightWith(final int heroId, final ArrayList<Hero> heroes) {
         if (!heroes.get(heroId).isAlive()) {
             return -1;
         }
         for (int i = heroId + 1; i < heroes.size(); i++) {
-            if (heroes.get(i).isAlive() && heroes.get(i).getCoordinates().equals(heroes.get(heroId).getCoordinates())) {
+            Pair<Integer, Integer> coord = heroes.get(i).getCoordinates();
+            if (heroes.get(i).isAlive() && coord.equals(heroes.get(heroId).getCoordinates())) {
                 return i;
             }
         }
         return -1;
     }
 
-    private static int getFinalBasicDamageOf(AbilityParameters abilityParameters) {
+    private static int getFinalBasicDamageOf(final AbilityParameters abilityParameters) {
         int basicDamage = abilityParameters.getBasicDamage();
         float raceMultiplier = abilityParameters.getRaceMultiplier();
         float terrainMultiplier = abilityParameters.getTerrainMultiplier();
         return Math.round(basicDamage * terrainMultiplier * raceMultiplier);
     }
 
-    private static int getFinalOvertimeDamageOf(AbilityParameters abilityParameters) {
+    private static int getFinalOvertimeDamageOf(final AbilityParameters abilityParameters) {
         int overtimeDamage = abilityParameters.getOvertimeDamage();
         float raceMultiplier = abilityParameters.getRaceMultiplier();
         float terrainMultiplier = abilityParameters.getTerrainMultiplier();
         return Math.round(overtimeDamage * terrainMultiplier * raceMultiplier);
     }
 
-    private static void addEffectsOfAbilityToHero(AbilityParameters abilityParameters, Hero hero) {
+    private static void addEffectsOfAbilityToHero(final AbilityParameters abilityParameters,
+                                                  final Hero hero) {
         int currentRoundDamage, overtimeDamage, overtimeRounds, roundsIncapacitation;
         currentRoundDamage = getFinalBasicDamageOf(abilityParameters);
         overtimeDamage = getFinalOvertimeDamageOf(abilityParameters);
@@ -44,14 +49,14 @@ final class Fight {
         roundsIncapacitation = abilityParameters.getIncapacitationRounds();
 
         hero.addDamageTaken(currentRoundDamage);
-        hero.addIncapacitaion(roundsIncapacitation);
+        hero.addIncapacitation(roundsIncapacitation);
 
         if (overtimeDamage != 0) {
             hero.addOvertimeDamage(new Pair<>(overtimeDamage, overtimeRounds));
         }
     }
 
-    static void fight(Hero hero1, Hero hero2) {
+    static void fight(final Hero hero1, final Hero hero2) {
         hero1.computeAttacksOn(hero2);
         hero2.computeAttacksOn(hero1);
 
