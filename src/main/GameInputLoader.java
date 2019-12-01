@@ -6,11 +6,19 @@ import map.Map;
 
 import java.util.ArrayList;
 
+/**
+ * Reads input from file and creates a game.
+ */
 final class GameInputLoader {
     private ArrayList<String> heroTypes;
     private ArrayList<Pair<Integer, Integer>> heroCoordinates;
     private ArrayList<String> movements;
 
+    /**
+     * Retrieve information from input file.
+     *
+     * @param fileName file path
+     */
     GameInputLoader(final String fileName) {
         try {
             FileReader fileReader = new FileReader(fileName);
@@ -45,6 +53,11 @@ final class GameInputLoader {
         }
     }
 
+    /**
+     * Returns a game with its attributes.
+     *
+     * @return new game
+     */
     Game makeGame() {
         return new Game(heroTypes, heroCoordinates, movements);
     }

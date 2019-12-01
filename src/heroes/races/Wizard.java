@@ -13,7 +13,7 @@ import map.terrain.Volcanic;
 import map.terrain.Woods;
 
 /**
- * Implements Wizard type hero.
+ * Implements Wizard hero.
  */
 public class Wizard extends Hero {
     /**

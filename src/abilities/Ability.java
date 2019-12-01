@@ -4,6 +4,9 @@ import heroes.Hero;
 import map.Map;
 import map.terrain.Terrain;
 
+/**
+ * Implements basic ability functionality.
+ */
 public abstract class Ability implements AbilityInterface {
     private Hero owner;
     private final int priority;

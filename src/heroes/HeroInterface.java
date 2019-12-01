@@ -6,6 +6,9 @@ import map.terrain.Land;
 import map.terrain.Volcanic;
 import map.terrain.Woods;
 
+/**
+ * Implements Visited inteface for Visitor pattern.
+ */
 public interface HeroInterface {
     /**
      * Accept-type method that returns the value of the visit-type method of an ability.

@@ -117,7 +117,6 @@ public final class Constants {
     public static final float PARALYSIS_KNIGHT_MULTIPLIER = 0.8f;
     public static final float PARALYSIS_PYROMANCER_MULTIPLIER = 1.2f;
     public static final float PARALYSIS_WIZARD_MULTIPLIER = 1.25f;
-
     private Constants() {
     }
 }

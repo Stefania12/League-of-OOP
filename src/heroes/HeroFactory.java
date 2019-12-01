@@ -9,6 +9,9 @@ import heroes.races.Wizard;
 
 import static java.lang.System.exit;
 
+/**
+ * Provides heroes based on their type.
+ */
 public final class HeroFactory {
     private static HeroFactory instance = null;
 
@@ -22,6 +25,13 @@ public final class HeroFactory {
         return instance;
     }
 
+    /**
+     * Returns a hero of a certain type.
+     *
+     * @param type        hero type
+     * @param coordinates hero initial coordinates
+     * @return hero or null if type is unknown
+     */
     public Hero getHero(final String type, final Pair<Integer, Integer> coordinates) {
         Hero hero = null;
         switch (type.charAt(0)) {

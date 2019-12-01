@@ -12,6 +12,9 @@ import map.terrain.Land;
 import map.terrain.Volcanic;
 import map.terrain.Woods;
 
+/**
+ * Implements Rogue hero.
+ */
 public class Rogue extends Hero {
     public Rogue(final Pair<Integer, Integer> coordinates) {
         super(HeroPriority.FIRST, Constants.ROGUE, coordinates,

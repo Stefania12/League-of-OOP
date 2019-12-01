@@ -12,6 +12,9 @@ import map.terrain.Land;
 import map.terrain.Volcanic;
 import map.terrain.Woods;
 
+/**
+ * Implements Knight hero.
+ */
 public class Knight extends Hero {
     public Knight(final Pair<Integer, Integer> coordinates) {
         super(HeroPriority.FIRST, Constants.KNIGHT, coordinates,

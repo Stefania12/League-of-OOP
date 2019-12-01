@@ -8,11 +8,21 @@ import map.Map;
 
 import java.util.ArrayList;
 
+/**
+ * Implements game logic.
+ */
 class Game {
     private final Map map;
     private ArrayList<Hero> heroes;
     private ArrayList<String> heroMovements;
 
+    /**
+     * Initialize game.
+     *
+     * @param heroTypes       hero types
+     * @param heroCoordinates hero initial coordinates
+     * @param movements       hero movement directions
+     */
     Game(final ArrayList<String> heroTypes,
          final ArrayList<Pair<Integer, Integer>> heroCoordinates,
          final ArrayList<String> movements) {
@@ -28,18 +38,11 @@ class Game {
         return heroes;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder(map.toString());
-        for (Hero h : heroes) {
-            builder.append(" ").append(h.toString());
-        }
-        for (String s : heroMovements) {
-            builder.append(" ").append(s);
-        }
-        return builder.toString();
-    }
-
+    /**
+     * Implements a game round.
+     *
+     * @param idx index of round
+     */
     private void round(final int idx) {
         for (int i = 0; i < heroes.size(); i++) {
             heroes.get(i).move(heroMovements.get(idx).charAt(i));
@@ -58,12 +61,19 @@ class Game {
         }
     }
 
+    /**
+     * Plays game.
+     */
     void play() {
         for (int i = 0; i < heroMovements.size(); i++) {
             this.round(i);
         }
     }
 
+    /**
+     * Prints output.
+     * @param outputFile    output path
+     */
     void printOutput(final String outputFile) {
         try {
             FileWriter fileWriter = new FileWriter(outputFile);

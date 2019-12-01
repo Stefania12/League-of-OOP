@@ -3,6 +3,9 @@ package map.terrain;
 import common.Constants;
 import heroes.Hero;
 
+/**
+ * Implements Woods terrain type.
+ */
 public final class Woods implements Terrain {
 
     @Override

@@ -6,6 +6,9 @@ import heroes.races.Pyromancer;
 import heroes.races.Rogue;
 import heroes.races.Wizard;
 
+/**
+ * Implements visitor interface for Visitor pattern and computing parameters.
+ */
 public interface AbilityInterface {
 
     /**

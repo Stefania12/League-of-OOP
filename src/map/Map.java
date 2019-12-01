@@ -7,6 +7,9 @@ import map.terrain.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+/**
+ * Singleton map holding terrain types.
+ */
 public final class Map {
     private static Map instance = null;
     private ArrayList<String> lands;
@@ -27,10 +30,21 @@ public final class Map {
         return instance;
     }
 
+    /**
+     * Initializes land types.
+     *
+     * @param landTypes land types
+     */
     public void initLands(final ArrayList<String> landTypes) {
         this.lands = landTypes;
     }
 
+    /**
+     * Returns terrain object corresponding to a set of coordinates.
+     *
+     * @param coordinates coordinates of terrain
+     * @return terrain object
+     */
     public Terrain getTerrainAt(final Pair<Integer, Integer> coordinates) {
         char type = lands.get(coordinates.getKey()).charAt(coordinates.getValue());
         return terrainTypes.get(type);

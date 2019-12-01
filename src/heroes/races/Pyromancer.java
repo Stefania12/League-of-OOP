@@ -12,6 +12,9 @@ import map.terrain.Land;
 import map.terrain.Volcanic;
 import map.terrain.Woods;
 
+/**
+ * Implements Pyromancer hero.
+ */
 public class Pyromancer extends Hero {
     public Pyromancer(final Pair<Integer, Integer> coordinates) {
         super(HeroPriority.FIRST, Constants.PYROMANCER, coordinates,

@@ -3,6 +3,9 @@ package map.terrain;
 import common.Constants;
 import heroes.Hero;
 
+/**
+ * Implements Volcanic terrain type.
+ */
 public final class Volcanic implements Terrain {
 
     @Override

@@ -3,6 +3,9 @@ package map.terrain;
 import common.Constants;
 import heroes.Hero;
 
+/**
+ * Implements Desert terrain type.
+ */
 public final class Desert implements Terrain {
 
     @Override

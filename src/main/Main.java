@@ -1,5 +1,8 @@
 package main;
 
+/**
+ * Holds main function.
+ */
 public final class Main {
     private Main() {
     }

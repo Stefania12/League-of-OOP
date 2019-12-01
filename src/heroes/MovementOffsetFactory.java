@@ -1,10 +1,12 @@
 package heroes;
 
-
 import general.Pair;
 
 import java.util.HashMap;
 
+/**
+ * Provides coordinate offsets depending on movement type.
+ */
 final class MovementOffsetFactory {
     private static MovementOffsetFactory instance = null;
     private HashMap<Character, Pair<Integer, Integer>> offsets;
@@ -25,7 +27,13 @@ final class MovementOffsetFactory {
         return instance;
     }
 
-    Pair<Integer, Integer> getOffset(final char c) {
-        return offsets.get(c);
+    /**
+     * Returns pair of offset for coordinates.
+     *
+     * @param direction movement type
+     * @return coordinate offset
+     */
+    Pair<Integer, Integer> getOffset(final char direction) {
+        return offsets.get(direction);
     }
 }
