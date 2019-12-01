@@ -14,7 +14,7 @@ import heroes.races.Wizard;
  * Implements Drain ability.
  */
 public class Drain extends Ability {
-    private static final float BASE_HP = Constants.DRAIN_BASE_HP_CONSTANT;
+    private static final float BASE_HP_CONSTANT = Constants.DRAIN_BASE_HP_CONSTANT;
 
     /**
      * Initialize Drain ability.
@@ -32,7 +32,7 @@ public class Drain extends Ability {
      * @return base hp of hero
      */
     private static int getBaseHP(final Hero hero) {
-        return Math.round(Math.min(BASE_HP * hero.getMaxHP(), hero.getHP()));
+        return Math.round(Math.min(BASE_HP_CONSTANT * hero.getMaxHP(), hero.getHP()));
     }
 
     /**
@@ -43,7 +43,7 @@ public class Drain extends Ability {
      */
     @Override
     protected int getBasicDamageOn(final Hero hero) {
-        return Math.round((super.getBasicDamageOn(null)) / Constants.PERCENTAGE * getBaseHP(hero));
+        return Math.round(super.getBasicDamageOn(null) / Constants.PERCENTAGE * getBaseHP(hero));
     }
 
     /**

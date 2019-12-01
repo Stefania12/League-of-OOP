@@ -15,8 +15,8 @@ import map.Map;
  * Implements Paralysis ability.
  */
 public class Paralysis extends Ability {
-    private static final int ROUNDS_WOODS = Constants.PARALYSIS_ROUNDS_NOT_WOODS;
-    private static final int ROUNDS_NOT_WOODS = Constants.PARALYSIS_ROUNDS_WOODS;
+    private static final int ROUNDS_WOODS = Constants.PARALYSIS_ROUNDS_WOODS;
+    private static final int ROUNDS_NOT_WOODS = Constants.PARALYSIS_ROUNDS_NOT_WOODS;
 
     /**
      * Initialize ability.
