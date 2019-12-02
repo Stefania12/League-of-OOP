@@ -4,7 +4,6 @@ import fileio.implementations.FileWriter;
 import general.Pair;
 import heroes.Hero;
 import heroes.HeroFactory;
-import map.Map;
 
 import java.util.ArrayList;
 
@@ -12,7 +11,6 @@ import java.util.ArrayList;
  * Implements game logic.
  */
 class Game {
-    private final Map map;
     private ArrayList<Hero> heroes;
     private ArrayList<String> heroMovements;
 
@@ -26,7 +24,6 @@ class Game {
     Game(final ArrayList<String> heroTypes,
          final ArrayList<Pair<Integer, Integer>> heroCoordinates,
          final ArrayList<String> movements) {
-        map = Map.getInstance();
         heroes = new ArrayList<>();
         for (int i = 0; i < heroTypes.size(); i++) {
             heroes.add(HeroFactory.getInstance().getHero(heroTypes.get(i), heroCoordinates.get(i)));

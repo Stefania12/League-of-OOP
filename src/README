@@ -1,0 +1,103 @@
+------------------------------------------------------------------------------
+Name: Damian Stefania-Dorina
+Group: 322CD
+------------------------------------------------------------------------------
+
+OOP Project: League of OOP - First stage
+
+    The project structure is the following:
+
+    -abilities
+        -knight
+            -Execute.java: implements Execute ability
+            -Slam.java: implements Slam ability
+
+        -pyromancer
+            -FireBlast.java: implements Fireblast ability
+            -Ignite.java: implements Ignite ability
+
+        -rogue
+            -Backstab.java: implements Backstab ability
+            -Paralysis.java: implements Paralysis ability
+
+        -wizard
+            -Deflect.java: implements Deflect ability
+            -Drain.java: implements Drain ability
+
+        -Ability.java: basic ability functionality
+        -AbilityInterface.java: ability interface for Visitor pattern and
+                                ability parameters computing
+        -AbilityParameters.java: holds the useful ability parameters
+        -AbilityPriority.java: used for prioritizing abilities
+
+
+    -common
+         -Constants.java: meaningfull constants
+
+
+     -general
+         -Pair.java: implements generic pair (using javafx.util.Pair would
+                     give me an error)
+
+
+     -heroes
+         -races
+             -Knight.java: implements Knight hero
+             -Pyromancer.java: implements Pyromancer hero
+             -Rogue.java: implements Rogue hero
+             -Wizard.java: implements Wizard hero
+
+        -Hero.java: basic hero functionality
+        -HeroFactory.java: provides hero objects
+        -HeroInterface.java: implements interface for Visitor pattern
+        -HeroPriority.java: used for prioritizing heroes when fighting
+                            (eg. Wizard (second) vs. other (first))
+        -MovementOffsetFactory.java: provides movement offset given a direction
+
+
+    -main
+        -Fight.java: implements fighting between two heroes
+        -Game.java: implements game logic
+        -GameInputLoader.java: loads input and creates game
+        -Main.java: main method
+
+
+    -map
+         -terrain
+             -Desert.java: Desert terrain
+             -Land.java: Land terrain
+             -Terrain.java: terrain interface for Visitor pattern
+             -Volcanic.java: Volcanic terrain
+             -Woods.java: Woods terrain
+
+         -Map.java: Singleton map used for retrieving terrain at a coordinate
+
+
+    -xp
+        -XPManager.java: manages XP after a fight
+
+
+    Every round, each player moves to the new location and takes overtime damage
+if any. Then, for each hero, an enemy to fight is searched (with a bigger id in
+order to avoid fighting two times). In a fight, the two heroes compute their
+attacks parameters. For abilities that use percentages, I saved the values as
+ints and they are then divided by 100.0f when needed. Then, each hero takes
+damage and overtime incapacitation and/or damage. Health is recalculated and
+alive status is updated. If al least one hero is killed in a fight, xp gain(s)
+are calculated and heroes level up if they have enough XP.
+
+
+    I used Visitor pattern for retrieving the terrain modifier
+(hero = visitor, terrain = visited) and race modifier
+(ability = visitor, hero = visited).
+
+    Other design patterns:
+        -Singleton: Map
+        -Factory: MovementOffsetFactory, HeroFactory
+
+
+    OOP concepts used:
+        -aggregation: hero has an ability, an ability has an owner, a game
+         has heroes etc.
+        -inheritance and polymorphism: specialized abilities extend the basic
+         ability, hero races extend basic hero
