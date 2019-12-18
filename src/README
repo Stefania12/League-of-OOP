@@ -35,12 +35,12 @@ OOP Project: League of OOP - First stage
          -Constants.java: meaningfull constants
 
 
-     -general
+     -util
          -Pair.java: implements generic pair (using javafx.util.Pair would
                      give me an error)
 
 
-     -heroes
+     -characters.heroes
          -races
              -Knight.java: implements Knight hero
              -Pyromancer.java: implements Pyromancer hero
@@ -50,13 +50,13 @@ OOP Project: League of OOP - First stage
         -Hero.java: basic hero functionality
         -HeroFactory.java: provides hero objects
         -HeroInterface.java: implements interface for Visitor pattern
-        -HeroPriority.java: used for prioritizing heroes when fighting
+        -HeroPriority.java: used for prioritizing characters.heroes when fighting
                             (eg. Wizard (second) vs. other (first))
         -MovementOffsetFactory.java: provides movement offset given a direction
 
 
     -main
-        -Fight.java: implements fighting between two heroes
+        -Fight.java: implements fighting between two characters.heroes
         -Game.java: implements game logic
         -GameInputLoader.java: loads input and creates game
         -Main.java: main method
@@ -79,12 +79,12 @@ OOP Project: League of OOP - First stage
 
     Every round, each player moves to the new location and takes overtime damage
 if any. Then, for each hero, an enemy to fight is searched (with a bigger id in
-order to avoid fighting two times). In a fight, the two heroes compute their
+order to avoid fighting two times). In a fight, the two characters.heroes compute their
 attacks parameters. For abilities that use percentages, I saved the values as
 ints and they are then divided by 100.0f when needed. Then, each hero takes
 damage and overtime incapacitation and/or damage. Health is recalculated and
 alive status is updated. If al least one hero is killed in a fight, xp gain(s)
-are calculated and heroes level up if they have enough XP.
+are calculated and characters.heroes level up if they have enough XP.
 
 
     I used Visitor pattern for retrieving the terrain modifier
@@ -98,6 +98,6 @@ are calculated and heroes level up if they have enough XP.
 
     OOP concepts used:
         -aggregation: hero has an ability, an ability has an owner, a game
-         has heroes etc.
+         has characters.heroes etc.
         -inheritance and polymorphism: specialized abilities extend the basic
          ability, hero races extend basic hero

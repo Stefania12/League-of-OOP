@@ -1,26 +1,26 @@
-package heroes.races;
+package characters.heroes.races;
 
 import abilities.AbilityInterface;
-import abilities.pyromancer.FireBlast;
-import abilities.pyromancer.Ignite;
+import abilities.knight.Execute;
+import abilities.knight.Slam;
+import characters.heroes.Hero;
+import characters.heroes.HeroPriority;
 import common.Constants;
-import general.Pair;
-import heroes.Hero;
-import heroes.HeroPriority;
 import map.terrain.Desert;
 import map.terrain.Land;
 import map.terrain.Volcanic;
 import map.terrain.Woods;
+import util.Pair;
 
 /**
- * Implements Pyromancer hero.
+ * Implements Knight hero.
  */
-public class Pyromancer extends Hero {
-    public Pyromancer(final Pair<Integer, Integer> coordinates) {
-        super(HeroPriority.FIRST, Constants.PYROMANCER, coordinates,
-                Constants.PYROMANCER_INITIAL_HP, Constants.PYROMANCER_HP_PER_LEVEL);
-        this.getAbilities().add(new FireBlast(this));
-        this.getAbilities().add(new Ignite(this));
+public class Knight extends Hero {
+    public Knight(final Pair<Integer, Integer> coordinates) {
+        super(HeroPriority.FIRST, Constants.KNIGHT, coordinates,
+                Constants.KNIGHT_INITIAL_HP, Constants.KNIGHT_HP_PER_LEVEL);
+        this.getAbilities().add(new Execute(this));
+        this.getAbilities().add(new Slam(this));
         this.getAbilities().sort((a, b) -> {
             if (a.getPriority() != b.getPriority()) {
                 return a.getPriority() - b.getPriority();
@@ -30,29 +30,29 @@ public class Pyromancer extends Hero {
     }
 
     /**
-     * Accept-type method that returns the value of Woods multiplier of Pyromancer.
+     * Accept-type method that returns the value of Land multiplier of Knight.
      *
      * @param terrain Land terrain
      * @return Land multiplier
      */
     @Override
     public float getTerrainBonusDamageMultiplier(final Land terrain) {
-        return 1.0f;
+        return Constants.KNIGHT_BONUS_DAMAGE_MULTIPLIER;
     }
 
     /**
-     * Accept-type method that returns the value of Volcanic multiplier of Pyromancer.
+     * Accept-type method that returns the value of Volcanic multiplier of Knight.
      *
      * @param terrain Volcanic terrain
      * @return Volcanic multiplier
      */
     @Override
     public float getTerrainBonusDamageMultiplier(final Volcanic terrain) {
-        return Constants.PYROMANCER_BONUS_DAMAGE_MULTIPLIER;
+        return 1.0f;
     }
 
     /**
-     * Accept-type method that returns the value of Desert multiplier of Pyromancer.
+     * Accept-type method that returns the value of Desert multiplier of Knight.
      *
      * @param terrain Desert terrain
      * @return Desert multiplier
@@ -63,7 +63,7 @@ public class Pyromancer extends Hero {
     }
 
     /**
-     * Accept-type method that returns the value of Woods multiplier of Pyromancer.
+     * Accept-type method that returns the value of Woods multiplier of Knight.
      * @param terrain   Woods terrain
      * @return Woods multiplier
      */
@@ -74,7 +74,7 @@ public class Pyromancer extends Hero {
 
     /**
      * Accept-type method that returns the value of the visit-type method of an ability.
-     * @param ability   ability that hurts Pyromancer
+     * @param ability   ability that hurts Knight
      * @return race multiplier
      */
     @Override

@@ -1,5 +1,11 @@
-package general;
+package util;
 
+/**
+ * Implements generic pair.
+ *
+ * @param <A> key type
+ * @param <B> value type
+ */
 public class Pair<A, B> {
     private final A key;
     private final B value;

@@ -1,26 +1,26 @@
-package heroes.races;
+package characters.heroes.races;
 
 import abilities.AbilityInterface;
-import abilities.rogue.Backstab;
-import abilities.rogue.Paralysis;
+import abilities.pyromancer.FireBlast;
+import abilities.pyromancer.Ignite;
+import characters.heroes.Hero;
+import characters.heroes.HeroPriority;
 import common.Constants;
-import general.Pair;
-import heroes.Hero;
-import heroes.HeroPriority;
 import map.terrain.Desert;
 import map.terrain.Land;
 import map.terrain.Volcanic;
 import map.terrain.Woods;
+import util.Pair;
 
 /**
- * Implements Rogue hero.
+ * Implements Pyromancer hero.
  */
-public class Rogue extends Hero {
-    public Rogue(final Pair<Integer, Integer> coordinates) {
-        super(HeroPriority.FIRST, Constants.ROGUE, coordinates,
-                Constants.ROGUE_INITIAL_HP, Constants.ROGUE_HP_PER_LEVEL);
-        this.getAbilities().add(new Backstab(this));
-        this.getAbilities().add(new Paralysis(this));
+public class Pyromancer extends Hero {
+    public Pyromancer(final Pair<Integer, Integer> coordinates) {
+        super(HeroPriority.FIRST, Constants.PYROMANCER, coordinates,
+                Constants.PYROMANCER_INITIAL_HP, Constants.PYROMANCER_HP_PER_LEVEL);
+        this.getAbilities().add(new FireBlast(this));
+        this.getAbilities().add(new Ignite(this));
         this.getAbilities().sort((a, b) -> {
             if (a.getPriority() != b.getPriority()) {
                 return a.getPriority() - b.getPriority();
@@ -30,7 +30,7 @@ public class Rogue extends Hero {
     }
 
     /**
-     * Accept-type method that returns the value of Land multiplier of Rogue.
+     * Accept-type method that returns the value of Woods multiplier of Pyromancer.
      *
      * @param terrain Land terrain
      * @return Land multiplier
@@ -41,18 +41,18 @@ public class Rogue extends Hero {
     }
 
     /**
-     * Accept-type method that returns the value of Volcanic multiplier of Rogue.
+     * Accept-type method that returns the value of Volcanic multiplier of Pyromancer.
      *
      * @param terrain Volcanic terrain
      * @return Volcanic multiplier
      */
     @Override
     public float getTerrainBonusDamageMultiplier(final Volcanic terrain) {
-        return 1.0f;
+        return Constants.PYROMANCER_BONUS_DAMAGE_MULTIPLIER;
     }
 
     /**
-     * Accept-type method that returns the value of Desert multiplier of Rogue.
+     * Accept-type method that returns the value of Desert multiplier of Pyromancer.
      *
      * @param terrain Desert terrain
      * @return Desert multiplier
@@ -63,18 +63,18 @@ public class Rogue extends Hero {
     }
 
     /**
-     * Accept-type method that returns the value of Woods multiplier of Rogue.
+     * Accept-type method that returns the value of Woods multiplier of Pyromancer.
      * @param terrain   Woods terrain
      * @return Woods multiplier
      */
     @Override
     public float getTerrainBonusDamageMultiplier(final Woods terrain) {
-        return Constants.ROGUE_BONUS_DAMAGE_MULTIPLIER;
+        return 1.0f;
     }
 
     /**
      * Accept-type method that returns the value of the visit-type method of an ability.
-     * @param ability   ability that hurts Rogue
+     * @param ability   ability that hurts Pyromancer
      * @return race multiplier
      */
     @Override

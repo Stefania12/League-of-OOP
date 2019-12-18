@@ -1,9 +1,9 @@
-package heroes;
+package characters.heroes;
 
 import abilities.Ability;
 import abilities.AbilityParameters;
 import common.Constants;
-import general.Pair;
+import util.Pair;
 
 import java.util.LinkedList;
 

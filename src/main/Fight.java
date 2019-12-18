@@ -1,8 +1,8 @@
 package main;
 
 import abilities.AbilityParameters;
-import general.Pair;
-import heroes.Hero;
+import characters.heroes.Hero;
+import util.Pair;
 import xp.XPManager;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ final class Fight {
      * Finds an enemy to fight with current hero, with a bigger id.
      *
      * @param heroId current hero id
-     * @param heroes list of heroes
+     * @param heroes list of characters.heroes
      * @return id of enemy to fight
      */
     static int getEnemyToFightWith(final int heroId, final ArrayList<Hero> heroes) {
@@ -75,7 +75,10 @@ final class Fight {
         roundsIncapacitation = abilityParameters.getIncapacitationRounds();
 
         hero.addDamageTaken(currentRoundDamage);
-        hero.addIncapacitation(roundsIncapacitation);
+
+        if (roundsIncapacitation != 0) {
+            hero.addIncapacitation(roundsIncapacitation);
+        }
 
         if (overtimeDamage != 0) {
             hero.addOvertimeDamage(new Pair<>(overtimeDamage, overtimeRounds));
@@ -83,7 +86,7 @@ final class Fight {
     }
 
     /**
-     * Implements fighting between two heroes, hero1 having priority in attack computing.
+     * Implements fighting between two characters.heroes, hero1 having priority in attack computing.
      * @param hero1     hero that attacks first
      * @param hero2     hero that attacks second
      */

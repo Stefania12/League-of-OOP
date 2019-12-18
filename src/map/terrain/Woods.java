@@ -1,12 +1,12 @@
 package map.terrain;
 
+import characters.heroes.Hero;
 import common.Constants;
-import heroes.Hero;
 
 /**
  * Implements Woods terrain type.
  */
-public final class Woods implements Terrain {
+public final class Woods implements TerrainInterface {
 
     @Override
     public char getType() {

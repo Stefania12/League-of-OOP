@@ -1,8 +1,8 @@
 package main;
 
 import fileio.implementations.FileReader;
-import general.Pair;
 import map.Map;
+import util.Pair;
 
 import java.util.ArrayList;
 

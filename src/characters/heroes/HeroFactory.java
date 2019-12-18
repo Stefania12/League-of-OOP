@@ -1,16 +1,16 @@
-package heroes;
+package characters.heroes;
 
+import characters.heroes.races.Knight;
+import characters.heroes.races.Pyromancer;
+import characters.heroes.races.Rogue;
+import characters.heroes.races.Wizard;
 import common.Constants;
-import general.Pair;
-import heroes.races.Knight;
-import heroes.races.Pyromancer;
-import heroes.races.Rogue;
-import heroes.races.Wizard;
+import util.Pair;
 
 import static java.lang.System.exit;
 
 /**
- * Provides heroes based on their type.
+ * Provides characters.heroes based on their type.
  */
 public final class HeroFactory {
     private static HeroFactory instance = null;

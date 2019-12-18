@@ -1,8 +1,8 @@
 package abilities;
 
-import heroes.Hero;
+import characters.heroes.Hero;
 import map.Map;
-import map.terrain.Terrain;
+import map.terrain.TerrainInterface;
 
 /**
  * Implements basic ability functionality.
@@ -109,7 +109,15 @@ public abstract class Ability implements AbilityInterface {
      * @return terrain multiplier
      */
     public float getTerrainMultiplier() {
-        Terrain terrain = Map.getInstance().getTerrainAt(this.getOwner().getCoordinates());
+        TerrainInterface terrain = Map.getInstance().getTerrainAt(this.getOwner().getCoordinates());
         return terrain.getTerrainMultiplierOf(owner);
     }
+
+    /**
+     * Calculate ability parameters when attacking a hero.
+     *
+     * @param hero hero to attack
+     * @return ability parameters
+     */
+    public abstract AbilityParameters getAbilityParametersOn(Hero hero);
 }

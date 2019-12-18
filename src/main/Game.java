@@ -1,9 +1,9 @@
 package main;
 
+import characters.heroes.Hero;
+import characters.heroes.HeroFactory;
 import fileio.implementations.FileWriter;
-import general.Pair;
-import heroes.Hero;
-import heroes.HeroFactory;
+import util.Pair;
 
 import java.util.ArrayList;
 

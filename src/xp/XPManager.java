@@ -1,7 +1,7 @@
 package xp;
 
+import characters.heroes.Hero;
 import common.Constants;
-import heroes.Hero;
 
 /**
  * Utility class for xp management.
@@ -34,7 +34,7 @@ public final class XPManager {
     }
 
     /**
-     * Calculates xp heroes gain after fighting.
+     * Calculates xp characters.heroes gain after fighting.
      * @param hero1     hero1
      * @param hero2     hero2
      * @return array of two elements storing xp for hero1 and hero2
@@ -67,7 +67,7 @@ public final class XPManager {
     }
 
     /**
-     * Updates xp of heroes after fight.
+     * Updates xp of characters.heroes after fight.
      * @param hero1 hero1
      * @param hero2 hero2
      */

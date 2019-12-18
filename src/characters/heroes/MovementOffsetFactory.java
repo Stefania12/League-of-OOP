@@ -1,6 +1,6 @@
-package heroes;
+package characters.heroes;
 
-import general.Pair;
+import util.Pair;
 
 import java.util.HashMap;
 

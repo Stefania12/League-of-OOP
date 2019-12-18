@@ -1,26 +1,31 @@
-package heroes.races;
+package characters.heroes.races;
 
 import abilities.AbilityInterface;
-import abilities.knight.Execute;
-import abilities.knight.Slam;
+import abilities.wizard.Deflect;
+import abilities.wizard.Drain;
+import characters.heroes.Hero;
+import characters.heroes.HeroPriority;
 import common.Constants;
-import general.Pair;
-import heroes.Hero;
-import heroes.HeroPriority;
 import map.terrain.Desert;
 import map.terrain.Land;
 import map.terrain.Volcanic;
 import map.terrain.Woods;
+import util.Pair;
 
 /**
- * Implements Knight hero.
+ * Implements Wizard hero.
  */
-public class Knight extends Hero {
-    public Knight(final Pair<Integer, Integer> coordinates) {
-        super(HeroPriority.FIRST, Constants.KNIGHT, coordinates,
-                Constants.KNIGHT_INITIAL_HP, Constants.KNIGHT_HP_PER_LEVEL);
-        this.getAbilities().add(new Execute(this));
-        this.getAbilities().add(new Slam(this));
+public class Wizard extends Hero {
+    /**
+     * Initializes Wizard hero.
+     *
+     * @param coordinates initial coordinates of hero
+     */
+    public Wizard(final Pair<Integer, Integer> coordinates) {
+        super(HeroPriority.SECOND, Constants.WIZARD, coordinates,
+                Constants.WIZARD_INITIAL_HP, Constants.WIZARD_HP_PER_LEVEL);
+        this.getAbilities().add(new Drain(this));
+        this.getAbilities().add(new Deflect(this));
         this.getAbilities().sort((a, b) -> {
             if (a.getPriority() != b.getPriority()) {
                 return a.getPriority() - b.getPriority();
@@ -30,20 +35,19 @@ public class Knight extends Hero {
     }
 
     /**
-     * Accept-type method that returns the value of Land multiplier of Knight.
+     * Accept-type method that returns the value of Land multiplier of Wizard.
      *
      * @param terrain Land terrain
      * @return Land multiplier
      */
     @Override
     public float getTerrainBonusDamageMultiplier(final Land terrain) {
-        return Constants.KNIGHT_BONUS_DAMAGE_MULTIPLIER;
+        return 1.0f;
     }
 
     /**
-     * Accept-type method that returns the value of Volcanic multiplier of Knight.
-     *
-     * @param terrain Volcanic terrain
+     * Accept-type method that returns the value of Volcanic multiplier of Wizard.
+     * @param terrain   Volcanic terrain
      * @return Volcanic multiplier
      */
     @Override
@@ -52,18 +56,17 @@ public class Knight extends Hero {
     }
 
     /**
-     * Accept-type method that returns the value of Desert multiplier of Knight.
-     *
-     * @param terrain Desert terrain
+     * Accept-type method that returns the value of Desert multiplier of Wizard.
+     * @param terrain   Desert terrain
      * @return Desert multiplier
      */
     @Override
     public float getTerrainBonusDamageMultiplier(final Desert terrain) {
-        return 1.0f;
+        return Constants.WIZARD_BONUS_DAMAGE_MULTIPLIER;
     }
 
     /**
-     * Accept-type method that returns the value of Woods multiplier of Knight.
+     * Accept-type method that returns the value of Woods multiplier of Wizard.
      * @param terrain   Woods terrain
      * @return Woods multiplier
      */
@@ -74,7 +77,7 @@ public class Knight extends Hero {
 
     /**
      * Accept-type method that returns the value of the visit-type method of an ability.
-     * @param ability   ability that hurts Knight
+     * @param ability   ability that hurts Wizard
      * @return race multiplier
      */
     @Override

@@ -1,11 +1,11 @@
 package map.terrain;
 
-import heroes.Hero;
+import characters.heroes.Hero;
 
 /**
- * Implements interface for terrain as Visited type in Visitor pattern.
+ * Implements interface for terrain as Visited type in Visitor pattern (hero->terrain).
  */
-public interface Terrain {
+public interface TerrainInterface {
     /**
      * Accept-type method that returns the value of the visit-type method
      * for the terrain multiplier.

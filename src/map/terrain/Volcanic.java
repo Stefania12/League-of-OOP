@@ -1,12 +1,12 @@
 package map.terrain;
 
+import characters.heroes.Hero;
 import common.Constants;
-import heroes.Hero;
 
 /**
  * Implements Volcanic terrain type.
  */
-public final class Volcanic implements Terrain {
+public final class Volcanic implements TerrainInterface {
 
     @Override
     public char getType() {

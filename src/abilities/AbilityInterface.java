@@ -1,24 +1,14 @@
 package abilities;
 
-import heroes.Hero;
-import heroes.races.Knight;
-import heroes.races.Pyromancer;
-import heroes.races.Rogue;
-import heroes.races.Wizard;
+import characters.heroes.races.Knight;
+import characters.heroes.races.Pyromancer;
+import characters.heroes.races.Rogue;
+import characters.heroes.races.Wizard;
 
 /**
- * Implements visitor interface for Visitor pattern and computing parameters.
+ * Implements visitor interface for Visitor pattern (ability->hero).
  */
 public interface AbilityInterface {
-
-    /**
-     * Calculate ability parameters when attacking a hero.
-     *
-     * @param hero hero to attack
-     * @return ability parameters
-     */
-    AbilityParameters getAbilityParametersOn(Hero hero);
-
     /**
      * Visit-type method to get race multiplier on Pyromancer.
      *

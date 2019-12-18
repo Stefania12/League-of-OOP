@@ -1,8 +1,8 @@
 package map;
 
 import common.Constants;
-import general.Pair;
 import map.terrain.*;
+import util.Pair;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 public final class Map {
     private static Map instance = null;
     private ArrayList<String> lands;
-    private LinkedHashMap<Character, Terrain> terrainTypes;
+    private LinkedHashMap<Character, TerrainInterface> terrainTypes;
 
     private Map() {
         terrainTypes = new LinkedHashMap<>();
@@ -45,7 +45,7 @@ public final class Map {
      * @param coordinates coordinates of terrain
      * @return terrain object
      */
-    public Terrain getTerrainAt(final Pair<Integer, Integer> coordinates) {
+    public TerrainInterface getTerrainAt(final Pair<Integer, Integer> coordinates) {
         char type = lands.get(coordinates.getKey()).charAt(coordinates.getValue());
         return terrainTypes.get(type);
     }

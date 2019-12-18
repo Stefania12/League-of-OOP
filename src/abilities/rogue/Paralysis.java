@@ -3,12 +3,12 @@ package abilities.rogue;
 import abilities.Ability;
 import abilities.AbilityParameters;
 import abilities.AbilityPriority;
+import characters.heroes.Hero;
+import characters.heroes.races.Knight;
+import characters.heroes.races.Pyromancer;
+import characters.heroes.races.Rogue;
+import characters.heroes.races.Wizard;
 import common.Constants;
-import heroes.Hero;
-import heroes.races.Knight;
-import heroes.races.Pyromancer;
-import heroes.races.Rogue;
-import heroes.races.Wizard;
 import map.Map;
 
 /**

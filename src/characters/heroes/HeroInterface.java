@@ -1,4 +1,4 @@
-package heroes;
+package characters.heroes;
 
 import abilities.AbilityInterface;
 import map.terrain.Desert;
@@ -7,7 +7,7 @@ import map.terrain.Volcanic;
 import map.terrain.Woods;
 
 /**
- * Implements Visited inteface for Visitor pattern.
+ * Implements interface for Visitor pattern for ability->hero and hero->terrain.
  */
 public interface HeroInterface {
     /**
