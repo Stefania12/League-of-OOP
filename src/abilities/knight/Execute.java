@@ -4,10 +4,6 @@ import abilities.Ability;
 import abilities.AbilityParameters;
 import abilities.AbilityPriority;
 import characters.heroes.Hero;
-import characters.heroes.races.Knight;
-import characters.heroes.races.Pyromancer;
-import characters.heroes.races.Rogue;
-import characters.heroes.races.Wizard;
 import common.Constants;
 
 /**
@@ -27,6 +23,9 @@ public class Execute extends Ability {
         super(AbilityPriority.FIRST.ordinal(), Constants.EXECUTE_BASE_DAMAGE, 0,
                 Constants.EXECUTE_DAMAGE_PER_LEVEL, 0, 0, 0);
         this.setOwner(hero);
+        this.initializeDamageMultipliers(Constants.EXECUTE_KNIGHT_MULTIPLIER,
+                Constants.EXECUTE_PYROMANCER_MULTIPLIER, Constants.EXECUTE_ROGUE_MULTIPLIER,
+                Constants.EXECUTE_WIZARD_MULTIPLIER);
     }
 
     private int getHPLimit(final Hero hero) {
@@ -47,46 +46,6 @@ public class Execute extends Ability {
             return hero.getHP();
         }
         return super.getBasicDamageOn(null);
-    }
-
-    /**
-     * Returns race multiplier for Rogue opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Rogue hero) {
-        return Constants.EXECUTE_ROGUE_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Knight opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Knight hero) {
-        return Constants.EXECUTE_KNIGHT_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Wizard opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Wizard hero) {
-        return Constants.EXECUTE_WIZARD_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Pyromaner opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Pyromancer hero) {
-        return Constants.EXECUTE_PYROMANCER_MULTIPLIER;
     }
 
     /**

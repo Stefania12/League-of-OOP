@@ -4,10 +4,6 @@ import abilities.Ability;
 import abilities.AbilityParameters;
 import abilities.AbilityPriority;
 import characters.heroes.Hero;
-import characters.heroes.races.Knight;
-import characters.heroes.races.Pyromancer;
-import characters.heroes.races.Rogue;
-import characters.heroes.races.Wizard;
 import common.Constants;
 import map.Map;
 
@@ -27,6 +23,9 @@ public class Backstab extends Ability {
                 Constants.BACKSTAB_DAMAGE_PER_LEVEL, 0, 0, 0);
         counter = Constants.BACKSTAB_CRITICAL_HITS;
         this.setOwner(hero);
+        this.initializeDamageMultipliers(Constants.BACKSTAB_KNIGHT_MULTIPLIER,
+                Constants.BACKSTAB_PYROMANCER_MULTIPLIER, Constants.BACKSTAB_ROGUE_MULTIPLIER,
+                Constants.BACKSTAB_WIZARD_MULTIPLIER);
     }
 
     private void decreaseCounter() {
@@ -54,46 +53,6 @@ public class Backstab extends Ability {
     @Override
     protected int getBasicDamageOn(final Hero hero) {
         return Math.round(super.getBasicDamageOn(hero) * this.getCriticalValue());
-    }
-
-    /**
-     * Returns race multiplier for Rogue opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Rogue hero) {
-        return Constants.BACKSTAB_ROGUE_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Knight opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Knight hero) {
-        return Constants.BACKSTAB_KNIGHT_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Wizard opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Wizard hero) {
-        return Constants.BACKSTAB_WIZARD_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Pyromaner opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Pyromancer hero) {
-        return Constants.BACKSTAB_PYROMANCER_MULTIPLIER;
     }
 
     /**

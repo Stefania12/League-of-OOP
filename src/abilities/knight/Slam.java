@@ -4,10 +4,6 @@ import abilities.Ability;
 import abilities.AbilityParameters;
 import abilities.AbilityPriority;
 import characters.heroes.Hero;
-import characters.heroes.races.Knight;
-import characters.heroes.races.Pyromancer;
-import characters.heroes.races.Rogue;
-import characters.heroes.races.Wizard;
 import common.Constants;
 
 /**
@@ -25,47 +21,9 @@ public class Slam extends Ability {
                 Constants.SLAM_INCAPACITATION_ROUNDS, Constants.SLAM_DAMAGE_PER_LEVEL,
                 Constants.SLAM_INCAPACITATION_ROUNDS, 0, 0);
         this.setOwner(hero);
-    }
-
-    /**
-     * Returns race multiplier for Rogue opponent.
-     *
-     * @param hero hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Rogue hero) {
-        return Constants.SLAM_ROGUE_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Knight opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Knight hero) {
-        return Constants.SLAM_KNIGHT_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Wizard opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Wizard hero) {
-        return Constants.SLAM_WIZARD_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Pyromaner opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Pyromancer hero) {
-        return Constants.SLAM_PYROMANCER_MULTIPLIER;
+        this.initializeDamageMultipliers(Constants.SLAM_KNIGHT_MULTIPLIER,
+                Constants.SLAM_PYROMANCER_MULTIPLIER, Constants.SLAM_ROGUE_MULTIPLIER,
+                Constants.SLAM_WIZARD_MULTIPLIER);
     }
 
     /**

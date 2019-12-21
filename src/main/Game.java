@@ -76,9 +76,9 @@ class Game {
             FileWriter fileWriter = new FileWriter(outputFile);
             for (Hero i : heroes) {
                 fileWriter.writeWord(i.toString());
-                fileWriter.writeNewLine();
+                fileWriter.writeWord("\n");
             }
-            fileWriter.writeNewLine();
+            fileWriter.writeWord("\n");
             fileWriter.close();
         } catch (Exception e) {
             e.printStackTrace();

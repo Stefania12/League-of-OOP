@@ -4,10 +4,6 @@ import abilities.Ability;
 import abilities.AbilityParameters;
 import abilities.AbilityPriority;
 import characters.heroes.Hero;
-import characters.heroes.races.Knight;
-import characters.heroes.races.Pyromancer;
-import characters.heroes.races.Rogue;
-import characters.heroes.races.Wizard;
 import common.Constants;
 
 /**
@@ -25,47 +21,9 @@ public class Ignite extends Ability {
                 Constants.IGNITE_DAMAGE_PER_LEVEL, Constants.IGNITE_ROUNDS,
                 Constants.IGNITE_DAMAGE_PER_ROUND, Constants.IGNITE_ROUND_DAMAGE_PER_LEVEL);
         this.setOwner(hero);
-    }
-
-    /**
-     * Returns race multiplier for Rogue opponent.
-     *
-     * @param hero hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Rogue hero) {
-        return Constants.IGNITE_ROGUE_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Knight opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Knight hero) {
-        return Constants.IGNITE_KNIGHT_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Wizard opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Wizard hero) {
-        return Constants.IGNITE_WIZARD_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Pyromaner opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Pyromancer hero) {
-        return Constants.IGNITE_PYROMANCER_MULTIPLIER;
+        this.initializeDamageMultipliers(Constants.IGNITE_KNIGHT_MULTIPLIER,
+                Constants.IGNITE_PYROMANCER_MULTIPLIER, Constants.IGNITE_ROGUE_MULTIPLIER,
+                Constants.IGNITE_WIZARD_MULTIPLIER);
     }
 
     /**

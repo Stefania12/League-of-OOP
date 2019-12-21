@@ -1,6 +1,10 @@
 package abilities;
 
 import characters.heroes.Hero;
+import characters.heroes.races.Knight;
+import characters.heroes.races.Pyromancer;
+import characters.heroes.races.Rogue;
+import characters.heroes.races.Wizard;
 import map.Map;
 import map.terrain.TerrainInterface;
 
@@ -16,6 +20,10 @@ public abstract class Ability implements AbilityInterface {
     private final int overtimeDamagePerLevel;
     private final int overtimeDamageRounds;
     private final int incapacitationRounds;
+    private float knightDamageMultiplier;
+    private float pyromancerDamageMultiplier;
+    private float rogueDamageMultiplier;
+    private float wizardDamageMultiplier;
 
     /**
      * Initialize ability.
@@ -38,6 +46,16 @@ public abstract class Ability implements AbilityInterface {
         this.overtimeDamageRounds = rounds;
         this.overtimeDamage = overtimeDamage;
         this.overtimeDamagePerLevel = overtimeDamagePerLevel;
+    }
+
+    protected void initializeDamageMultipliers(final float knightMultiplier,
+                                               final float pyromancerMultiplier,
+                                               final float rogueMultiplier,
+                                               final float wizardMultiplier) {
+        knightDamageMultiplier = knightMultiplier;
+        pyromancerDamageMultiplier = pyromancerMultiplier;
+        rogueDamageMultiplier = rogueMultiplier;
+        wizardDamageMultiplier = wizardMultiplier;
     }
 
     /**
@@ -111,6 +129,42 @@ public abstract class Ability implements AbilityInterface {
     public float getTerrainMultiplier() {
         TerrainInterface terrain = Map.getInstance().getTerrainAt(this.getOwner().getCoordinates());
         return terrain.getTerrainMultiplierOf(owner);
+    }
+
+    @Override
+    public float getRaceDamageMultiplier(Knight hero) {
+        return knightDamageMultiplier;
+    }
+
+    public void changeRaceDamageMultiplier(final Knight hero, final float amount) {
+        knightDamageMultiplier += amount;
+    }
+
+    @Override
+    public float getRaceDamageMultiplier(Pyromancer hero) {
+        return pyromancerDamageMultiplier;
+    }
+
+    public void changeRaceDamageMultiplier(final Pyromancer hero, final float amount) {
+        pyromancerDamageMultiplier += amount;
+    }
+
+    @Override
+    public float getRaceDamageMultiplier(Rogue hero) {
+        return rogueDamageMultiplier;
+    }
+
+    public void changeRaceDamageMultiplier(final Rogue hero, final float amount) {
+        rogueDamageMultiplier += amount;
+    }
+
+    @Override
+    public float getRaceDamageMultiplier(Wizard hero) {
+        return wizardDamageMultiplier;
+    }
+
+    public void changeRaceDamageMultiplier(final Wizard hero, final float amount) {
+        wizardDamageMultiplier += amount;
     }
 
     /**

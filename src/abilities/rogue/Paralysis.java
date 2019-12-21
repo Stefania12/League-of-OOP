@@ -4,10 +4,6 @@ import abilities.Ability;
 import abilities.AbilityParameters;
 import abilities.AbilityPriority;
 import characters.heroes.Hero;
-import characters.heroes.races.Knight;
-import characters.heroes.races.Pyromancer;
-import characters.heroes.races.Rogue;
-import characters.heroes.races.Wizard;
 import common.Constants;
 import map.Map;
 
@@ -28,6 +24,9 @@ public class Paralysis extends Ability {
                 Constants.PARALYSIS_ROUND_DAMAGE_PER_LEVEL, 0, Constants.PARALYSIS_DAMAGE_PER_ROUND,
                 Constants.PARALYSIS_ROUND_DAMAGE_PER_LEVEL);
         this.setOwner(hero);
+        this.initializeDamageMultipliers(Constants.PARALYSIS_KNIGHT_MULTIPLIER,
+                Constants.PARALYSIS_PYROMANCER_MULTIPLIER, Constants.PARALYSIS_ROGUE_MULTIPLIER,
+                Constants.PARALYSIS_WIZARD_MULTIPLIER);
     }
 
     /**
@@ -51,46 +50,6 @@ public class Paralysis extends Ability {
     @Override
     protected int getOvertimeDamageRounds() {
         return getIncapacitationRounds();
-    }
-
-    /**
-     * Returns race multiplier for Rogue opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Rogue hero) {
-        return Constants.PARALYSIS_ROGUE_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Knight opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Knight hero) {
-        return Constants.PARALYSIS_KNIGHT_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Wizard opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Wizard hero) {
-        return Constants.PARALYSIS_WIZARD_MULTIPLIER;
-    }
-
-    /**
-     * Returns race multiplier for Pyromaner opponent.
-     * @param hero  hero
-     * @return race multiplier
-     */
-    @Override
-    public float getRaceDamageMultiplier(final Pyromancer hero) {
-        return Constants.PARALYSIS_PYROMANCER_MULTIPLIER;
     }
 
     /**
