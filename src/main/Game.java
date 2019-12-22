@@ -13,6 +13,7 @@ import java.util.ArrayList;
 class Game {
     private ArrayList<Hero> heroes;
     private ArrayList<String> heroMovements;
+    private ArrayList<ArrayList<Pair<String, Pair<Integer, Integer>>>> angelsEachRound; // (angelType, coordinates) pairs
 
     /**
      * Initialize game.
@@ -23,12 +24,22 @@ class Game {
      */
     Game(final ArrayList<String> heroTypes,
          final ArrayList<Pair<Integer, Integer>> heroCoordinates,
-         final ArrayList<String> movements) {
+         final ArrayList<String> movements, final ArrayList<ArrayList<String>> angelsPerRound) {
         heroes = new ArrayList<>();
         for (int i = 0; i < heroTypes.size(); i++) {
             heroes.add(HeroFactory.getInstance().getHero(heroTypes.get(i), heroCoordinates.get(i)));
         }
         heroMovements = movements;
+
+        angelsEachRound = new ArrayList<>();
+
+        for (int i = 0; i < angelsPerRound.size(); i++) {
+            angelsEachRound.add(new ArrayList<>());
+            for (String s : angelsPerRound.get(i)) {
+                String[] words = s.split(",");
+                angelsEachRound.get(i).add(new Pair<>(words[0], new Pair<>(Integer.parseInt(words[1]), Integer.parseInt(words[2]))));
+            }
+        }
     }
 
     public ArrayList<Hero> getHeroes() {

@@ -13,7 +13,7 @@ final class GameInputLoader {
     private ArrayList<String> heroTypes;
     private ArrayList<Pair<Integer, Integer>> heroCoordinates;
     private ArrayList<String> movements;
-
+    private ArrayList<ArrayList<String>> angelsEachRound;
     /**
      * Retrieve information from input file.
      *
@@ -47,6 +47,16 @@ final class GameInputLoader {
                 movements.add(fileReader.nextWord());
             }
 
+            angelsEachRound = new ArrayList<>();
+
+            for (int i = 0; i < rounds; i++) {
+                angelsEachRound.add(new ArrayList<>());
+                int angelNum = fileReader.nextInt();
+                for (int j = 0; j < angelNum; j++) {
+                    angelsEachRound.get(i).add(fileReader.nextWord());
+                }
+            }
+
             fileReader.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,6 +69,6 @@ final class GameInputLoader {
      * @return new game
      */
     Game makeGame() {
-        return new Game(heroTypes, heroCoordinates, movements);
+        return new Game(heroTypes, heroCoordinates, movements, angelsEachRound);
     }
 }

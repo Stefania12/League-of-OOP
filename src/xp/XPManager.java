@@ -33,6 +33,7 @@ public final class XPManager {
         return Constants.LEVEL_UP_CONSTANT + hero.getLevel() * Constants.LEVEL_UP_MULTIPLIER;
     }
 
+
     /**
      * Calculates xp characters.heroes gain after fighting.
      * @param hero1     hero1
@@ -78,5 +79,9 @@ public final class XPManager {
 
         updateLevelOf(hero1);
         updateLevelOf(hero2);
+    }
+
+    public static int getXpNeededForLevelUp(final Hero hero) {
+        return getLevelUpXP(hero) - hero.getXP();
     }
 }

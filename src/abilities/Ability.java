@@ -127,7 +127,7 @@ public abstract class Ability implements AbilityInterface {
      * @return terrain multiplier
      */
     public float getTerrainMultiplier() {
-        TerrainInterface terrain = Map.getInstance().getTerrainAt(this.getOwner().getCoordinates());
+        TerrainInterface terrain = Map.getInstance().getTerrainAt(owner.getCoordinates());
         return terrain.getTerrainMultiplierOf(owner);
     }
 

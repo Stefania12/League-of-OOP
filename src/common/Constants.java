@@ -3,6 +3,7 @@ package common;
 public final class Constants {
     public static final float FIREBLAST_ROGUE_MULTIPLIER = 0.8f;
 
+
     public static final float PERCENTAGE = 100.0f;
     public static final float FIREBLAST_ROGUE_MULTIPLIER = 0.8f;
     // XP and level up details
@@ -120,16 +121,31 @@ public final class Constants {
     public static final float PARALYSIS_KNIGHT_MULTIPLIER = 0.8f;
     public static final float PARALYSIS_PYROMANCER_MULTIPLIER = 1.2f;
     public static final float PARALYSIS_WIZARD_MULTIPLIER = 1.25f;
+    // Angel types
+    public static final String DAMAGE_ANGEL = "DamageAngel";
+    public static final String DARK_ANGEL = "DarkAngel";
+    public static final String DRACULA = "Dracula";
+    public static final String GOOD_BOY = "GoodBoy";
+    public static final String LEVEL_UP_ANGEL = "LevelUpAngel";
+    public static final String LIFE_GIVER = "LifeGiver";
+    public static final String SMALL_ANGEL = "SmallAngel";
+    public static final String SPAWNER = "Spawner";
+    public static final String DOOMER = "TheDoomer";
+    public static final String XP_ANGEL = "XPAngel";
+    // DarkAngel details
+    public static final int DARK_ANGEL_KNIGHT_HP = -40;
+
     // DamageAngel details
     public static final float DMG_ANGEL_KNIGHT_MODIFIER = 0.15f;
     public static final float DMG_ANGEL_PYROMANCER_MODIFIER = 0.20f;
     public static final float DMG_ANGEL_ROGUE_MODIFIER = 0.30f;
     public static final float DMG_ANGEL_WIZARD_MODIFIER = 0.40f;
-    // DarkAngel details
-    public static final int DARK_ANGEL_KNIGHT_MODIFIER = -40;
-    public static final int DARK_ANGEL_PYROMANCER_MODIFIER = -30;
-    public static final int DARK_ANGEL_ROGUE_MODIFIER = -10;
-    public static final int DARK_ANGEL_WIZARD_MODIFIER = -20;
+    public static final int DARK_ANGEL_PYROMANCER_HP = -30;
+    public static final int DARK_ANGEL_ROGUE_HP = -10;
+    public static final int DARK_ANGEL_WIZARD_HP = -20;
+    // LifeGiver details
+    public static final int LIFEGIVER_KNIGHT_HP = 100;
+
     // Dracula details
     public static final float DRACULA_KNIGHT_MODIFIER = -0.20f;
     public static final int DRACULA_KNIGHT_HP = -60;
@@ -139,6 +155,7 @@ public final class Constants {
     public static final int DRACULA_ROGUE_HP = -35;
     public static final float DRACULA_WIZARD_MODIFIER = -0.40f;
     public static final int DRACULA_WIZARD_HP = -20;
+
     // GoodBoy details
     public static final float GOODBOY_KNIGHT_MODIFIER = 0.40f;
     public static final int GOODBOY_KNIGHT_HP = 20;
@@ -148,16 +165,19 @@ public final class Constants {
     public static final int GOODBOY_ROGUE_HP = 40;
     public static final float GOODBOY_WIZARD_MODIFIER = 0.30f;
     public static final int GOODBOY_WIZARD_HP = 50;
+
     // LevelUpAngel details
     public static final float LVL_UP_ANGEL_KNIGHT_MODIFIER = 0.10f;
     public static final float LVL_UP_ANGEL_PYROMANCER_MODIFIER = 0.20f;
     public static final float LVL_UP_ANGEL_ROGUE_MODIFIER = 0.15f;
     public static final float LVL_UP_ANGEL_WIZARD_MODIFIER = 0.25f;
-    // LifeGiver details
-    public static final int LIFEGIVER_KNIGHT_MODIFIER = 100;
-    public static final int LIFEGIVER_PYROMANCER_MODIFIER = 80;
-    public static final int LIFEGIVER_ROGUE_MODIFIER = 90;
-    public static final int LIFEGIVER_WIZARD_MODIFIER = 120;
+    public static final int LIFEGIVER_PYROMANCER_HP = 80;
+    public static final int LIFEGIVER_ROGUE_HP = 90;
+    public static final int LIFEGIVER_WIZARD_HP = 120;
+
+    private Constants() {
+    }
+
     // SmallAngel details
     public static final float SMALL_ANGEL_KNIGHT_MODIFIER = 0.10f;
     public static final int SMALL_ANGEL_KNIGHT_HP = 10;
@@ -167,16 +187,17 @@ public final class Constants {
     public static final int SMALL_ANGEL_ROGUE_HP = 20;
     public static final float SMALL_ANGEL_WIZARD_MODIFIER = 0.10f;
     public static final int SMALL_ANGEL_WIZARD_HP = 25;
+
     // Spawner details
     public static final int SPAWNER_KNIGHT_HP = 200;
     public static final int SPAWNER_PYROMANCER_HP = 150;
     public static final int SPAWNER_ROGUE_HP = 180;
     public static final int SPAWNER_WIZARD_HP = 120;
+
     // XPAngel details
     public static final int XP_ANGEL_KNIGHT_XP = 45;
     public static final int XP_ANGEL_PYROMANCER_XP = 50;
     public static final int XP_ANGEL_ROGUE_XP = 40;
     public static final int XP_ANGEL_WIZARD_XP = 60;
-    private Constants() {
-    }
+
 }
