@@ -3,6 +3,7 @@ package characters.heroes;
 import abilities.Ability;
 import abilities.AbilityParameters;
 import common.Constants;
+import strategies.StrategyInterface;
 import util.Pair;
 
 import java.util.LinkedList;
@@ -26,6 +27,7 @@ public abstract class Hero implements HeroInterface {
     private int damageTaken;
     private Pair<Integer, Integer> overtimeDamage;
     private int incapacitationRounds;
+    private StrategyInterface strategy;
 
     /**
      * Initializes hero.
@@ -120,7 +122,7 @@ public abstract class Hero implements HeroInterface {
         return hp;
     }
 
-    protected void changeHPBy(final int amount) {
+    public void changeHPBy(final int amount) {
         hp = Math.max(hp + amount, 0);
     }
 
@@ -219,6 +221,14 @@ public abstract class Hero implements HeroInterface {
      */
     public LinkedList<AbilityParameters> getAttacks() {
         return attacks;
+    }
+
+    public void setStrategy(StrategyInterface newStrategy) {
+        strategy = newStrategy;
+    }
+
+    public void applyStrategy() {
+        strategy.apply();
     }
 
     /**

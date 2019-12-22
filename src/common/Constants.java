@@ -200,4 +200,35 @@ public final class Constants {
     public static final int XP_ANGEL_ROGUE_XP = 40;
     public static final int XP_ANGEL_WIZARD_XP = 60;
 
+    // KnightStrategy details
+    public static final float KNIGHT_STRATEGY_LOWER_LIMIT_COEFFICIENT = 1.0f / 3.0f;
+    public static final float KNIGHT_STRATEGY_UPPER_LIMIT_COEFFICIENT = 0.5f;
+    public static final float KNIGHT_STRATEGY_HP_LOSS_PERCENTAGE = 0.2f;
+    public static final float KNIGHT_STRATEGY_DMG_MULTIPLIER_GAIN = 0.5f;
+    public static final float KNIGHT_STRATEGY_DMG_MULTIPLIER_LOSS = 0.2f;
+    public static final float KNIGHT_STRATEGY_HP_GAIN_PERCENTAGE = 0.25f;
+
+    // PyromancerStrategy details
+    public static final float PYROMANCER_STRATEGY_LOWER_LIMIT_COEFFICIENT = 0.25f;
+    public static final float PYROMANCER_STRATEGY_UPPER_LIMIT_COEFFICIENT = 1.0f / 3.0f;
+    public static final float PYROMANCER_STRATEGY_HP_LOSS_PERCENTAGE = 0.25f;
+    public static final float PYROMANCER_STRATEGY_DMG_MULTIPLIER_GAIN = 0.7f;
+    public static final float PYROMANCER_STRATEGY_DMG_MULTIPLIER_LOSS = 0.3f;
+    public static final float PYROMANCER_STRATEGY_HP_GAIN_PERCENTAGE = 1.0f / 3.0f;
+
+    // RogueStrategy details
+    public static final float ROGUE_STRATEGY_LOWER_LIMIT_COEFFICIENT = 1.0f / 7.0f;
+    public static final float ROGUE_STRATEGY_UPPER_LIMIT_COEFFICIENT = 0.2f;
+    public static final float ROGUE_STRATEGY_HP_LOSS_PERCENTAGE = 1.0f / 7.0f;
+    public static final float ROGUE_STRATEGY_DMG_MULTIPLIER_GAIN = 0.4f;
+    public static final float ROGUE_STRATEGY_DMG_MULTIPLIER_LOSS = 0.1f;
+    public static final float ROGUE_STRATEGY_HP_GAIN_PERCENTAGE = 0.5f;
+
+    // WizardStrategy details
+    public static final float WIZARD_STRATEGY_LOWER_LIMIT_COEFFICIENT = 0.25f;
+    public static final float WIZARD_STRATEGY_UPPER_LIMIT_COEFFICIENT = 0.5f;
+    public static final float WIZARD_STRATEGY_HP_LOSS_PERCENTAGE = 0.1f;
+    public static final float WIZARD_STRATEGY_DMG_MULTIPLIER_GAIN = 0.6f;
+    public static final float WIZARD_STRATEGY_DMG_MULTIPLIER_LOSS = 0.2f;
+    public static final float WIZARD_STRATEGY_HP_GAIN_PERCENTAGE = 0.2f;
 }
