@@ -11,7 +11,7 @@ public class SmallAngel extends Angel {
                 Constants.SMALL_ANGEL_PYROMANCER_MODIFIER, Constants.SMALL_ANGEL_ROGUE_MODIFIER,
                 Constants.SMALL_ANGEL_WIZARD_MODIFIER);
         initializeLife(Constants.SMALL_ANGEL_KNIGHT_HP, Constants.SMALL_ANGEL_PYROMANCER_HP,
-                Constants.SMALL_ANGEL_KNIGHT_HP, Constants.SMALL_ANGEL_WIZARD_HP, false);
+                Constants.SMALL_ANGEL_ROGUE_HP, Constants.SMALL_ANGEL_WIZARD_HP, false);
         initializeXp(0, 0, 0, 0);
 
     }
