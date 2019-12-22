@@ -37,4 +37,24 @@ public class FireBlast extends Ability {
                 this.getOvertimeDamageRounds(), this.getTerrainMultiplier(),
                 hero.getRaceMultiplierOf(this));
     }
+
+    @Override
+    protected float getInitialKnightMultiplier() {
+        return Constants.FIREBLAST_KNIGHT_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialPyromancerMultiplier() {
+        return Constants.FIREBLAST_PYROMANCER_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialRogueMultiplier() {
+        return Constants.FIREBLAST_ROGUE_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialWizardMultiplier() {
+        return Constants.FIREBLAST_WIZARD_MULTIPLIER;
+    }
 }

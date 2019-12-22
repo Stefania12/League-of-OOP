@@ -57,4 +57,24 @@ public class Drain extends Ability {
                 this.getOvertimeDamageRounds(), this.getTerrainMultiplier(),
                 hero.getRaceMultiplierOf(this));
     }
+
+    @Override
+    protected float getInitialKnightMultiplier() {
+        return Constants.DRAIN_KNIGHT_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialPyromancerMultiplier() {
+        return Constants.DRAIN_PYROMANCER_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialRogueMultiplier() {
+        return Constants.DRAIN_ROGUE_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialWizardMultiplier() {
+        return Constants.DRAIN_WIZARD_MULTIPLIER;
+    }
 }

@@ -38,4 +38,24 @@ public class Ignite extends Ability {
                 this.getOvertimeDamageRounds(), this.getTerrainMultiplier(),
                 hero.getRaceMultiplierOf(this));
     }
+
+    @Override
+    protected float getInitialKnightMultiplier() {
+        return Constants.IGNITE_KNIGHT_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialPyromancerMultiplier() {
+        return Constants.IGNITE_PYROMANCER_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialRogueMultiplier() {
+        return Constants.IGNITE_ROGUE_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialWizardMultiplier() {
+        return Constants.IGNITE_WIZARD_MULTIPLIER;
+    }
 }

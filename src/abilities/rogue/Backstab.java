@@ -69,4 +69,24 @@ public class Backstab extends Ability {
         this.decreaseCounter();
         return ability;
     }
+
+    @Override
+    protected float getInitialKnightMultiplier() {
+        return Constants.BACKSTAB_KNIGHT_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialPyromancerMultiplier() {
+        return Constants.BACKSTAB_PYROMANCER_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialRogueMultiplier() {
+        return Constants.BACKSTAB_ROGUE_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialWizardMultiplier() {
+        return Constants.BACKSTAB_WIZARD_MULTIPLIER;
+    }
 }

@@ -38,4 +38,24 @@ public class Slam extends Ability {
                 this.getOvertimeDamageRounds(), this.getTerrainMultiplier(),
                 hero.getRaceMultiplierOf(this));
     }
+
+    @Override
+    protected float getInitialKnightMultiplier() {
+        return Constants.SLAM_KNIGHT_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialPyromancerMultiplier() {
+        return Constants.SLAM_PYROMANCER_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialRogueMultiplier() {
+        return Constants.SLAM_ROGUE_MULTIPLIER;
+    }
+
+    @Override
+    protected float getInitialWizardMultiplier() {
+        return Constants.SLAM_WIZARD_MULTIPLIER;
+    }
 }
