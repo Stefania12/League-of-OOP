@@ -1,5 +1,9 @@
 package characters.angels;
 
+import characters.heroes.races.Knight;
+import characters.heroes.races.Pyromancer;
+import characters.heroes.races.Rogue;
+import characters.heroes.races.Wizard;
 import util.Pair;
 
 public abstract class Angel implements AngelInterface {
@@ -46,5 +50,61 @@ public abstract class Angel implements AngelInterface {
         pyromancerXp = xpPyromancer;
         rogueXp = xpRogue;
         wizardXp = xpWizard;
+    }
+
+    protected float getKnightDamageModifier() {
+        return knightDamageModifier;
+    }
+
+    protected float getPyromancerDamageModifier() {
+        return pyromancerDamageModifier;
+    }
+
+    protected float getRogueDamageModifier() {
+        return rogueDamageModifier;
+    }
+
+    protected float getWizardDamageModifier() {
+        return wizardDamageModifier;
+    }
+
+    protected int getKnightHp() {
+        return knightHp;
+    }
+
+    protected int getPyromancerHp() {
+        return pyromancerHp;
+    }
+
+    protected int getRogueHp() {
+        return rogueHp;
+    }
+
+    protected int getWizardHp() {
+        return wizardHp;
+    }
+
+    protected boolean getRevival() {
+        return revival;
+    }
+
+    @Override
+    public AngelEffect getEffectOn(Knight hero) {
+        return new AngelEffect(knightDamageModifier, knightHp, revival, knightXp);
+    }
+
+    @Override
+    public AngelEffect getEffectOn(Pyromancer hero) {
+        return new AngelEffect(pyromancerDamageModifier, pyromancerHp, revival, pyromancerXp);
+    }
+
+    @Override
+    public AngelEffect getEffectOn(Rogue hero) {
+        return new AngelEffect(rogueDamageModifier, rogueHp, revival, rogueXp);
+    }
+
+    @Override
+    public AngelEffect getEffectOn(Wizard hero) {
+        return new AngelEffect(wizardDamageModifier, wizardHp, revival, wizardXp);
     }
 }

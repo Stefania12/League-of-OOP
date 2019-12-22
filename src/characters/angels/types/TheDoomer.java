@@ -1,6 +1,7 @@
 package characters.angels.types;
 
 import characters.angels.Angel;
+import characters.angels.AngelEffect;
 import characters.heroes.races.Knight;
 import characters.heroes.races.Pyromancer;
 import characters.heroes.races.Rogue;
@@ -16,22 +17,22 @@ public class TheDoomer extends Angel {
     }
 
     @Override
-    public void executeActionOn(Knight hero) {
-
+    public AngelEffect getEffectOn(Knight hero) {
+        return new AngelEffect(0, -hero.getHP(), false, 0);
     }
 
     @Override
-    public void executeActionOn(Pyromancer hero) {
-
+    public AngelEffect getEffectOn(Pyromancer hero) {
+        return new AngelEffect(0, -hero.getHP(), false, 0);
     }
 
     @Override
-    public void executeActionOn(Rogue hero) {
-
+    public AngelEffect getEffectOn(Rogue hero) {
+        return new AngelEffect(0, -hero.getHP(), false, 0);
     }
 
     @Override
-    public void executeActionOn(Wizard hero) {
-
+    public AngelEffect getEffectOn(Wizard hero) {
+        return new AngelEffect(0, -hero.getHP(), false, 0);
     }
 }

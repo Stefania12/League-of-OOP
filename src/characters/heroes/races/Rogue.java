@@ -1,8 +1,11 @@
 package characters.heroes.races;
 
+import abilities.Ability;
 import abilities.AbilityInterface;
 import abilities.rogue.Backstab;
 import abilities.rogue.Paralysis;
+import characters.angels.AngelEffect;
+import characters.angels.AngelInterface;
 import characters.heroes.Hero;
 import characters.heroes.HeroPriority;
 import common.Constants;
@@ -80,5 +83,18 @@ public class Rogue extends Hero {
     @Override
     public float getRaceMultiplierOf(final AbilityInterface ability) {
         return ability.getRaceDamageMultiplier(this);
+    }
+
+    @Override
+    public void receiveEffectOfAngel(AngelInterface angel) {
+        AngelEffect effect = angel.getEffectOn(this);
+        if (this.isAlive() || effect.getRevival()) {
+            for (Ability a : getAbilities()) {
+                a.changeRaceDamageMultipliers(effect.getDamageModifier());
+            }
+            this.changeHPBy(effect.getHp());
+            this.updateAliveStatus();
+            this.addXP(effect.getXp());
+        }
     }
 }

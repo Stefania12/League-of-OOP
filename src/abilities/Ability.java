@@ -136,17 +136,9 @@ public abstract class Ability implements AbilityInterface {
         return knightDamageMultiplier;
     }
 
-    public void changeRaceDamageMultiplier(final Knight hero, final float amount) {
-        knightDamageMultiplier += amount;
-    }
-
     @Override
     public float getRaceDamageMultiplier(Pyromancer hero) {
         return pyromancerDamageMultiplier;
-    }
-
-    public void changeRaceDamageMultiplier(final Pyromancer hero, final float amount) {
-        pyromancerDamageMultiplier += amount;
     }
 
     @Override
@@ -154,19 +146,17 @@ public abstract class Ability implements AbilityInterface {
         return rogueDamageMultiplier;
     }
 
-    public void changeRaceDamageMultiplier(final Rogue hero, final float amount) {
-        rogueDamageMultiplier += amount;
-    }
-
     @Override
     public float getRaceDamageMultiplier(Wizard hero) {
         return wizardDamageMultiplier;
     }
 
-    public void changeRaceDamageMultiplier(final Wizard hero, final float amount) {
-        wizardDamageMultiplier += amount;
+    public void changeRaceDamageMultipliers(final float amount) {
+        knightDamageMultiplier = Math.max(knightDamageMultiplier + amount, 0f);
+        pyromancerDamageMultiplier = Math.max(pyromancerDamageMultiplier + amount, 0f);
+        rogueDamageMultiplier = Math.max(rogueDamageMultiplier + amount, 0f);
+        wizardDamageMultiplier = Math.max(wizardDamageMultiplier + amount, 0f);
     }
-
     /**
      * Calculate ability parameters when attacking a hero.
      *

@@ -79,12 +79,12 @@ OOP Project: League of OOP - First stage
 
     Every round, each player moves to the new location and takes overtime damage
 if any. Then, for each hero, an enemy to fight is searched (with a bigger id in
-order to avoid fighting two times). In a fight, the two characters.heroes compute their
+order to avoid fighting two times). In a fight, the two heroes compute their
 attacks parameters. For abilities that use percentages, I saved the values as
 ints and they are then divided by 100.0f when needed. Then, each hero takes
 damage and overtime incapacitation and/or damage. Health is recalculated and
 alive status is updated. If al least one hero is killed in a fight, xp gain(s)
-are calculated and characters.heroes level up if they have enough XP.
+are calculated and heroes level up if they have enough XP.
 
 
     I used Visitor pattern for retrieving the terrain modifier
@@ -98,6 +98,6 @@ are calculated and characters.heroes level up if they have enough XP.
 
     OOP concepts used:
         -aggregation: hero has an ability, an ability has an owner, a game
-         has characters.heroes etc.
+         has heroes etc.
         -inheritance and polymorphism: specialized abilities extend the basic
          ability, hero races extend basic hero

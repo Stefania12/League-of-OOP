@@ -1,12 +1,14 @@
 package characters.angels.types;
 
 import characters.angels.Angel;
+import characters.angels.AngelEffect;
 import characters.heroes.races.Knight;
 import characters.heroes.races.Pyromancer;
 import characters.heroes.races.Rogue;
 import characters.heroes.races.Wizard;
 import common.Constants;
 import util.Pair;
+import xp.XPManager;
 
 public class LevelUpAngel extends Angel {
     public LevelUpAngel(Pair<Integer, Integer> coordinates) {
@@ -19,22 +21,22 @@ public class LevelUpAngel extends Angel {
     }
 
     @Override
-    public void executeActionOn(Knight hero) {
-
+    public AngelEffect getEffectOn(Knight hero) {
+        return new AngelEffect(getKnightDamageModifier(), getKnightHp(), getRevival(), XPManager.getXpNeededForLevelUp(hero));
     }
 
     @Override
-    public void executeActionOn(Pyromancer hero) {
-
+    public AngelEffect getEffectOn(Pyromancer hero) {
+        return new AngelEffect(getPyromancerDamageModifier(), getPyromancerHp(), getRevival(), XPManager.getXpNeededForLevelUp(hero));
     }
 
     @Override
-    public void executeActionOn(Rogue hero) {
-
+    public AngelEffect getEffectOn(Rogue hero) {
+        return new AngelEffect(getRogueDamageModifier(), getRogueHp(), getRevival(), XPManager.getXpNeededForLevelUp(hero));
     }
 
     @Override
-    public void executeActionOn(Wizard hero) {
-
+    public AngelEffect getEffectOn(Wizard hero) {
+        return new AngelEffect(getWizardDamageModifier(), getWizardHp(), getRevival(), XPManager.getXpNeededForLevelUp(hero));
     }
 }

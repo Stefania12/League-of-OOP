@@ -9,11 +9,11 @@ import characters.heroes.races.Wizard;
  * Implements visitor for Visitor pattern.
  */
 public interface AngelInterface {
-    void executeActionOn(Knight hero);
+    AngelEffect getEffectOn(Knight hero);
 
-    void executeActionOn(Pyromancer hero);
+    AngelEffect getEffectOn(Pyromancer hero);
 
-    void executeActionOn(Rogue hero);
+    AngelEffect getEffectOn(Rogue hero);
 
-    void executeActionOn(Wizard hero);
+    AngelEffect getEffectOn(Wizard hero);
 }

@@ -1,6 +1,7 @@
 package characters.heroes;
 
 import abilities.AbilityInterface;
+import characters.angels.AngelInterface;
 import map.terrain.Desert;
 import map.terrain.Land;
 import map.terrain.Volcanic;
@@ -17,6 +18,8 @@ public interface HeroInterface {
      * @return race multiplier for the ability
      */
     float getRaceMultiplierOf(AbilityInterface ability);
+
+    void receiveEffectOfAngel(AngelInterface angel);
 
     /**
      * Returns Land multiplier of hero.

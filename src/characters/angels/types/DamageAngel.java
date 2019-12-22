@@ -1,10 +1,6 @@
 package characters.angels.types;
 
 import characters.angels.Angel;
-import characters.heroes.races.Knight;
-import characters.heroes.races.Pyromancer;
-import characters.heroes.races.Rogue;
-import characters.heroes.races.Wizard;
 import common.Constants;
 import util.Pair;
 
@@ -16,25 +12,5 @@ public class DamageAngel extends Angel {
                 Constants.DMG_ANGEL_WIZARD_MODIFIER);
         initializeLife(0, 0, 0, 0, false);
         initializeXp(0, 0, 0, 0);
-    }
-
-    @Override
-    public void executeActionOn(Knight hero) {
-
-    }
-
-    @Override
-    public void executeActionOn(Pyromancer hero) {
-
-    }
-
-    @Override
-    public void executeActionOn(Rogue hero) {
-
-    }
-
-    @Override
-    public void executeActionOn(Wizard hero) {
-
     }
 }

@@ -93,10 +93,12 @@ public abstract class Hero implements HeroInterface {
     /**
      * Check if hero is alive and update this status.
      */
-    private void updateAliveStatus() {
+    protected void updateAliveStatus() {
         if (hp <= 0) {
             alive = false;
             hp = 0;
+        } else {
+            alive = true;
         }
     }
 
@@ -116,6 +118,10 @@ public abstract class Hero implements HeroInterface {
      */
     public int getHP() {
         return hp;
+    }
+
+    protected void changeHPBy(final int amount) {
+        hp = Math.max(hp + amount, 0);
     }
 
     /**
