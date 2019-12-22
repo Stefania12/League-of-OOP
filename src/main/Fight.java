@@ -46,7 +46,7 @@ final class Fight {
         int basicDamage = abilityParameters.getBasicDamage();
         float raceMultiplier = abilityParameters.getRaceMultiplier();
         float terrainMultiplier = abilityParameters.getTerrainMultiplier();
-        return Math.round(basicDamage * terrainMultiplier * raceMultiplier);
+        return Math.round(Math.round(basicDamage * terrainMultiplier) * raceMultiplier);
     }
 
     /**
@@ -58,7 +58,7 @@ final class Fight {
         int overtimeDamage = abilityParameters.getOvertimeDamage();
         float raceMultiplier = abilityParameters.getRaceMultiplier();
         float terrainMultiplier = abilityParameters.getTerrainMultiplier();
-        return Math.round(overtimeDamage * terrainMultiplier * raceMultiplier);
+        return Math.round(Math.round(overtimeDamage * terrainMultiplier) * raceMultiplier);
     }
 
     /**
