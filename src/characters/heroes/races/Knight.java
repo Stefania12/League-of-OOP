@@ -13,6 +13,7 @@ import map.terrain.Desert;
 import map.terrain.Land;
 import map.terrain.Volcanic;
 import map.terrain.Woods;
+import strategies.types.KnightStrategy;
 import util.Pair;
 
 /**
@@ -30,6 +31,7 @@ public class Knight extends Hero {
             }
             return 0;
         });
+        setStrategy(new KnightStrategy(this));
     }
 
     /**

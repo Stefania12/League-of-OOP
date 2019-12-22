@@ -5,6 +5,7 @@ import abilities.AbilityParameters;
 import common.Constants;
 import strategies.StrategyInterface;
 import util.Pair;
+import xp.XPManager;
 
 import java.util.LinkedList;
 
@@ -124,6 +125,9 @@ public abstract class Hero implements HeroInterface {
 
     public void changeHPBy(final int amount) {
         hp = Math.max(hp + amount, 0);
+        if (hp > maxHP) {
+            hp = maxHP;
+        }
     }
 
     /**
@@ -141,6 +145,7 @@ public abstract class Hero implements HeroInterface {
      */
     public void addXP(final int value) {
         xp += value;
+        XPManager.updateLevelOf(this);
     }
 
     /**
@@ -223,7 +228,7 @@ public abstract class Hero implements HeroInterface {
         return attacks;
     }
 
-    public void setStrategy(StrategyInterface newStrategy) {
+    protected void setStrategy(StrategyInterface newStrategy) {
         strategy = newStrategy;
     }
 

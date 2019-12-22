@@ -1,5 +1,7 @@
 package main;
 
+import characters.angels.Angel;
+import characters.angels.AngelFactory;
 import characters.heroes.Hero;
 import characters.heroes.HeroFactory;
 import fileio.implementations.FileWriter;
@@ -53,6 +55,7 @@ class Game {
      */
     private void round(final int idx) {
         for (int i = 0; i < heroes.size(); i++) {
+            heroes.get(i).applyStrategy();
             heroes.get(i).move(heroMovements.get(idx).charAt(i));
             heroes.get(i).takeOvertimeDamage();
         }
@@ -64,6 +67,14 @@ class Game {
                     Fight.fight(heroes.get(i), heroes.get(enemyId));
                 } else {
                     Fight.fight(heroes.get(enemyId), heroes.get(i));
+                }
+            }
+        }
+        for (Pair<String, Pair<Integer, Integer>> i : angelsEachRound.get(idx)) {
+            Angel angel = AngelFactory.getInstance().createAngel(i.getKey(), i.getValue());
+            for (Hero h : heroes) {
+                if (i.getValue().equals(h.getCoordinates())) {
+                    h.receiveEffectOfAngel(angel);
                 }
             }
         }

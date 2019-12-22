@@ -61,7 +61,7 @@ public final class XPManager {
      * Updates level of hero.
      * @param hero  hero
      */
-    private static void updateLevelOf(final Hero hero) {
+    public static void updateLevelOf(final Hero hero) {
         while (hero.getXP() >= getLevelUpXP(hero)) {
             hero.levelUp();
         }
