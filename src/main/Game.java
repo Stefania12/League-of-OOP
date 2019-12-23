@@ -55,9 +55,11 @@ class Game {
      */
     private void round(final int idx) {
         for (int i = 0; i < heroes.size(); i++) {
-            heroes.get(i).applyStrategy();
-            heroes.get(i).move(heroMovements.get(idx).charAt(i));
-            heroes.get(i).takeOvertimeDamage();
+            if (heroes.get(i).isAlive()) {
+                heroes.get(i).applyStrategy();
+                heroes.get(i).move(heroMovements.get(idx).charAt(i));
+                heroes.get(i).takeOvertimeDamage();
+            }
         }
         int enemyId;
         for (int i = 0; i < heroes.size() - 1; i++) {

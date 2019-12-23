@@ -162,7 +162,9 @@ public abstract class Hero implements HeroInterface {
     public void levelUp() {
         level++;
         maxHP = initialHealth + healthPerLevel * level;
-        hp = maxHP;
+        if (isAlive()) {
+            hp = maxHP;
+        }
     }
 
     /**
