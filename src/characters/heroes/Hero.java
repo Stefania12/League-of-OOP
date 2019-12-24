@@ -5,7 +5,6 @@ import abilities.AbilityParameters;
 import characters.EventType;
 import characters.Observable;
 import characters.Observer;
-import characters.angels.Angel;
 import characters.angels.AngelInterface;
 import common.Constants;
 import strategies.StrategyInterface;
@@ -262,7 +261,8 @@ public abstract class Hero implements HeroInterface {
     }
 
     public void applyStrategy() {
-        strategy.apply();
+        if (incapacitationRounds == 0)
+            strategy.apply();
     }
 
     /**
@@ -333,7 +333,6 @@ public abstract class Hero implements HeroInterface {
     }
 
     protected void notifyAngelInteraction(boolean wasAlive, AngelInterface angel) {
-        notifyObservers(angel, ((Angel) angel).getAction(), this);
         if (!wasAlive && alive) {
             notifyObservers(this, EventType.PLAYER_REVIVAL, angel);
         } else {

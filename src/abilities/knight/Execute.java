@@ -55,6 +55,13 @@ public class Execute extends Ability {
      */
     @Override
     public AbilityParameters getAbilityParametersOn(final Hero hero) {
+        int basicDamage = getBasicDamageOn(hero);
+        if (basicDamage == hero.getHP()) {
+            return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
+                    this.getIncapacitationRounds(), this.getTotalOvertimeDamage(),
+                    this.getOvertimeDamageRounds(), this.getTerrainMultiplier(),
+                    Constants.NO_INITIAL_RACE_MULTIPLIER);
+        }
         return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
                 this.getIncapacitationRounds(), this.getTotalOvertimeDamage(),
                 this.getOvertimeDamageRounds(), this.getTerrainMultiplier(),

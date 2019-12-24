@@ -13,7 +13,5 @@ public class Spawner extends Angel {
                 Constants.SPAWNER_PYROMANCER_HP, Constants.SPAWNER_ROGUE_HP,
                 Constants.SPAWNER_WIZARD_HP, true);
         initializeXp(0, 0, 0, 0);
-
     }
-
 }
