@@ -5,6 +5,7 @@ import characters.heroes.races.Knight;
 import characters.heroes.races.Pyromancer;
 import characters.heroes.races.Rogue;
 import characters.heroes.races.Wizard;
+import common.Constants;
 import map.Map;
 import map.terrain.TerrainInterface;
 
@@ -160,16 +161,16 @@ public abstract class Ability implements AbilityInterface {
     protected abstract float getInitialWizardMultiplier();
 
     public void changeRaceDamageMultipliers(final float amount) {
-        if (getInitialKnightMultiplier() != 0f) {
+        if (getInitialKnightMultiplier() != Constants.NO_INITIAL_RACE_MULTIPLIER) {
             knightDamageMultiplier = Math.max(knightDamageMultiplier + amount, 0f);
         }
-        if (getInitialPyromancerMultiplier() != 0f) {
+        if (getInitialPyromancerMultiplier() != Constants.NO_INITIAL_RACE_MULTIPLIER) {
             pyromancerDamageMultiplier = Math.max(pyromancerDamageMultiplier + amount, 0f);
         }
-        if (getInitialRogueMultiplier() != 0f) {
+        if (getInitialRogueMultiplier() != Constants.NO_INITIAL_RACE_MULTIPLIER) {
             rogueDamageMultiplier = Math.max(rogueDamageMultiplier + amount, 0f);
         }
-        if (getInitialWizardMultiplier() != 0f) {
+        if (getInitialWizardMultiplier() != Constants.NO_INITIAL_RACE_MULTIPLIER) {
             wizardDamageMultiplier = Math.max(wizardDamageMultiplier + amount, 0f);
         }
     }
