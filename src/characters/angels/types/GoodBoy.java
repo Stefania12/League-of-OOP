@@ -1,12 +1,13 @@
 package characters.angels.types;
 
+import characters.EventType;
 import characters.angels.Angel;
 import common.Constants;
 import util.Pair;
 
 public class GoodBoy extends Angel {
     public GoodBoy(Pair<Integer, Integer> coordinates) {
-        super("GoodBoy", "helped", coordinates);
+        super("GoodBoy", EventType.HELP, coordinates);
         initializeDamageModifiers(Constants.GOODBOY_KNIGHT_MODIFIER,
                 Constants.GOODBOY_PYROMANCER_MODIFIER, Constants.GOODBOY_ROGUE_MODIFIER,
                 Constants.GOODBOY_WIZARD_MODIFIER);

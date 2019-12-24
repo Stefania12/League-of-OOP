@@ -1,6 +1,7 @@
 package characters.heroes;
 
 import abilities.AbilityInterface;
+import characters.Observable;
 import characters.angels.AngelInterface;
 import map.terrain.Desert;
 import map.terrain.Land;
@@ -10,7 +11,7 @@ import map.terrain.Woods;
 /**
  * Implements interface for Visitor pattern for ability->hero and hero->terrain.
  */
-public interface HeroInterface {
+public interface HeroInterface extends Observable {
     /**
      * Accept-type method that returns the value of the visit-type method of an ability.
      *

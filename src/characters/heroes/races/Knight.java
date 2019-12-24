@@ -34,6 +34,11 @@ public class Knight extends Hero {
         setStrategy(new KnightStrategy(this));
     }
 
+    @Override
+    public String getName() {
+        return "Knight " + getId();
+    }
+
     /**
      * Accept-type method that returns the value of Land multiplier of Knight.
      *
@@ -91,12 +96,14 @@ public class Knight extends Hero {
     public void receiveEffectOfAngel(AngelInterface angel) {
         AngelEffect effect = angel.getEffectOn(this);
         if (this.isAlive() || effect.getRevival()) {
+            boolean wasAlive = isAlive();
             for (Ability a : getAbilities()) {
                 a.changeRaceDamageMultipliers(effect.getDamageModifier());
             }
             this.changeHPBy(effect.getHp());
             this.updateAliveStatus();
             this.addXP(effect.getXp());
+            this.notifyAngelInteraction(wasAlive, angel);
         }
     }
 }

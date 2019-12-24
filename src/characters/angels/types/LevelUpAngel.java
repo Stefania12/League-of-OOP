@@ -1,5 +1,6 @@
 package characters.angels.types;
 
+import characters.EventType;
 import characters.angels.Angel;
 import characters.angels.AngelEffect;
 import characters.heroes.races.Knight;
@@ -12,7 +13,7 @@ import xp.XPManager;
 
 public class LevelUpAngel extends Angel {
     public LevelUpAngel(Pair<Integer, Integer> coordinates) {
-        super("LevelUpAngel", "helped", coordinates);
+        super("LevelUpAngel", EventType.HELP, coordinates);
         super.initializeDamageModifiers(Constants.LVL_UP_ANGEL_KNIGHT_MODIFIER,
                 Constants.LVL_UP_ANGEL_PYROMANCER_MODIFIER, Constants.LVL_UP_ANGEL_ROGUE_MODIFIER,
                 Constants.LVL_UP_ANGEL_WIZARD_MODIFIER);

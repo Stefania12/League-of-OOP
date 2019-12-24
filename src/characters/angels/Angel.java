@@ -1,14 +1,19 @@
 package characters.angels;
 
+import characters.EventType;
+import characters.Observable;
+import characters.Observer;
 import characters.heroes.races.Knight;
 import characters.heroes.races.Pyromancer;
 import characters.heroes.races.Rogue;
 import characters.heroes.races.Wizard;
 import util.Pair;
 
+import java.util.ArrayList;
+
 public abstract class Angel implements AngelInterface {
     private String type;
-    private String action;
+    private EventType action;
     private Pair<Integer, Integer> coordinates;
     private float knightDamageModifier;
     private float pyromancerDamageModifier;
@@ -23,11 +28,13 @@ public abstract class Angel implements AngelInterface {
     private int pyromancerXp;
     private int rogueXp;
     private int wizardXp;
+    private ArrayList<Observer> observers;
 
-    protected Angel(final String angelType, final String angelAction, final Pair<Integer, Integer> angelCoordinates) {
+    protected Angel(final String angelType, final EventType angelAction, final Pair<Integer, Integer> angelCoordinates) {
         type = angelType;
         action = angelAction;
         coordinates = angelCoordinates;
+        observers = new ArrayList<>();
     }
 
     protected void initializeDamageModifiers(final float knightModifier, final float pyromancerModifier, final float rogueModifier, final float wizardModifier) {
@@ -50,6 +57,18 @@ public abstract class Angel implements AngelInterface {
         pyromancerXp = xpPyromancer;
         rogueXp = xpRogue;
         wizardXp = xpWizard;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public EventType getAction() {
+        return action;
+    }
+
+    public Pair<Integer, Integer> getCoordinates() {
+        return coordinates;
     }
 
     protected float getKnightDamageModifier() {
@@ -106,5 +125,16 @@ public abstract class Angel implements AngelInterface {
     @Override
     public AngelEffect getEffectOn(Wizard hero) {
         return new AngelEffect(wizardDamageModifier, wizardHp, revival, wizardXp);
+    }
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyObservers(Observable obj1, EventType event, Observable obj2) {
+        for (Observer o : observers) {
+            o.update(obj1, event, obj2);
+        }
     }
 }

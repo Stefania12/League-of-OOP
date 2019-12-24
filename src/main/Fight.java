@@ -91,6 +91,9 @@ final class Fight {
      * @param hero2     hero that attacks second
      */
     static void fight(final Hero hero1, final Hero hero2) {
+        hero1.setEnemy(hero2);
+        hero2.setEnemy(hero1);
+
         hero1.computeAttacksOn(hero2);
         hero2.computeAttacksOn(hero1);
 

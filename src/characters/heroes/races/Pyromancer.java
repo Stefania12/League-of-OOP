@@ -34,6 +34,11 @@ public class Pyromancer extends Hero {
         setStrategy(new PyromancerStrategy(this));
     }
 
+    @Override
+    public String getName() {
+        return "Pyromancer " + getId();
+    }
+
     /**
      * Accept-type method that returns the value of Woods multiplier of Pyromancer.
      *
@@ -91,12 +96,14 @@ public class Pyromancer extends Hero {
     public void receiveEffectOfAngel(AngelInterface angel) {
         AngelEffect effect = angel.getEffectOn(this);
         if (this.isAlive() || effect.getRevival()) {
+            boolean wasAlive = isAlive();
             for (Ability a : getAbilities()) {
                 a.changeRaceDamageMultipliers(effect.getDamageModifier());
             }
             this.changeHPBy(effect.getHp());
             this.updateAliveStatus();
             this.addXP(effect.getXp());
+            this.notifyAngelInteraction(wasAlive, angel);
         }
     }
 }

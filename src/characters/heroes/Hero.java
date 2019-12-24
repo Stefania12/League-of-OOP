@@ -2,11 +2,17 @@ package characters.heroes;
 
 import abilities.Ability;
 import abilities.AbilityParameters;
+import characters.EventType;
+import characters.Observable;
+import characters.Observer;
+import characters.angels.Angel;
+import characters.angels.AngelInterface;
 import common.Constants;
 import strategies.StrategyInterface;
 import util.Pair;
 import xp.XPManager;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -14,6 +20,7 @@ import java.util.LinkedList;
  */
 public abstract class Hero implements HeroInterface {
     private final String type;
+    private int id;
     private final int fightPriority;
     private Pair<Integer, Integer> coordinates;
     private LinkedList<Ability> abilities;
@@ -29,6 +36,8 @@ public abstract class Hero implements HeroInterface {
     private Pair<Integer, Integer> overtimeDamage;
     private int incapacitationRounds;
     private StrategyInterface strategy;
+    private Observable enemy;
+    private ArrayList<Observer> observers;
 
     /**
      * Initializes hero.
@@ -55,6 +64,7 @@ public abstract class Hero implements HeroInterface {
         alive = true;
         initialHealth = initHp;
         healthPerLevel = hpPerLevel;
+        observers = new ArrayList<>();
     }
 
     /**
@@ -73,6 +83,22 @@ public abstract class Hero implements HeroInterface {
             builder.append(coordinates.getKey()).append(" ").append(coordinates.getValue());
         }
         return builder.toString();
+    }
+
+    protected int getId() {
+        return id;
+    }
+
+    public void setId(final int newId) {
+        id = newId;
+    }
+
+    public void setEnemy(Observable enemy) {
+        this.enemy = enemy;
+    }
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
     }
 
     /**
@@ -165,6 +191,7 @@ public abstract class Hero implements HeroInterface {
         if (isAlive()) {
             hp = maxHP;
         }
+        notifyObservers(this, EventType.LVL_UP, null);
     }
 
     /**
@@ -281,6 +308,9 @@ public abstract class Hero implements HeroInterface {
         hp -= damageTaken;
         damageTaken = 0;
         this.updateAliveStatus();
+        if (!alive) {
+            notifyObservers(this, EventType.KILLED_BY_PLAYER, enemy);
+        }
     }
 
     /**
@@ -294,4 +324,24 @@ public abstract class Hero implements HeroInterface {
             attacks.add(i.getAbilityParametersOn(hero));
         }
     }
+
+    @Override
+    public void notifyObservers(Observable obj1, EventType event, Observable obj2) {
+        for (Observer o : observers) {
+            o.update(obj1, event, obj2);
+        }
+    }
+
+    protected void notifyAngelInteraction(boolean wasAlive, AngelInterface angel) {
+        notifyObservers(angel, ((Angel) angel).getAction(), this);
+        if (!wasAlive && alive) {
+            notifyObservers(this, EventType.PLAYER_REVIVAL, angel);
+        } else {
+            if (wasAlive && !alive) {
+                notifyObservers(this, EventType.KILLED_BY_ANGEL, angel);
+            }
+        }
+    }
+
+    public abstract String getName();
 }

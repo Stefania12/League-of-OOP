@@ -1,5 +1,6 @@
 package characters.angels.types;
 
+import characters.EventType;
 import characters.angels.Angel;
 import characters.angels.AngelEffect;
 import characters.heroes.races.Knight;
@@ -10,7 +11,7 @@ import util.Pair;
 
 public class TheDoomer extends Angel {
     public TheDoomer(Pair<Integer, Integer> coordinates) {
-        super("TheDoomer", "helped", coordinates);
+        super("TheDoomer", EventType.HIT, coordinates);
         initializeDamageModifiers(0, 0, 0, 0);
         initializeLife(0, 0, 0, 0, false);
         initializeXp(0, 0, 0, 0);
