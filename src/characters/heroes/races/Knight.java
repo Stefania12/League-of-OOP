@@ -96,7 +96,7 @@ public class Knight extends Hero {
     @Override
     public void receiveEffectOfAngel(AngelInterface angel) {
         AngelEffect effect = angel.getEffectOn(this);
-        if (this.isAlive() || effect.getRevival()) {
+        if ((this.isAlive() && !effect.getRevival()) || (effect.getRevival() && !this.isAlive())) {
             angel.notifyObservers(angel, ((Angel) angel).getAction(), this);
             boolean wasAlive = isAlive();
             for (Ability a : getAbilities()) {

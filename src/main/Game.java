@@ -136,7 +136,7 @@ class Game {
                 fileWriter.writeWord(i.toString());
                 fileWriter.writeWord("\n");
             }
-            fileWriter.writeWord("\n");
+            //fileWriter.writeWord("\n");
             fileWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
