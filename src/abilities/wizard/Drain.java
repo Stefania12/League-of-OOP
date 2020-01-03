@@ -42,7 +42,7 @@ public class Drain extends Ability {
      */
     @Override
     protected int getBasicDamageOn(final Hero hero) {
-        return Math.round(super.getBasicDamageOn(null) / Constants.PERCENTAGE * getBaseHP(hero));
+        return getBaseHP(hero);
     }
 
     /**
@@ -52,29 +52,30 @@ public class Drain extends Ability {
      */
     @Override
     public AbilityParameters getAbilityParametersOn(final Hero hero) {
+        float newPercentage = super.getBasicDamageOn(null) / Constants.PERCENTAGE * this.getTerrainMultiplier() * hero.getRaceMultiplierOf(this);
         return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
                 this.getIncapacitationRounds(), this.getTotalOvertimeDamage(),
-                this.getOvertimeDamageRounds(), this.getTerrainMultiplier(),
-                hero.getRaceMultiplierOf(this));
+                this.getOvertimeDamageRounds(), newPercentage,
+                1.0f);
     }
 
     @Override
-    protected float getInitialKnightMultiplier() {
-        return Constants.DRAIN_KNIGHT_MULTIPLIER;
+    protected boolean hadInitialKnightModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialPyromancerMultiplier() {
-        return Constants.DRAIN_PYROMANCER_MULTIPLIER;
+    protected boolean hadInitialPyromancerModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialRogueMultiplier() {
-        return Constants.DRAIN_ROGUE_MULTIPLIER;
+    protected boolean hadInitialRogueModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialWizardMultiplier() {
-        return Constants.DRAIN_WIZARD_MULTIPLIER;
+    protected boolean hadInitialWizardModifier() {
+        return true;
     }
 }

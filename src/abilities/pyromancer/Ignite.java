@@ -40,22 +40,22 @@ public class Ignite extends Ability {
     }
 
     @Override
-    protected float getInitialKnightMultiplier() {
-        return Constants.IGNITE_KNIGHT_MULTIPLIER;
+    protected boolean hadInitialKnightModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialPyromancerMultiplier() {
-        return Constants.IGNITE_PYROMANCER_MULTIPLIER;
+    protected boolean hadInitialPyromancerModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialRogueMultiplier() {
-        return Constants.IGNITE_ROGUE_MULTIPLIER;
+    protected boolean hadInitialRogueModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialWizardMultiplier() {
-        return Constants.IGNITE_WIZARD_MULTIPLIER;
+    protected boolean hadInitialWizardModifier() {
+        return true;
     }
 }

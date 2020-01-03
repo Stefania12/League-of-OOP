@@ -26,7 +26,7 @@ public class KnightStrategy extends Strategy {
         for (Ability a : owner.getAbilities()) {
             a.changeRaceDamageMultipliers(-Constants.KNIGHT_STRATEGY_DMG_MULTIPLIER_LOSS);
         }
-        owner.changeHPBy(Math.round(Constants.KNIGHT_STRATEGY_HP_GAIN_PERCENTAGE * owner.getHP()));
+        owner.changeHPBy((int) Math.floor(Constants.KNIGHT_STRATEGY_HP_GAIN_PERCENTAGE * owner.getHP()));
     }
 
     @Override
@@ -35,6 +35,6 @@ public class KnightStrategy extends Strategy {
         for (Ability a : owner.getAbilities()) {
             a.changeRaceDamageMultipliers(Constants.KNIGHT_STRATEGY_DMG_MULTIPLIER_GAIN);
         }
-        owner.changeHPBy(-Math.round(Constants.KNIGHT_STRATEGY_HP_LOSS_PERCENTAGE * owner.getHP()));
+        owner.changeHPBy(-(int) Math.floor(Constants.KNIGHT_STRATEGY_HP_LOSS_PERCENTAGE * owner.getHP()));
     }
 }

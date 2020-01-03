@@ -47,11 +47,6 @@ public final class XPManager {
         } else {
             if (!hero1.isAlive() && hero2.isAlive()) {
                 xp[1] = getWinXP(hero2, hero1);
-            } else {
-                if (!hero1.isAlive() && !hero2.isAlive()) {
-                    xp[0] = getWinXP(hero1, hero2);
-                    xp[1] = getWinXP(hero2, hero1);
-                }
             }
         }
         return xp;

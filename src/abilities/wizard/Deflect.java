@@ -42,7 +42,7 @@ public class Deflect extends Ability {
         for (AbilityParameters i : hero.getAttacks()) {
             damageGot += Math.round(i.getBasicDamage() * i.getTerrainMultiplier());
         }
-        return Math.round(damageGot * this.getDamagePercentage());
+        return Math.round(damageGot);
     }
 
     /**
@@ -52,29 +52,30 @@ public class Deflect extends Ability {
      */
     @Override
     public AbilityParameters getAbilityParametersOn(final Hero hero) {
+        float newPercentage = getDamagePercentage() * this.getTerrainMultiplier() * hero.getRaceMultiplierOf(this);
         return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
                 this.getIncapacitationRounds(), this.getTotalOvertimeDamage(),
-                this.getOvertimeDamageRounds(), this.getTerrainMultiplier(),
-                hero.getRaceMultiplierOf(this));
+                this.getOvertimeDamageRounds(), newPercentage,
+                1.0f);
     }
 
     @Override
-    protected float getInitialKnightMultiplier() {
-        return Constants.DEFLECT_KNIGHT_MULTIPLIER;
+    protected boolean hadInitialKnightModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialPyromancerMultiplier() {
-        return Constants.DEFLECT_PYROMANCER_MULTIPLIER;
+    protected boolean hadInitialPyromancerModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialRogueMultiplier() {
-        return Constants.DEFLECT_ROGUE_MULTIPLIER;
+    protected boolean hadInitialRogueModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialWizardMultiplier() {
-        return Constants.DEFLECT_WIZARD_MULTIPLIER;
+    protected boolean hadInitialWizardModifier() {
+        return false;
     }
 }

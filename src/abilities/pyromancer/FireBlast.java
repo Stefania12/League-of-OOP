@@ -39,22 +39,22 @@ public class FireBlast extends Ability {
     }
 
     @Override
-    protected float getInitialKnightMultiplier() {
-        return Constants.FIREBLAST_KNIGHT_MULTIPLIER;
+    protected boolean hadInitialKnightModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialPyromancerMultiplier() {
-        return Constants.FIREBLAST_PYROMANCER_MULTIPLIER;
+    protected boolean hadInitialPyromancerModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialRogueMultiplier() {
-        return Constants.FIREBLAST_ROGUE_MULTIPLIER;
+    protected boolean hadInitialRogueModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialWizardMultiplier() {
-        return Constants.FIREBLAST_WIZARD_MULTIPLIER;
+    protected boolean hadInitialWizardModifier() {
+        return true;
     }
 }

@@ -42,7 +42,7 @@ public class Execute extends Ability {
      */
     @Override
     protected int getBasicDamageOn(final Hero hero) {
-        if (hero.getHP() < getHPLimit(hero)) {
+        if (hero.getHP() < getHPLimit(hero) && hero.getHP() > super.getBasicDamageOn(null)) {
             return hero.getHP();
         }
         return super.getBasicDamageOn(null);
@@ -69,22 +69,22 @@ public class Execute extends Ability {
     }
 
     @Override
-    protected float getInitialKnightMultiplier() {
-        return Constants.EXECUTE_KNIGHT_MULTIPLIER;
+    protected boolean hadInitialKnightModifier() {
+        return false;
     }
 
     @Override
-    protected float getInitialPyromancerMultiplier() {
-        return Constants.EXECUTE_PYROMANCER_MULTIPLIER;
+    protected boolean hadInitialPyromancerModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialRogueMultiplier() {
-        return Constants.EXECUTE_ROGUE_MULTIPLIER;
+    protected boolean hadInitialRogueModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialWizardMultiplier() {
-        return Constants.EXECUTE_WIZARD_MULTIPLIER;
+    protected boolean hadInitialWizardModifier() {
+        return true;
     }
 }

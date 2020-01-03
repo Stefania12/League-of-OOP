@@ -71,22 +71,22 @@ public class Backstab extends Ability {
     }
 
     @Override
-    protected float getInitialKnightMultiplier() {
-        return Constants.BACKSTAB_KNIGHT_MULTIPLIER;
+    protected boolean hadInitialKnightModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialPyromancerMultiplier() {
-        return Constants.BACKSTAB_PYROMANCER_MULTIPLIER;
+    protected boolean hadInitialPyromancerModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialRogueMultiplier() {
-        return Constants.BACKSTAB_ROGUE_MULTIPLIER;
+    protected boolean hadInitialRogueModifier() {
+        return true;
     }
 
     @Override
-    protected float getInitialWizardMultiplier() {
-        return Constants.BACKSTAB_WIZARD_MULTIPLIER;
+    protected boolean hadInitialWizardModifier() {
+        return true;
     }
 }

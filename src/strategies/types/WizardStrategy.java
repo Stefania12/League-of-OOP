@@ -26,7 +26,7 @@ public class WizardStrategy extends Strategy {
         for (Ability a : owner.getAbilities()) {
             a.changeRaceDamageMultipliers(-Constants.WIZARD_STRATEGY_DMG_MULTIPLIER_LOSS);
         }
-        owner.changeHPBy(Math.round(Constants.WIZARD_STRATEGY_HP_GAIN_PERCENTAGE * owner.getHP()));
+        owner.changeHPBy((int) Math.floor(Constants.WIZARD_STRATEGY_HP_GAIN_PERCENTAGE * owner.getHP()));
     }
 
     @Override
@@ -35,6 +35,6 @@ public class WizardStrategy extends Strategy {
         for (Ability a : owner.getAbilities()) {
             a.changeRaceDamageMultipliers(Constants.WIZARD_STRATEGY_DMG_MULTIPLIER_GAIN);
         }
-        owner.changeHPBy(-Math.round(Constants.WIZARD_STRATEGY_HP_LOSS_PERCENTAGE * owner.getHP()));
+        owner.changeHPBy(-(int) Math.floor(Constants.WIZARD_STRATEGY_HP_LOSS_PERCENTAGE * owner.getHP()));
     }
 }
