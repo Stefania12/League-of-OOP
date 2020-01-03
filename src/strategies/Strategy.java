@@ -1,5 +1,6 @@
 package strategies;
 
+import abilities.Ability;
 import characters.heroes.Hero;
 
 public abstract class Strategy implements StrategyInterface {
@@ -36,8 +37,25 @@ public abstract class Strategy implements StrategyInterface {
 
     protected abstract float getUpperHpLimit();
 
-    protected abstract void executeLowerHp();
+    private void executeLowerHp() {
+        for (Ability a : owner.getAbilities()) {
+            a.changeRaceDamageMultipliers(getLowerDmgModifier());
+        }
+        owner.changeHPBy(getLowerHpChange());
+    }
 
-    protected abstract void executeMiddleHp();
+    private void executeMiddleHp() {
+        for (Ability a : owner.getAbilities()) {
+            a.changeRaceDamageMultipliers(getMiddleDmgModifier());
+        }
+        owner.changeHPBy(getMiddleHpChange());
+    }
 
+    protected abstract int getLowerHpChange();
+
+    protected abstract int getMiddleHpChange();
+
+    protected abstract float getLowerDmgModifier();
+
+    protected abstract float getMiddleDmgModifier();
 }

@@ -1,6 +1,5 @@
 package strategies.types;
 
-import abilities.Ability;
 import characters.heroes.Hero;
 import common.Constants;
 import strategies.Strategy;
@@ -21,20 +20,24 @@ public class WizardStrategy extends Strategy {
     }
 
     @Override
-    protected void executeLowerHp() {
-        Hero owner = getOwner();
-        for (Ability a : owner.getAbilities()) {
-            a.changeRaceDamageMultipliers(-Constants.WIZARD_STRATEGY_DMG_MULTIPLIER_LOSS);
-        }
-        owner.changeHPBy((int) Math.floor(Constants.WIZARD_STRATEGY_HP_GAIN_PERCENTAGE * owner.getHP()));
+    protected float getLowerDmgModifier() {
+        return -Constants.WIZARD_STRATEGY_DMG_MULTIPLIER_LOSS;
     }
 
     @Override
-    protected void executeMiddleHp() {
+    protected int getLowerHpChange() {
         Hero owner = getOwner();
-        for (Ability a : owner.getAbilities()) {
-            a.changeRaceDamageMultipliers(Constants.WIZARD_STRATEGY_DMG_MULTIPLIER_GAIN);
-        }
-        owner.changeHPBy(-(int) Math.floor(Constants.WIZARD_STRATEGY_HP_LOSS_PERCENTAGE * owner.getHP()));
+        return (int) Math.floor(Constants.WIZARD_STRATEGY_HP_GAIN_PERCENTAGE * owner.getHP());
+    }
+
+    @Override
+    protected float getMiddleDmgModifier() {
+        return Constants.WIZARD_STRATEGY_DMG_MULTIPLIER_GAIN;
+    }
+
+    @Override
+    protected int getMiddleHpChange() {
+        Hero owner = getOwner();
+        return -(int) Math.floor(Constants.WIZARD_STRATEGY_HP_LOSS_PERCENTAGE * owner.getHP());
     }
 }
