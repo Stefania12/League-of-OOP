@@ -149,7 +149,7 @@ general logic of a strategy, depending on several constants that are provided
 by the particular strategy class corresponding to each hero race.
 
     Other design patterns:
-        -Singleton: Map
+        -Singleton: Map, GreatMage
         -Factory: MovementOffsetFactory, HeroFactory, AngelFactory
 
 

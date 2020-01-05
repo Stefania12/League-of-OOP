@@ -1,8 +1,7 @@
 package common;
 
 public final class Constants {
-    public static final float FIREBLAST_ROGUE_MULTIPLIER = 0.8f;
-
+    public static final float NO_INITIAL_MULTIPLIER = 1.0f;
 
     public static final float PERCENTAGE = 100.0f;
     public static final float FIREBLAST_ROGUE_MULTIPLIER = 0.8f;
@@ -122,6 +121,10 @@ public final class Constants {
     public static final float PARALYSIS_KNIGHT_MULTIPLIER = 0.8f;
     public static final float PARALYSIS_PYROMANCER_MULTIPLIER = 1.2f;
     public static final float PARALYSIS_WIZARD_MULTIPLIER = 1.25f;
+
+    private Constants() {
+    }
+
     // Angel types
     public static final String DAMAGE_ANGEL = "DamageAngel";
     public static final String DARK_ANGEL = "DarkAngel";
@@ -133,6 +136,7 @@ public final class Constants {
     public static final String SPAWNER = "Spawner";
     public static final String DOOMER = "TheDoomer";
     public static final String XP_ANGEL = "XPAngel";
+
     // DarkAngel details
     public static final int DARK_ANGEL_KNIGHT_HP = -40;
 
@@ -175,9 +179,6 @@ public final class Constants {
     public static final int LIFEGIVER_PYROMANCER_HP = 80;
     public static final int LIFEGIVER_ROGUE_HP = 90;
     public static final int LIFEGIVER_WIZARD_HP = 120;
-
-    private Constants() {
-    }
 
     // SmallAngel details
     public static final float SMALL_ANGEL_KNIGHT_MODIFIER = 0.10f;

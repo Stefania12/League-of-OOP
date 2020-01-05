@@ -118,7 +118,7 @@ public abstract class Angel implements AngelInterface {
         return revival;
     }
 
-    protected final boolean canHaveEffectOn(Hero hero) {
+    protected final boolean canHaveEffectOn(final Hero hero) {
         return ((hero.isAlive() && !revival || (revival && !hero.isAlive())));
     }
 
