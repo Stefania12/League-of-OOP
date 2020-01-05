@@ -3,6 +3,7 @@ package characters.heroes;
 import abilities.Ability;
 import abilities.AbilityParameters;
 import characters.EventType;
+import characters.GreatMage;
 import characters.Observable;
 import characters.Observer;
 import characters.angels.AngelInterface;
@@ -64,6 +65,7 @@ public abstract class Hero implements HeroInterface {
         initialHealth = initHp;
         healthPerLevel = hpPerLevel;
         observers = new ArrayList<>();
+        this.addObserver(GreatMage.getInstance());
     }
 
     /**

@@ -19,21 +19,37 @@ public final class TheDoomer extends Angel {
 
     @Override
     public AngelEffect getEffectOn(final Knight hero) {
-        return new AngelEffect(0, -hero.getHP(), false, 0);
+        if (canHaveEffectOn(hero)) {
+            notifyObservers(this, getAction(), hero);
+            return new AngelEffect(0, -hero.getHP(), false, 0);
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 
     @Override
     public AngelEffect getEffectOn(final Pyromancer hero) {
-        return new AngelEffect(0, -hero.getHP(), false, 0);
+        if (canHaveEffectOn(hero)) {
+            notifyObservers(this, getAction(), hero);
+            return new AngelEffect(0, -hero.getHP(), false, 0);
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 
     @Override
     public AngelEffect getEffectOn(final Rogue hero) {
-        return new AngelEffect(0, -hero.getHP(), false, 0);
+        if (canHaveEffectOn(hero)) {
+            notifyObservers(this, getAction(), hero);
+            return new AngelEffect(0, -hero.getHP(), false, 0);
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 
     @Override
     public AngelEffect getEffectOn(final Wizard hero) {
-        return new AngelEffect(0, -hero.getHP(), false, 0);
+        if (canHaveEffectOn(hero)) {
+            notifyObservers(this, getAction(), hero);
+            return new AngelEffect(0, -hero.getHP(), false, 0);
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 }

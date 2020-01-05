@@ -1,6 +1,5 @@
 package main;
 
-import characters.EventType;
 import characters.GreatMage;
 import characters.angels.Angel;
 import characters.angels.AngelFactory;
@@ -36,7 +35,6 @@ class Game {
         heroes = new ArrayList<>();
         for (int i = 0; i < heroTypes.size(); i++) {
             heroes.add(HeroFactory.getInstance().getHero(heroTypes.get(i), heroCoordinates.get(i)));
-            heroes.get(i).addObserver(GreatMage.getInstance());
             heroes.get(i).setId(i);
         }
         heroMovements = movements;
@@ -73,7 +71,6 @@ class Game {
                 heroes.get(i).takeOvertimeDamage();
                 heroes.get(i).applyStrategy();
                 heroes.get(i).move(heroMovements.get(idx).charAt(i));
-
             }
         }
         int enemyId;
@@ -89,9 +86,6 @@ class Game {
         }
         for (Pair<String, Pair<Integer, Integer>> i : angelsEachRound.get(idx)) {
             Angel angel = AngelFactory.getInstance().createAngel(i.getKey(), i.getValue());
-            angel.addObserver(GreatMage.getInstance());
-            angel.notifyObservers(angel, EventType.ANGEL_SPAWN, null);
-
             for (Hero h : heroes) {
                 if (i.getValue().equals(h.getCoordinates())) {
                     h.receiveEffectOfAngel(angel);

@@ -23,25 +23,41 @@ public final class LevelUpAngel extends Angel {
 
     @Override
     public AngelEffect getEffectOn(final Knight hero) {
-        return new AngelEffect(getKnightDamageModifier(), getKnightHp(),
-                getRevival(), XPManager.getXpNeededForLevelUp(hero));
+        if (canHaveEffectOn(hero)) {
+            notifyObservers(this, getAction(), hero);
+            return new AngelEffect(getKnightDamageModifier(), getKnightHp(),
+                    getRevival(), XPManager.getXpNeededForLevelUp(hero));
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 
     @Override
     public AngelEffect getEffectOn(final Pyromancer hero) {
-        return new AngelEffect(getPyromancerDamageModifier(), getPyromancerHp(),
-                getRevival(), XPManager.getXpNeededForLevelUp(hero));
+        if (canHaveEffectOn(hero)) {
+            notifyObservers(this, getAction(), hero);
+            return new AngelEffect(getPyromancerDamageModifier(), getPyromancerHp(),
+                    getRevival(), XPManager.getXpNeededForLevelUp(hero));
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 
     @Override
     public AngelEffect getEffectOn(final Rogue hero) {
-        return new AngelEffect(getRogueDamageModifier(), getRogueHp(),
-                getRevival(), XPManager.getXpNeededForLevelUp(hero));
+        if (canHaveEffectOn(hero)) {
+            notifyObservers(this, getAction(), hero);
+            return new AngelEffect(getRogueDamageModifier(), getRogueHp(),
+                    getRevival(), XPManager.getXpNeededForLevelUp(hero));
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 
     @Override
     public AngelEffect getEffectOn(final Wizard hero) {
-        return new AngelEffect(getWizardDamageModifier(), getWizardHp(),
-                getRevival(), XPManager.getXpNeededForLevelUp(hero));
+        if (canHaveEffectOn(hero)) {
+            notifyObservers(this, getAction(), hero);
+            return new AngelEffect(getWizardDamageModifier(), getWizardHp(),
+                    getRevival(), XPManager.getXpNeededForLevelUp(hero));
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 }

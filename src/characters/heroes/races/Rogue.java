@@ -4,7 +4,6 @@ import abilities.Ability;
 import abilities.AbilityInterface;
 import abilities.rogue.Backstab;
 import abilities.rogue.Paralysis;
-import characters.angels.Angel;
 import characters.angels.AngelEffect;
 import characters.angels.AngelInterface;
 import characters.heroes.Hero;
@@ -96,16 +95,13 @@ public final class Rogue extends Hero {
     @Override
     public void receiveEffectOfAngel(final AngelInterface angel) {
         AngelEffect effect = angel.getEffectOn(this);
-        if ((this.isAlive() && !effect.getRevival()) || (effect.getRevival() && !this.isAlive())) {
-            angel.notifyObservers(angel, ((Angel) angel).getAction(), this);
-            boolean wasAlive = isAlive();
-            for (Ability a : getAbilities()) {
-                a.changeRaceDamageMultipliers(effect.getDamageModifier());
-            }
-            this.changeHPBy(effect.getHp());
-            this.updateAliveStatus();
-            this.addXP(effect.getXp());
-            this.notifyAngelInteraction(wasAlive, angel);
+        boolean wasAlive = isAlive();
+        for (Ability a : getAbilities()) {
+            a.changeRaceDamageMultipliers(effect.getDamageModifier());
         }
+        this.changeHPBy(effect.getHp());
+        this.updateAliveStatus();
+        this.addXP(effect.getXp());
+        this.notifyAngelInteraction(wasAlive, angel);
     }
 }

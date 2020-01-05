@@ -1,8 +1,10 @@
 package characters.angels;
 
 import characters.EventType;
+import characters.GreatMage;
 import characters.Observable;
 import characters.Observer;
+import characters.heroes.Hero;
 import characters.heroes.races.Knight;
 import characters.heroes.races.Pyromancer;
 import characters.heroes.races.Rogue;
@@ -36,6 +38,8 @@ public abstract class Angel implements AngelInterface {
         action = angelAction;
         coordinates = angelCoordinates;
         observers = new ArrayList<>();
+        this.addObserver(GreatMage.getInstance());
+        this.notifyObservers(this, EventType.ANGEL_SPAWN, null);
     }
 
     protected final void initializeDamageModifiers(final float knightModifier,
@@ -70,7 +74,7 @@ public abstract class Angel implements AngelInterface {
         return type;
     }
 
-    public final EventType getAction() {
+    protected final EventType getAction() {
         return action;
     }
 
@@ -114,6 +118,10 @@ public abstract class Angel implements AngelInterface {
         return revival;
     }
 
+    protected final boolean canHaveEffectOn(Hero hero) {
+        return ((hero.isAlive() && !revival || (revival && !hero.isAlive())));
+    }
+
     /**
      * Visitor-type function that returns the effects on the knight race.
      *
@@ -122,7 +130,11 @@ public abstract class Angel implements AngelInterface {
      */
     @Override
     public AngelEffect getEffectOn(final Knight hero) {
-        return new AngelEffect(knightDamageModifier, knightHp, revival, knightXp);
+        if (canHaveEffectOn(hero)) {
+            this.notifyObservers(this, action, hero);
+            return new AngelEffect(knightDamageModifier, knightHp, revival, knightXp);
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 
     /**
@@ -132,7 +144,11 @@ public abstract class Angel implements AngelInterface {
      */
     @Override
     public AngelEffect getEffectOn(final Pyromancer hero) {
-        return new AngelEffect(pyromancerDamageModifier, pyromancerHp, revival, pyromancerXp);
+        if (canHaveEffectOn(hero)) {
+            this.notifyObservers(this, action, hero);
+            return new AngelEffect(pyromancerDamageModifier, pyromancerHp, revival, pyromancerXp);
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 
     /**
@@ -142,7 +158,11 @@ public abstract class Angel implements AngelInterface {
      */
     @Override
     public AngelEffect getEffectOn(final Rogue hero) {
-        return new AngelEffect(rogueDamageModifier, rogueHp, revival, rogueXp);
+        if (canHaveEffectOn(hero)) {
+            this.notifyObservers(this, action, hero);
+            return new AngelEffect(rogueDamageModifier, rogueHp, revival, rogueXp);
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 
     /**
@@ -152,7 +172,11 @@ public abstract class Angel implements AngelInterface {
      */
     @Override
     public AngelEffect getEffectOn(final Wizard hero) {
-        return new AngelEffect(wizardDamageModifier, wizardHp, revival, wizardXp);
+        if (canHaveEffectOn(hero)) {
+            this.notifyObservers(this, action, hero);
+            return new AngelEffect(wizardDamageModifier, wizardHp, revival, wizardXp);
+        }
+        return new AngelEffect(0, 0, false, 0);
     }
 
     public final void addObserver(final Observer observer) {
