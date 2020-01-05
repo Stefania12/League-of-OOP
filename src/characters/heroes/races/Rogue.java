@@ -20,7 +20,7 @@ import util.Pair;
 /**
  * Implements Rogue hero.
  */
-public class Rogue extends Hero {
+public final class Rogue extends Hero {
     public Rogue(final Pair<Integer, Integer> coordinates) {
         super(HeroPriority.FIRST, Constants.ROGUE, coordinates,
                 Constants.ROGUE_INITIAL_HP, Constants.ROGUE_HP_PER_LEVEL);
@@ -94,7 +94,7 @@ public class Rogue extends Hero {
     }
 
     @Override
-    public void receiveEffectOfAngel(AngelInterface angel) {
+    public void receiveEffectOfAngel(final AngelInterface angel) {
         AngelEffect effect = angel.getEffectOn(this);
         if ((this.isAlive() && !effect.getRevival()) || (effect.getRevival() && !this.isAlive())) {
             angel.notifyObservers(angel, ((Angel) angel).getAction(), this);

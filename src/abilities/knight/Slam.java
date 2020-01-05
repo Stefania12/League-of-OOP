@@ -9,7 +9,7 @@ import common.Constants;
 /**
  * Implements Slam ability.
  */
-public class Slam extends Ability {
+public final class Slam extends Ability {
 
     /**
      * Initializes aability.

@@ -9,7 +9,7 @@ import common.Constants;
 /**
  * Implements Execute ability.
  */
-public class Execute extends Ability {
+public final class Execute extends Ability {
     private static final int INITIAL_HP_PERCENTAGE = Constants.EXECUTE_INITIAL_HP_PERCENTAGE;
     private static final int HP_PERCENTAGE_PER_LVL = Constants.EXECUTE_HP_PERCENTAGE_PER_LEVEL;
     private static final int MAX_HP_PERCENTAGE = Constants.EXECUTE_MAX_HP_PERCENTAGE;
@@ -60,7 +60,7 @@ public class Execute extends Ability {
             return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
                     this.getIncapacitationRounds(), this.getTotalOvertimeDamage(),
                     this.getOvertimeDamageRounds(), this.getTerrainMultiplier(),
-                    Constants.NO_INITIAL_RACE_MULTIPLIER);
+                    Constants.NO_INITIAL_MULTIPLIER);
         }
         return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
                 this.getIncapacitationRounds(), this.getTotalOvertimeDamage(),

@@ -5,8 +5,8 @@ import characters.angels.Angel;
 import common.Constants;
 import util.Pair;
 
-public class DarkAngel extends Angel {
-    public DarkAngel(Pair<Integer, Integer> coordinates) {
+public final class DarkAngel extends Angel {
+    public DarkAngel(final Pair<Integer, Integer> coordinates) {
         super("DarkAngel", EventType.HIT, coordinates);
         initializeDamageModifiers(0, 0, 0, 0);
         initializeLife(Constants.DARK_ANGEL_KNIGHT_HP,
@@ -14,5 +14,4 @@ public class DarkAngel extends Angel {
                 Constants.DARK_ANGEL_WIZARD_HP, false);
         initializeXp(0, 0, 0, 0);
     }
-
 }

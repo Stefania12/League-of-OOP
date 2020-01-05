@@ -9,7 +9,7 @@ import common.Constants;
 /**
  * Implements FireBlast ability.
  */
-public class FireBlast extends Ability {
+public final class FireBlast extends Ability {
 
     /**
      * Initialize ability.

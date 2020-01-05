@@ -9,7 +9,7 @@ import common.Constants;
 /**
  * Implements Deflect ability.
  */
-public class Deflect extends Ability {
+public final class Deflect extends Ability {
     private static final int MAX_DMG_PERCENTAGE = Constants.DEFLECT_DAMAGE_MAX_PERCENTAGE;
 
     /**
@@ -52,11 +52,12 @@ public class Deflect extends Ability {
      */
     @Override
     public AbilityParameters getAbilityParametersOn(final Hero hero) {
-        float newPercentage = getDamagePercentage() * this.getTerrainMultiplier() * hero.getRaceMultiplierOf(this);
+        float newPercentage = getDamagePercentage() * this.getTerrainMultiplier()
+                * hero.getRaceMultiplierOf(this);
         return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
                 this.getIncapacitationRounds(), this.getTotalOvertimeDamage(),
                 this.getOvertimeDamageRounds(), newPercentage,
-                1.0f);
+                Constants.NO_INITIAL_MULTIPLIER);
     }
 
     @Override

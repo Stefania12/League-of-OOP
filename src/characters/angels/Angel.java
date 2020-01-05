@@ -30,21 +30,27 @@ public abstract class Angel implements AngelInterface {
     private int wizardXp;
     private ArrayList<Observer> observers;
 
-    protected Angel(final String angelType, final EventType angelAction, final Pair<Integer, Integer> angelCoordinates) {
+    protected Angel(final String angelType, final EventType angelAction,
+                    final Pair<Integer, Integer> angelCoordinates) {
         type = angelType;
         action = angelAction;
         coordinates = angelCoordinates;
         observers = new ArrayList<>();
     }
 
-    protected void initializeDamageModifiers(final float knightModifier, final float pyromancerModifier, final float rogueModifier, final float wizardModifier) {
+    protected final void initializeDamageModifiers(final float knightModifier,
+                                                   final float pyromancerModifier,
+                                                   final float rogueModifier,
+                                                   final float wizardModifier) {
         knightDamageModifier = knightModifier;
         pyromancerDamageModifier = pyromancerModifier;
         rogueDamageModifier = rogueModifier;
         wizardDamageModifier = wizardModifier;
     }
 
-    protected void initializeLife(final int hpKnight, final int hpPyromancer, final int hpRougue, final int hpWizard, final boolean revivalAction) {
+    protected final void initializeLife(final int hpKnight, final int hpPyromancer,
+                                        final int hpRougue, final int hpWizard,
+                                        final boolean revivalAction) {
         knightHp = hpKnight;
         pyromancerHp = hpPyromancer;
         rogueHp = hpRougue;
@@ -52,87 +58,116 @@ public abstract class Angel implements AngelInterface {
         revival = revivalAction;
     }
 
-    protected void initializeXp(final int xpKnight, final int xpPyromancer, final int xpRogue, final int xpWizard) {
+    protected final void initializeXp(final int xpKnight, final int xpPyromancer,
+                                      final int xpRogue, final int xpWizard) {
         knightXp = xpKnight;
         pyromancerXp = xpPyromancer;
         rogueXp = xpRogue;
         wizardXp = xpWizard;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public EventType getAction() {
+    public final EventType getAction() {
         return action;
     }
 
-    public Pair<Integer, Integer> getCoordinates() {
+    public final Pair<Integer, Integer> getCoordinates() {
         return coordinates;
     }
 
-    protected float getKnightDamageModifier() {
+    protected final float getKnightDamageModifier() {
         return knightDamageModifier;
     }
 
-    protected float getPyromancerDamageModifier() {
+    protected final float getPyromancerDamageModifier() {
         return pyromancerDamageModifier;
     }
 
-    protected float getRogueDamageModifier() {
+    protected final float getRogueDamageModifier() {
         return rogueDamageModifier;
     }
 
-    protected float getWizardDamageModifier() {
+    protected final float getWizardDamageModifier() {
         return wizardDamageModifier;
     }
 
-    protected int getKnightHp() {
+    protected final int getKnightHp() {
         return knightHp;
     }
 
-    protected int getPyromancerHp() {
+    protected final int getPyromancerHp() {
         return pyromancerHp;
     }
 
-    protected int getRogueHp() {
+    protected final int getRogueHp() {
         return rogueHp;
     }
 
-    protected int getWizardHp() {
+    protected final int getWizardHp() {
         return wizardHp;
     }
 
-    protected boolean getRevival() {
+    protected final boolean getRevival() {
         return revival;
     }
 
+    /**
+     * Visitor-type function that returns the effects on the knight race.
+     *
+     * @param hero hero
+     * @return effects
+     */
     @Override
-    public AngelEffect getEffectOn(Knight hero) {
+    public AngelEffect getEffectOn(final Knight hero) {
         return new AngelEffect(knightDamageModifier, knightHp, revival, knightXp);
     }
 
+    /**
+     * Visitor-type function that returns the effects on the pyromancer race.
+     * @param hero  hero
+     * @return effects
+     */
     @Override
-    public AngelEffect getEffectOn(Pyromancer hero) {
+    public AngelEffect getEffectOn(final Pyromancer hero) {
         return new AngelEffect(pyromancerDamageModifier, pyromancerHp, revival, pyromancerXp);
     }
 
+    /**
+     * Visitor-type function that returns the effects on the rogue race.
+     * @param hero  hero
+     * @return effects
+     */
     @Override
-    public AngelEffect getEffectOn(Rogue hero) {
+    public AngelEffect getEffectOn(final Rogue hero) {
         return new AngelEffect(rogueDamageModifier, rogueHp, revival, rogueXp);
     }
 
+    /**
+     * Visitor-type function that returns the effects on the wizard race.
+     * @param hero  hero
+     * @return effects
+     */
     @Override
-    public AngelEffect getEffectOn(Wizard hero) {
+    public AngelEffect getEffectOn(final Wizard hero) {
         return new AngelEffect(wizardDamageModifier, wizardHp, revival, wizardXp);
     }
 
-    public void addObserver(Observer observer) {
+    public final void addObserver(final Observer observer) {
         observers.add(observer);
     }
 
+    /**
+     * Notifies observers about events.
+     * @param obj1  observable1
+     * @param event event
+     * @param obj2  observable2
+     */
     @Override
-    public void notifyObservers(Observable obj1, EventType event, Observable obj2) {
+    public void notifyObservers(final Observable obj1, final EventType event,
+                                final Observable obj2) {
         for (Observer o : observers) {
             o.update(obj1, event, obj2);
         }

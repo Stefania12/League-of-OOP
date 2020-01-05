@@ -4,8 +4,8 @@ import characters.heroes.Hero;
 import common.Constants;
 import strategies.Strategy;
 
-public class PyromancerStrategy extends Strategy {
-    public PyromancerStrategy(Hero hero) {
+public final class PyromancerStrategy extends Strategy {
+    public PyromancerStrategy(final Hero hero) {
         super(hero);
     }
 

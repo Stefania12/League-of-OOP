@@ -5,8 +5,8 @@ import characters.angels.Angel;
 import common.Constants;
 import util.Pair;
 
-public class Spawner extends Angel {
-    public Spawner(Pair<Integer, Integer> coordinates) {
+public final class Spawner extends Angel {
+    public Spawner(final Pair<Integer, Integer> coordinates) {
         super("Spawner", EventType.HELP, coordinates);
         initializeDamageModifiers(0, 0, 0, 0);
         initializeLife(Constants.SPAWNER_KNIGHT_HP,

@@ -84,19 +84,19 @@ public abstract class Hero implements HeroInterface {
         return builder.toString();
     }
 
-    protected int getId() {
+    protected final int getId() {
         return id;
     }
 
-    public void setId(final int newId) {
+    public final void setId(final int newId) {
         id = newId;
     }
 
-    public void setEnemy(Observable enemy) {
+    public final void setEnemy(final Observable enemy) {
         this.enemy = enemy;
     }
 
-    public void addObserver(Observer observer) {
+    public final void addObserver(final Observer observer) {
         observers.add(observer);
     }
 
@@ -148,6 +148,11 @@ public abstract class Hero implements HeroInterface {
         return hp;
     }
 
+    /**
+     * Changes hp by amount.
+     *
+     * @param amount hp amount
+     */
     public void changeHPBy(final int amount) {
         hp = Math.max(hp + amount, 0);
         if (hp > maxHP) {
@@ -256,13 +261,22 @@ public abstract class Hero implements HeroInterface {
         return attacks;
     }
 
-    protected void setStrategy(StrategyInterface newStrategy) {
+    /**
+     * Sets the corresponding strategy.
+     *
+     * @param newStrategy strategy
+     */
+    protected void setStrategy(final StrategyInterface newStrategy) {
         strategy = newStrategy;
     }
 
+    /**
+     * Applies the corresponding strategy if the hero is not incapacitated.
+     */
     public void applyStrategy() {
-        if (incapacitationRounds == 0)
+        if (incapacitationRounds == 0) {
             strategy.apply();
+        }
     }
 
     /**
@@ -325,14 +339,27 @@ public abstract class Hero implements HeroInterface {
         }
     }
 
+    /**
+     * Notifies observers upon event.
+     * @param obj1  observable1
+     * @param event event
+     * @param obj2  observable2
+     */
     @Override
-    public void notifyObservers(Observable obj1, EventType event, Observable obj2) {
+    public void notifyObservers(final Observable obj1, final EventType event,
+                                final Observable obj2) {
         for (Observer o : observers) {
             o.update(obj1, event, obj2);
         }
     }
 
-    protected void notifyAngelInteraction(boolean wasAlive, AngelInterface angel) {
+    /**
+     * Notifies the observers about the angel special interaction type: getting killed or revived.
+     *
+     * @param wasAlive hero was alive before the angel interaction
+     * @param angel    the angel the hero interacts with
+     */
+    protected void notifyAngelInteraction(final boolean wasAlive, final AngelInterface angel) {
         if (!wasAlive && alive) {
             notifyObservers(this, EventType.PLAYER_REVIVAL, angel);
         } else {

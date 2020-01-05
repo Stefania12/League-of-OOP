@@ -9,8 +9,8 @@ import characters.heroes.races.Rogue;
 import characters.heroes.races.Wizard;
 import util.Pair;
 
-public class TheDoomer extends Angel {
-    public TheDoomer(Pair<Integer, Integer> coordinates) {
+public final class TheDoomer extends Angel {
+    public TheDoomer(final Pair<Integer, Integer> coordinates) {
         super("TheDoomer", EventType.HIT, coordinates);
         initializeDamageModifiers(0, 0, 0, 0);
         initializeLife(0, 0, 0, 0, false);
@@ -18,22 +18,22 @@ public class TheDoomer extends Angel {
     }
 
     @Override
-    public AngelEffect getEffectOn(Knight hero) {
+    public AngelEffect getEffectOn(final Knight hero) {
         return new AngelEffect(0, -hero.getHP(), false, 0);
     }
 
     @Override
-    public AngelEffect getEffectOn(Pyromancer hero) {
+    public AngelEffect getEffectOn(final Pyromancer hero) {
         return new AngelEffect(0, -hero.getHP(), false, 0);
     }
 
     @Override
-    public AngelEffect getEffectOn(Rogue hero) {
+    public AngelEffect getEffectOn(final Rogue hero) {
         return new AngelEffect(0, -hero.getHP(), false, 0);
     }
 
     @Override
-    public AngelEffect getEffectOn(Wizard hero) {
+    public AngelEffect getEffectOn(final Wizard hero) {
         return new AngelEffect(0, -hero.getHP(), false, 0);
     }
 }

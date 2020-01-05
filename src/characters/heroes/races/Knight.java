@@ -20,7 +20,7 @@ import util.Pair;
 /**
  * Implements Knight hero.
  */
-public class Knight extends Hero {
+public final class Knight extends Hero {
     public Knight(final Pair<Integer, Integer> coordinates) {
         super(HeroPriority.FIRST, Constants.KNIGHT, coordinates,
                 Constants.KNIGHT_INITIAL_HP, Constants.KNIGHT_HP_PER_LEVEL);
@@ -94,7 +94,7 @@ public class Knight extends Hero {
     }
 
     @Override
-    public void receiveEffectOfAngel(AngelInterface angel) {
+    public void receiveEffectOfAngel(final AngelInterface angel) {
         AngelEffect effect = angel.getEffectOn(this);
         if ((this.isAlive() && !effect.getRevival()) || (effect.getRevival() && !this.isAlive())) {
             angel.notifyObservers(angel, ((Angel) angel).getAction(), this);

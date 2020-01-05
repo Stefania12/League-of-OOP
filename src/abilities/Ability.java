@@ -48,10 +48,10 @@ public abstract class Ability implements AbilityInterface {
         this.overtimeDamagePerLevel = overtimeDamagePerLevel;
     }
 
-    protected void initializeDamageMultipliers(final float knightMultiplier,
-                                               final float pyromancerMultiplier,
-                                               final float rogueMultiplier,
-                                               final float wizardMultiplier) {
+    protected final void initializeDamageMultipliers(final float knightMultiplier,
+                                                     final float pyromancerMultiplier,
+                                                     final float rogueMultiplier,
+                                                     final float wizardMultiplier) {
         knightDamageMultiplier = knightMultiplier;
         pyromancerDamageMultiplier = pyromancerMultiplier;
         rogueDamageMultiplier = rogueMultiplier;
@@ -132,22 +132,22 @@ public abstract class Ability implements AbilityInterface {
     }
 
     @Override
-    public float getRaceDamageMultiplier(Knight hero) {
+    public final float getRaceDamageMultiplier(final Knight hero) {
         return knightDamageMultiplier;
     }
 
     @Override
-    public float getRaceDamageMultiplier(Pyromancer hero) {
+    public final float getRaceDamageMultiplier(final Pyromancer hero) {
         return pyromancerDamageMultiplier;
     }
 
     @Override
-    public float getRaceDamageMultiplier(Rogue hero) {
+    public final float getRaceDamageMultiplier(final Rogue hero) {
         return rogueDamageMultiplier;
     }
 
     @Override
-    public float getRaceDamageMultiplier(Wizard hero) {
+    public final float getRaceDamageMultiplier(final Wizard hero) {
         return wizardDamageMultiplier;
     }
 
@@ -159,6 +159,11 @@ public abstract class Ability implements AbilityInterface {
 
     protected abstract boolean hadInitialWizardModifier();
 
+    /**
+     * Changes race damage multipliers by amount.
+     *
+     * @param amount amount to change
+     */
     public void changeRaceDamageMultipliers(final float amount) {
         if (hadInitialKnightModifier()) {
             knightDamageMultiplier = Math.max(knightDamageMultiplier + amount, 0f);

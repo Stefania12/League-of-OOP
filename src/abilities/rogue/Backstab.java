@@ -10,7 +10,7 @@ import map.Map;
 /**
  * Implements Backstab ability.
  */
-public class Backstab extends Ability {
+public final class Backstab extends Ability {
     private int counter;
 
     /**

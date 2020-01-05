@@ -9,7 +9,7 @@ import common.Constants;
 /**
  * Implements Drain ability.
  */
-public class Drain extends Ability {
+public final class Drain extends Ability {
     private static final float BASE_HP_CONSTANT = Constants.DRAIN_BASE_HP_CONSTANT;
 
     /**
@@ -52,11 +52,12 @@ public class Drain extends Ability {
      */
     @Override
     public AbilityParameters getAbilityParametersOn(final Hero hero) {
-        float newPercentage = super.getBasicDamageOn(null) / Constants.PERCENTAGE * this.getTerrainMultiplier() * hero.getRaceMultiplierOf(this);
+        float newPercentage = super.getBasicDamageOn(null) / Constants.PERCENTAGE
+                * this.getTerrainMultiplier() * hero.getRaceMultiplierOf(this);
         return new AbilityParameters(this.getPriority(), this.getBasicDamageOn(hero),
                 this.getIncapacitationRounds(), this.getTotalOvertimeDamage(),
                 this.getOvertimeDamageRounds(), newPercentage,
-                1.0f);
+                Constants.NO_INITIAL_MULTIPLIER);
     }
 
     @Override

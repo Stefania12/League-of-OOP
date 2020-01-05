@@ -5,8 +5,8 @@ import characters.angels.Angel;
 import common.Constants;
 import util.Pair;
 
-public class Dracula extends Angel {
-    public Dracula(Pair<Integer, Integer> coordinates) {
+public final class Dracula extends Angel {
+    public Dracula(final Pair<Integer, Integer> coordinates) {
         super("Dracula", EventType.HIT, coordinates);
         initializeDamageModifiers(Constants.DRACULA_KNIGHT_MODIFIER,
                 Constants.DRACULA_PYROMANCER_MODIFIER, Constants.DRACULA_ROGUE_MODIFIER,
@@ -15,5 +15,4 @@ public class Dracula extends Angel {
                 Constants.DRACULA_ROGUE_HP, Constants.DRACULA_WIZARD_HP, false);
         initializeXp(0, 0, 0, 0);
     }
-
 }

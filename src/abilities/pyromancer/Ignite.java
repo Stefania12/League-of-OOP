@@ -9,7 +9,7 @@ import common.Constants;
 /**
  * Implements Ignite ability.
  */
-public class Ignite extends Ability {
+public final class Ignite extends Ability {
 
     /**
      * Initialize ability.

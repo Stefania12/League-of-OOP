@@ -20,7 +20,7 @@ import util.Pair;
 /**
  * Implements Wizard hero.
  */
-public class Wizard extends Hero {
+public final class Wizard extends Hero {
     /**
      * Initializes Wizard hero.
      *
@@ -97,7 +97,7 @@ public class Wizard extends Hero {
     }
 
     @Override
-    public void receiveEffectOfAngel(AngelInterface angel) {
+    public void receiveEffectOfAngel(final AngelInterface angel) {
         AngelEffect effect = angel.getEffectOn(this);
         if ((this.isAlive() && !effect.getRevival()) || (effect.getRevival() && !this.isAlive())) {
             angel.notifyObservers(angel, ((Angel) angel).getAction(), this);

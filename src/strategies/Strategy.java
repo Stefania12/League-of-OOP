@@ -3,17 +3,28 @@ package strategies;
 import abilities.Ability;
 import characters.heroes.Hero;
 
+/**
+ * Implements common strategy functionality.
+ */
 public abstract class Strategy implements StrategyInterface {
     private Hero owner;
 
-    protected Strategy(Hero hero) {
+    protected Strategy(final Hero hero) {
         owner = hero;
     }
 
+    /**
+     * Returns owner of strategy.
+     *
+     * @return owner
+     */
     protected Hero getOwner() {
         return owner;
     }
 
+    /**
+     * Applies the strategy.
+     */
     @Override
     public void apply() {
         if (lowerHpCase()) {

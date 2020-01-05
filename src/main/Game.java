@@ -19,7 +19,8 @@ class Game {
     private int rounds;
     private ArrayList<Hero> heroes;
     private ArrayList<String> heroMovements;
-    private ArrayList<ArrayList<Pair<String, Pair<Integer, Integer>>>> angelsEachRound; // (angelType, coordinates) pairs
+    // (angelType, coordinates) pairs
+    private ArrayList<ArrayList<Pair<String, Pair<Integer, Integer>>>> angelsEachRound;
     private ArrayList<ArrayList<String>> eventsEachRound;
 
     /**
@@ -46,7 +47,8 @@ class Game {
             angelsEachRound.add(new ArrayList<>());
             for (String s : angelsPerRound.get(i)) {
                 String[] words = s.split(",");
-                angelsEachRound.get(i).add(new Pair<>(words[0], new Pair<>(Integer.parseInt(words[1]), Integer.parseInt(words[2]))));
+                angelsEachRound.get(i).add(new Pair<>(words[0],
+                        new Pair<>(Integer.parseInt(words[1]), Integer.parseInt(words[2]))));
             }
         }
 
@@ -113,7 +115,7 @@ class Game {
     }
 
 
-    private void printEvents(FileWriter fileWriter) throws IOException {
+    private void printEvents(final FileWriter fileWriter) throws IOException {
         for (int i = 0; i < rounds; i++) {
             fileWriter.writeWord("~~ Round " + (i + 1) + " ~~\n");
             for (String s : eventsEachRound.get(i)) {
@@ -137,7 +139,6 @@ class Game {
                 fileWriter.writeWord(i.toString());
                 fileWriter.writeWord("\n");
             }
-            //fileWriter.writeWord("\n");
             fileWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
