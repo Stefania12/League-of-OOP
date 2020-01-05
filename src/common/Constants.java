@@ -6,6 +6,7 @@ public final class Constants {
 
     public static final float PERCENTAGE = 100.0f;
     public static final float FIREBLAST_ROGUE_MULTIPLIER = 0.8f;
+
     // XP and level up details
     public static final int INITIAL_XP = 0;
     public static final int INITIAL_LEVEL = 0;

@@ -110,7 +110,9 @@ OOP Project: League of OOP - First stage
         -StrategyInterface.java: common interface for strategies
 
     -xp
-        -XPManager.java: manages XP after a fight
+        -XPManager.java: manages XP after a fight and calculates XP needed for
+                         level up
+
 
 
     Every round, each player takes overtime damage if any, applies a strategy
@@ -123,12 +125,14 @@ incapacitation and/or damage. Health is recalculated and alive status is
 updated. If al least one hero is killed in a fight, xp gain(s) are calculated
 and heroes level up if they have enough XP. If a hero gets killed in a fight,
 the Great Mage is notified.
+
     Then, angels are spawned and have different effects on the heroes. Whenever
 an angel is spawned, the Great Mage is notified. When a hero and an angel are
 at the same coordinates, the hero retieves the effects the angel would have on
-him, checks if they are applied and applies them, the angel notifying the Great
-Mage about this. The Great Mage is also notifies whenever a hero's alive status
-is changed after interacting with an angel.
+him. When providing the effects, the angels check if they can interact with a
+hero. If they can, they notify the Great Mage and provide the effects, otherwise
+the effects provided do not influence the hero. The Great Mage is also notified
+whenever a hero's alive status is changed after interacting with an angel.
 
 
     I used Visitor pattern for retrieving the terrain modifier (hero = visitor,
@@ -137,6 +141,12 @@ the angel-hero interaction (angel=visitor, hero=visited).
 
     The Observer pattern is used for angel/hero (observable) - GreatMage
 (observer) interaction.
+
+
+    I used Strategy pattern to implement the hero strategies. The interface
+contains only the apply method needed by heroes. The abstract class contains the
+general logic of a strategy, depending on several constants that are provided
+by the particular strategy class corresponding to each hero race.
 
     Other design patterns:
         -Singleton: Map
